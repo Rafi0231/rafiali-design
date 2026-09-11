@@ -1,0 +1,86 @@
+.hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1512 / 982;
+  container-type: inline-size;
+  overflow: hidden;
+}
+
+/* ── image wrappers ── */
+.base,
+.cutout {
+  position: absolute;
+  inset: 0;
+}
+
+.base  { z-index: 0; }
+
+.cutout {
+  z-index: 2;
+  pointer-events: none;
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* ── text layer ── */
+.textLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* ── nav ── */
+.navLink {
+  position: absolute;
+  top: 2.851%;
+  font-size: var(--hero-nav);
+  color: var(--color-brown);
+  transition: text-shadow var(--duration-fast) var(--ease-out);
+}
+
+.navLink:hover {
+  text-shadow: var(--shadow-soft);
+}
+
+/* ── name ── */
+.name {
+  position: absolute;
+  left: 12.8%;
+  top: 18.018%;
+  margin: 0;
+  font-size: var(--hero-name);
+  font-weight: 400;
+  letter-spacing: var(--tracking-name);
+  line-height: var(--leading-tight);
+  color: var(--color-green);
+}
+
+/* ── credentials ── */
+.rule {
+  position: absolute;
+  left: 15.146%;
+  top: 69.80%;
+  width: 4px;
+  height: 9%;
+  background: var(--color-silver);
+}
+
+.founder {
+  position: absolute;
+  left: 17%;
+  top: 68.8%;
+  font-size: var(--hero-founder);
+  font-style: italic;
+  color: var(--color-green);
+}
+
+.credential {
+  position: absolute;
+  left: 17%;
+  top: 74.837%;
+  font-size: var(--hero-credential);
+  font-style: italic;
+  color: var(--color-green);
+}

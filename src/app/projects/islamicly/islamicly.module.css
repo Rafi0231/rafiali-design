@@ -1,0 +1,56 @@
+/* All positions are % of the scroll-area panel (1451 × 743).
+   Conversion: left=(x−28)/1451×100  top=(y−196)/743×100
+   Font sizes remain cqw against the outer 1512px frame. */
+
+.imgFrame {
+  position: absolute;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.body {
+  position: absolute;
+  font-size: 1.323cqw;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+.body p + p {
+  margin-top: 1em;
+}
+
+.caption {
+  position: absolute;
+  font-size: 1.190cqw;
+  font-style: italic;
+  color: rgba(31, 53, 29, 0.7);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+.captionSm {
+  position: absolute;
+  font-size: 0.860cqw;
+  font-style: italic;
+  color: rgba(31, 53, 29, 0.7);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+.quotePill {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  background: rgba(139, 107, 92, 0.5);
+  padding: 0 var(--space-3);
+  font-size: 1.455cqw;
+  font-style: italic;
+  color: var(--color-green);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}

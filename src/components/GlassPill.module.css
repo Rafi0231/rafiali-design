@@ -1,0 +1,250 @@
+@property --angle-1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --angle-2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -45deg;
+}
+
+/* ── Wrapper ─────────────────────────────────────────────────────────────────
+   Position / layout comes from the parent component CSS.
+   This element owns the shadow context and transition. */
+.buttonWrap {
+  --anim--hover-time: 400ms;
+  --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 999vw;
+  background: transparent;
+  pointer-events: none;
+  transition: all var(--anim--hover-time) var(--anim--hover-ease);
+}
+
+/* ── Blurred drop-shadow div ─────────────────────────────────────────────── */
+.buttonShadow {
+  --shadow-cuttoff-fix: 32px;
+  position: absolute;
+  width: calc(100% + var(--shadow-cuttoff-fix));
+  height: calc(100% + var(--shadow-cuttoff-fix));
+  top: calc(0% - var(--shadow-cuttoff-fix) / 2);
+  left: calc(0% - var(--shadow-cuttoff-fix) / 2);
+  filter: blur(6px);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.buttonShadow::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: 999vw;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+  width: calc(100% - var(--shadow-cuttoff-fix) - 4px);
+  height: calc(100% - var(--shadow-cuttoff-fix) - 4px);
+  top: calc(var(--shadow-cuttoff-fix) / 2 + 2px);
+  left: calc(var(--shadow-cuttoff-fix) / 2 + 2px);
+  padding: 2px;
+  box-sizing: border-box;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: all var(--anim--hover-time) var(--anim--hover-ease);
+  overflow: visible;
+  opacity: 1;
+}
+
+/* ── The anchor / link element ───────────────────────────────────────────── */
+.pill {
+  --border-width: 1.5px;
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  pointer-events: auto;
+  z-index: 3;
+  background: linear-gradient(
+    -75deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
+  border-radius: 999vw;
+  box-shadow:
+    inset 0 2px 2px rgba(0, 0, 0, 0.05),
+    inset 0 -2px 2px rgba(255, 255, 255, 0.5),
+    0 4px 2px -2px rgba(0, 0, 0, 0.2),
+    inset 0 0 2px 4px rgba(255, 255, 255, 0.2),
+    0 0 0 0 rgba(255, 255, 255, 1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  transition: all var(--anim--hover-time) var(--anim--hover-ease);
+}
+
+.pill:hover {
+  transform: scale(0.975);
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+  box-shadow:
+    inset 0 2px 2px rgba(0, 0, 0, 0.05),
+    inset 0 -2px 2px rgba(255, 255, 255, 0.5),
+    0 2px 1px -1px rgba(0, 0, 0, 0.25),
+    inset 0 0 1px 2px rgba(255, 255, 255, 0.5),
+    0 0 0 0 rgba(255, 255, 255, 1);
+}
+
+/* ── Label span ──────────────────────────────────────────────────────────── */
+.pillSpan {
+  position: relative;
+  display: block;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+  transition: all var(--anim--hover-time) var(--anim--hover-ease);
+  padding-inline: 1em;
+}
+
+.pill:hover .pillSpan {
+  text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.12);
+}
+
+/* Sweeping sheen */
+.pillSpan::after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 3;
+  width: calc(100% - var(--border-width));
+  height: calc(100% - var(--border-width));
+  top: calc(var(--border-width) / 2);
+  left: calc(var(--border-width) / 2);
+  box-sizing: border-box;
+  border-radius: 999vw;
+  overflow: clip;
+  background: linear-gradient(
+    var(--angle-2),
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 40% 50%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  transition:
+    background-position calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease),
+    --angle-2 calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease);
+}
+
+.pill:hover .pillSpan::after {
+  background-position: 25% 50%;
+}
+
+.pill:active .pillSpan::after {
+  background-position: 50% 15%;
+  --angle-2: -15deg;
+}
+
+/* ── Animated conic-gradient border ring ─────────────────────────────────── */
+.pill::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: 999vw;
+  width: calc(100% + var(--border-width));
+  height: calc(100% + var(--border-width));
+  top: calc(0% - var(--border-width) / 2);
+  left: calc(0% - var(--border-width) / 2);
+  padding: var(--border-width);
+  box-sizing: border-box;
+  background:
+    conic-gradient(
+      from var(--angle-1) at 50% 50%,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0) 5% 40%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0) 60% 95%,
+      rgba(0, 0, 0, 0.5)
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition:
+    all var(--anim--hover-time) var(--anim--hover-ease),
+    --angle-1 500ms ease;
+  box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255, 255, 255, 0.5);
+}
+
+.pill:hover::after { --angle-1: -125deg; }
+.pill:active::after { --angle-1: -75deg; }
+
+/* ── Shadow state changes ────────────────────────────────────────────────── */
+.buttonWrap:has(.pill:hover) .buttonShadow {
+  filter: blur(3px);
+  transition: filter var(--anim--hover-time) var(--anim--hover-ease);
+}
+
+.buttonWrap:has(.pill:hover) .buttonShadow::after {
+  top: calc(var(--shadow-cuttoff-fix) / 2 - 4px);
+}
+
+/* ── Active / press state ────────────────────────────────────────────────── */
+.buttonWrap:has(.pill:active) {
+  transform: rotate3d(1, 0, 0, 25deg);
+}
+
+.buttonWrap:has(.pill:active) .pill {
+  box-shadow:
+    inset 0 2px 2px rgba(0, 0, 0, 0.05),
+    inset 0 -2px 2px rgba(255, 255, 255, 0.5),
+    0 2px 2px -2px rgba(0, 0, 0, 0.2),
+    inset 0 0 2px 4px rgba(255, 255, 255, 0.2),
+    0 4px 1px 0 rgba(0, 0, 0, 0.05),
+    0 4px 0 0 rgba(255, 255, 255, 0.75),
+    inset 0 4px 1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.buttonWrap:has(.pill:active) .buttonShadow {
+  filter: blur(6px);
+}
+
+.buttonWrap:has(.pill:active) .buttonShadow::after {
+  top: calc(var(--shadow-cuttoff-fix) / 2 + 2px);
+  opacity: 0.75;
+}
+
+.buttonWrap:has(.pill:active) .pillSpan {
+  text-shadow: 0.5px 4px 1px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Touch devices ───────────────────────────────────────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+  .pill::after,
+  .pill:hover::after,
+  .pill:active::after {
+    --angle-1: -75deg;
+  }
+
+  .pillSpan::after,
+  .pill:active .pillSpan::after {
+    --angle-2: -45deg;
+  }
+}

@@ -1,0 +1,97 @@
+/* All positions are % of the scroll-area panel (1451 × 743).
+   Font sizes are cqw against the outer 1512px frame. */
+
+.imgFrame {
+  position: absolute;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* font-size passed inline — varies per panel */
+.body {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+.body p + p {
+  margin-top: 1em;
+}
+
+/* standard 1.190cqw captions */
+.caption {
+  position: absolute;
+  font-size: 1.190cqw;
+  font-style: italic;
+  color: var(--color-green);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+/* 0.860cqw — panel 3 draft captions */
+.captionSm {
+  position: absolute;
+  font-size: 0.860cqw;
+  font-style: italic;
+  color: var(--color-green);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+/* 0.794cqw — panel 5 gallery caption */
+.captionXs {
+  position: absolute;
+  font-size: 0.794cqw;
+  font-style: italic;
+  color: var(--color-green);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+/* ── panel 2 ── */
+
+.quoteBox {
+  position: absolute;
+  background: rgba(139, 107, 92, 0.5);
+  border-radius: 18px;
+}
+
+.quoteText {
+  position: absolute;
+  font-size: 1.058cqw;
+  font-style: italic;
+  color: var(--color-green);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+/* ── panel 3 ── */
+
+.introLine {
+  position: absolute;
+  font-size: 1.720cqw;
+  color: var(--color-green);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+/* ── panel 4 annotations ── */
+
+.annotLabel {
+  position: absolute;
+  font-size: 0.860cqw;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+.annotLine {
+  position: absolute;
+  width: 1.241%;
+  height: 1px;
+  border-radius: 1px;
+}

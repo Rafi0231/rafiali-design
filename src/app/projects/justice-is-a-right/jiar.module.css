@@ -1,0 +1,41 @@
+/* All positions are % of the scroll-area panel (1451 × 743).
+   Font sizes are cqw against the outer 1512px frame. */
+
+.imgFrame {
+  position: absolute;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* font-size passed via inline style — varies per panel */
+.body {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+.body p + p {
+  margin-top: 1em;
+}
+
+.caption {
+  position: absolute;
+  font-size: 1.190cqw;
+  font-style: italic;
+  color: var(--color-green);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+.captionSm {
+  position: absolute;
+  font-size: 0.992cqw;
+  font-style: italic;
+  color: var(--color-green);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}

@@ -1,0 +1,118 @@
+/* ═══ OUTER FRAME — 1512 × 982 aspect ratio, cqw anchor ═══ */
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1512 / 982;
+  container-type: inline-size;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #EAE6DE 0%, #C0BBB4 100%);
+}
+
+/* ═══ FIXED CHROME ═══ */
+
+.title {
+  position: absolute;
+  left: 6.085%;
+  top: 0.611%;
+  font-size: 7.606cqw;
+  font-weight: 400;
+  color: var(--color-green);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+  z-index: 1;
+}
+
+.rule {
+  position: absolute;
+  left: 6.085%;
+  top: 15.478%;
+  width: 87.963%;
+  height: 1.5px;
+  background: rgba(107, 82, 68, 0.8);
+  border: none;
+  border-radius: 1px;
+}
+
+.backPill {
+  position: absolute;
+  top: 2%;
+  right: 3.02%;
+  height: 3.565%;
+  font-family: var(--font-serif);
+  font-size: 1.653cqw;
+  color: var(--color-green);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* ═══ SCROLL AREA — inner box (x 28, y 196, 1451 × 743) ═══ */
+.scrollArea {
+  position: absolute;
+  left: 1.852%;
+  top: 19.959%;
+  width: 95.966%;
+  height: 75.662%;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--color-cream) 60%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  display: flex;
+  flex-direction: column;
+  /* hide scrollbar — dots are the nav */
+  scrollbar-width: none;
+}
+
+.scrollArea::-webkit-scrollbar {
+  display: none;
+}
+
+/* ═══ PANEL SHELL — one per case study slide ═══ */
+/* positions inside are % of the scroll area (1451 × 743) */
+.panel {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+/* section heading: (140−28)/1451=7.719%  (235−196)/743=5.249% */
+.sectionHeading {
+  position: absolute;
+  left: 7.719%;
+  top: 5.249%;
+  font-size: 3.108cqw;
+  font-weight: 400;
+  color: var(--color-green);
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+/* dots: (73−28)/1451=3.101%   tops set via inline style */
+.dot {
+  position: absolute;
+  left: 3.101%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #8B6B5C;
+  opacity: 0.5;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.dot:hover {
+  opacity: 0.75;
+}
+
+.dotActive {
+  opacity: 1;
+}

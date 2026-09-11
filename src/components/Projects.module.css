@@ -1,0 +1,236 @@
+/* ═══ SECTION FRAME 1512 × 982 ═══ */
+.section {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1512 / 982;
+  container-type: inline-size;
+  overflow: hidden;
+  background: #DDD7CF;
+}
+
+/* ═══ HEADING ═══ */
+.heading {
+  position: absolute;
+  left: 6.085%;
+  top: 3%;
+  font-size: 9.921cqw;
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-green);
+  /* entrance — initial state */
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity calc(var(--duration-fast) * 2) var(--ease-out),
+    transform calc(var(--duration-fast) * 2) var(--ease-out);
+}
+
+/* ═══ RULE ═══ */
+.rule {
+  position: absolute;
+  left: 6.085%;
+  top: 19.043%;
+  width: 87.963%;
+  height: 1.5px;
+  background: rgba(107, 82, 68, 0.8);
+  border: none;
+}
+
+/* ═══ CARD WRAPPER — owns entrance animation ═══ */
+/* left is passed as inline style per card */
+.cardWrap {
+  position: absolute;
+  top: 26.477%;
+  width: 25.265%;
+  height: 63.951%;
+  /* entrance — initial state */
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity calc(var(--duration-fast) * 2) var(--ease-out),
+    transform calc(var(--duration-fast) * 2) var(--ease-out);
+}
+
+/* ── visible state (class toggled by IntersectionObserver) ── */
+.section.visible .heading,
+.section.visible .cardWrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heading,
+  .cardWrap {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ═══ CARD — owns hover only, no entrance state ═══ */
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    var(--shadow-lift);
+}
+
+/* ═══ CARD TITLE ═══ */
+/* top: (269 - 260) / 628 = 1.433% */
+.cardTitle {
+  position: absolute;
+  top: 4.22%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 2.976cqw;
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  color: #8B6B5C;
+}
+
+/* ═══ PILLS ═══ */
+/* top: (348 - 260) / 628 = 14.013% */
+.pills {
+  position: absolute;
+  top: 14.013%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--color-green) 50%, transparent);
+  font-size: 1.323cqw;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* ═══ IMAGE FRAMES ═══ */
+/* Card 1: x=146 y=401 → left=(146-92)/382=14.136%, top=(401-260)/628=22.452%
+           w=275/382=71.990%, h=180/628=28.662% */
+.imageFrame1 {
+  position: absolute;
+  left: 14.136%;
+  top: 22.452%;
+  width: 71.990%;
+  height: 28.662%;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* Card 2: x=609 y=397 → left=(609-565)/382=11.518%, top=(397-260)/628=21.815%
+           w=280/382=73.298%, h=187/628=29.777% */
+.imageFrame2 {
+  position: absolute;
+  left: 13%;
+  top: 21.815%;
+  width: 73.298%;
+  height: 29.777%;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* ═══ POSTER IMAGES (Card 3) ═══ */
+/* Each: 92.18 × 143.45 → 24.130% × 22.843% of card */
+/* poster 1: x=1080 y=395 → left=(1080-1039)/382=10.733%, top=(395-260)/628=21.497% */
+/* poster 2: x=1187 y=419 → left=(1187-1039)/382=38.743%, top=(419-260)/628=25.318% */
+/* poster 3: x=1292 y=447 → left=(1292-1039)/382=66.230%, top=(447-260)/628=29.777% */
+.poster1,
+.poster2,
+.poster3 {
+  position: absolute;
+  width: 24.130%;
+  height: 22.843%;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.poster1 { left: 10.733%; top: 21.497%; }
+.poster2 { left: 38.743%; top: 25.318%; }
+.poster3 { left: 66.230%; top: 29.777%; }
+
+/* ═══ DESCRIPTION ═══ */
+/* top: (617 - 260) / 628 = 56.847%
+   left: 21 / 382 = 5.497%   width: 340 / 382 = 89.005% */
+.description {
+  position: absolute;
+  top: 56.847%;
+  left: 5.497%;
+  width: 89.005%;
+  font-size: 0.992cqw;
+  color: #352727;
+  line-height: var(--leading-body);
+  z-index: 1;
+}
+
+/* ═══ GHOST NUMERAL ═══ */
+/* left: -9.948% (left-edge clip intentional, card overflow:hidden clips ~15%)
+   top: 73% places baseline ~7px below the card edge → ~5% of cap-height clipped */
+.ghostNumeral {
+  position: absolute;
+  left: -9.948%;
+  top: 75%;
+  font-size: 14.55cqw;
+  font-weight: 400;
+  letter-spacing: -0.12em;
+  line-height: 1;
+  color: rgba(84, 97, 79, 0.4);
+  z-index: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ═══ EXPLORE BUTTON ═══ */
+/* x=321 y=820 → left=(321-92)/382=59.948%, top=(820-260)/628=89.172%
+   128 × 47 → width=33.508%, height=7.484% */
+.exploreBtn {
+  position: absolute;
+  left: 59.948%;
+  top: 89.172%;
+  width: 33.508%;
+  height: 7.484%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: color-mix(in srgb, var(--color-green) 70%, transparent);
+  font-family: var(--font-serif);
+  font-size: 1.653cqw;
+  color: #E8D4CC;
+  text-decoration: none;
+  z-index: 1;
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.card:hover .exploreBtn {
+  background: color-mix(in srgb, var(--color-green) 85%, transparent);
+}
