@@ -68,12 +68,11 @@ export default function About() {
         className={`${styles.bgBody} ${styles.revealItem}`}
         style={{ transitionDelay: "160ms" }}
       >
-        I&rsquo;m a designer and engineer based in Chicago — studying Computer
-        Science and Digital Design at the University of Illinois Chicago.
-        I founded Lantern Software to build tools that sit at the intersection
-        of faith, culture, and craft. My work spans interface design, VR, and
-        design systems, always grounded in research and driven by the people I
-        build for.
+        I grew up in Skokie and study Computer Science + Design at the University
+        of Illinois Chicago. I also founded Lantern Software, a company modeled not
+        on a startup but on the waqf, the Islamic tradition of endowments built to
+        serve the public. We build tools Muslims need, and a fixed share of revenue
+        goes toward food, water, and education in underserved communities. 
       </p>
 
       <h3
@@ -84,14 +83,14 @@ export default function About() {
       </h3>
 
       <p
+      
         className={`${styles.dpBody} ${styles.revealItem}`}
         style={{ transitionDelay: "240ms" }}
       >
-        Good design disappears. It earns trust through restraint — every
-        decision justified, nothing decorative. I work from Figma specs to
-        shipped code, keeping the gap between intent and implementation as
-        small as possible. I believe the best systems feel inevitable, not
-        invented.
+          I&rsquo;m drawn to subtlety: interfaces that feel calm and simple but have
+          real depth underneath. Getting there usually means more research and more
+          cutting than feels comfortable. I don&rsquo;t cut corners, and because I can
+          build what I design, I protect that standard all the way to production.
       </p>
 
       <div
