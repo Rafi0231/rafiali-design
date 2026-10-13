@@ -116,3 +116,29 @@
 .dotActive {
   opacity: 1;
 }
+
+/* ═══ OPT-IN VARIANTS — off by default ═══ */
+
+/* free scroll — opt-in via freeScroll */
+.scrollAreaFree {
+  scroll-snap-type: none;
+  scroll-behavior: smooth;
+}
+
+/* accent heading — opt-in via headingAccent
+   bar: (79−26)/1129=4.694%   text starts ~0.25em right of the bar */
+.sectionHeadingAccent {
+  left: 4.694%;
+  padding-left: 0.25em;
+}
+
+.sectionHeadingAccent::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  bottom: 0.15em;
+  width: 3px;
+  border-radius: 1px;
+  background: rgba(0, 0, 0, 0.3);
+}

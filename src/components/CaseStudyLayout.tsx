@@ -11,11 +11,15 @@ import pillStyles from "./GlassPill.module.css";
 type CaseStudyCtx = {
   scrollToPanel: (idx: number) => void;
   dotTops: readonly string[];
+  headingAccent: boolean;
+  hideDots: boolean;
 };
 
 const CaseStudyContext = createContext<CaseStudyCtx>({
   scrollToPanel: () => {},
   dotTops: [],
+  headingAccent: false,
+  hideDots: false,
 });
 
 export function useCaseStudy() {
@@ -41,12 +45,16 @@ type PanelProps = {
 };
 
 export function CaseStudyPanel({ index, heading, children }: PanelProps) {
-  const { scrollToPanel, dotTops } = useCaseStudy();
+  const { scrollToPanel, dotTops, headingAccent, hideDots } = useCaseStudy();
 
   return (
     <div className={styles.panel}>
-      <h2 className={styles.sectionHeading}>{heading}</h2>
-      {dotTops.map((top, i) => (
+      <h2
+        className={`${styles.sectionHeading} ${headingAccent ? styles.sectionHeadingAccent : ""}`}
+      >
+        {heading}
+      </h2>
+      {!hideDots && dotTops.map((top, i) => (
         <button
           key={i}
           type="button"
@@ -67,6 +75,12 @@ type LayoutProps = {
   title: string;
   backHref?: string;
   dotTops?: readonly string[];
+  /* heading sits further left with a thin accent bar before it */
+  headingAccent?: boolean;
+  /* hide the per-panel nav dots */
+  hideDots?: boolean;
+  /* continuous scrolling instead of snapping one panel at a time */
+  freeScroll?: boolean;
   children: ReactNode;
 };
 
@@ -74,6 +88,9 @@ export default function CaseStudyLayout({
   title,
   backHref = "/#projects",
   dotTops = FIVE_PANEL_DOT_TOPS,
+  headingAccent = false,
+  hideDots = false,
+  freeScroll = false,
   children,
 }: LayoutProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -85,7 +102,7 @@ export default function CaseStudyLayout({
   };
 
   return (
-    <CaseStudyContext.Provider value={{ scrollToPanel, dotTops }}>
+    <CaseStudyContext.Provider value={{ scrollToPanel, dotTops, headingAccent, hideDots }}>
       <div className={styles.frame}>
         <h1 className={styles.title}>{title}</h1>
         <hr className={styles.rule} />
@@ -97,7 +114,10 @@ export default function CaseStudyLayout({
             <div className={pillStyles.buttonShadow} />
           </div>
         </div>
-        <div className={styles.scrollArea} ref={scrollRef}>
+        <div
+          className={`${styles.scrollArea} ${freeScroll ? styles.scrollAreaFree : ""}`}
+          ref={scrollRef}
+        >
           {children}
         </div>
       </div>

@@ -6,42 +6,86 @@ import styles from "./islamicly.module.css";
 
 export default function IslamiclyPage() {
   return (
-    <CaseStudyLayout title="Islamicly">
+    <CaseStudyLayout title="Islamicly" headingAccent hideDots freeScroll>
 
-      {/* ── Panel 1: The Diagnosis ── */}
-      <CaseStudyPanel index={0} heading="The Diagnosis">
+      {/* ── Panel 1: The Result ── */}
+      {/* positions estimated from mockup — panel origin (26,156), 1129 × 578 */}
+      <CaseStudyPanel index={0} heading="The Result">
 
-        {/* MarketResearch: (165−28)/1451=9.442%  (383−196)/743=25.168%  350/1451=24.121%  198/743=26.648% */}
-        <div className={styles.imgFrame} style={{ left: "9.442%", top: "25.168%", width: "24.121%", height: "26.648%" }}>
-          <Image src="/images/islamicly/MarketResearch.webp" alt="" fill className={styles.img} />
+        {/* Overview: (78−26)/1129=4.606%  (288−156)/578=22.837%  347/1129=30.735% */}
+        <div className={styles.overview} style={{ left: "4.606%", top: "22.837%", width: "30.735%" }}>
+          <h3 className={styles.overviewHeading}>Overview</h3>
+          <ul className={styles.overviewList}>
+            <li><em>Role</em>: Product Designer</li>
+            <li><em>Timeline</em>: September 2025 &ndash; Present</li>
+            <li><em>Tools</em>: Figma (currently building backend system)</li>
+            <li>
+              <em>Status</em>: Presented to the Board of Education at Muslim
+              Education Center in Morton Grove, IL
+            </li>
+          </ul>
         </div>
 
-        {/* SimilarProduct: (597−196)/743=53.971%  197/743=26.514% */}
-        <div className={styles.imgFrame} style={{ left: "9.442%", top: "53.971%", width: "24.121%", height: "26.514%" }}>
-          <Image src="/images/islamicly/SimilarProduct.webp" alt="" fill className={styles.img} />
+        {/* Divider: (86−26)/1129=5.315%  (472−156)/578=54.671%  32% */}
+        <hr className={styles.divider} style={{ left: "5.315%", top: "54.671%", width: "32%" }} />
+
+        {/* Done / Next / Then: (512−156)/578=61.592% */}
+        <div className={styles.statusRows} style={{ left: "5.315%", top: "61.592%", width: "32%" }}>
+          <p className={styles.statusRow}>
+            <span className={styles.statusLabel}>Done</span> &middot; A full
+            curriculum, designed end to end.
+          </p>
+          <p className={styles.statusRow}>
+            <span className={styles.statusLabel}>Next</span> &middot; Progress
+            tracking for students and parents.
+          </p>
+          <p className={styles.statusRow}>
+            <span className={styles.statusLabel}>Then</span> &middot; An AI layer
+            that personalizes lessons, built in code.
+          </p>
         </div>
 
-        {/* Caption: (810−196)/743=82.638%  388/1451=26.740% */}
-        <p className={styles.caption} style={{ left: "9.442%", top: "82.638%", width: "26.740%" }}>
-          (Actual slides from Fall 2025 Design Seminar presentation)
-        </p>
+        {/* Gallery box: (460−26)/1129=38.441%  (241−156)/578=14.706%  659/1129=58.370%  449/578=77.682% */}
+        <div className={styles.gallery} style={{ left: "38.441%", top: "14.706%", width: "58.370%", height: "77.682%" }} />
 
-        {/* Body: (676−28)/1451=44.659%  (366−196)/743=22.881%  776/1451=53.480% */}
-        <div className={styles.body} style={{ left: "44.659%", top: "22.881%", width: "53.480%" }}>
-          <p>
-            The gap I found in online learning apps, especially those that
-            teach religion isn&rsquo;t one of content, but craft. Most of the
-            apps that are available use design patterns from the early 2010s,
-            haven&rsquo;t touched AI, and have very little familiarity with
-            current design practices.
-          </p>
-          <p>
-            Islamic learning apps narrow this further, each focusing on one
-            feature: reading Quran, prayer time apps, video lessons. As
-            righteous and needed as these apps are, none bring it all together
-            to present a cohesive piece of technological sophistication and
-            elegant design. That&rsquo;s where Islamicly comes in.
-          </p>
+        {/* Landing: (474−26)/1129=39.681%  (251−156)/578=16.436%  311/1129=27.546%  200/578=34.602% */}
+        <div className={styles.imgFrame} style={{ left: "39.681%", top: "16.436%", width: "27.546%", height: "34.602%" }}>
+          <Image
+            src="/images/islamicly/Landing.webp"
+            alt="Islamicly landing page: a sunset framed by an arched doorway, with a quote from Shaykh Mostafa Al Shaybani"
+            fill
+            className={styles.img}
+          />
+        </div>
+
+        {/* SahabaFinal: (478−26)/1129=40.035%  (461−156)/578=52.768%  307/1129=27.192% */}
+        <div className={styles.imgFrame} style={{ left: "40.035%", top: "52.768%", width: "27.192%", height: "34.602%" }}>
+          <Image
+            src="/images/islamicly/SahabaFinal.webp"
+            alt="Sahaba Studies page set on a palm-lined street at golden hour"
+            fill
+            className={styles.img}
+          />
+        </div>
+
+        {/* Course: (795−26)/1129=68.113%  (271−156)/578=19.896%  309/1129=27.369% */}
+        <div className={styles.imgFrame} style={{ left: "68.113%", top: "19.896%", width: "27.369%", height: "34.602%" }}>
+          <Image
+            src="/images/islamicly/Course.webp"
+            alt="Course Lectures page showing students seated in a circle under a beam of light"
+            fill
+            className={styles.img}
+          />
+        </div>
+
+        {/* Quran: (479−156)/578=55.882%  311/1129=27.546%  201/578=34.775% */}
+        <div className={styles.imgFrame} style={{ left: "68.113%", top: "55.882%", width: "27.546%", height: "34.775%" }}>
+          <Image
+            src="/images/islamicly/Quran.webp"
+            alt="Qur’anic Vocabulary page showing hands holding an open book"
+            fill
+            className={styles.img}
+          />
         </div>
 
       </CaseStudyPanel>

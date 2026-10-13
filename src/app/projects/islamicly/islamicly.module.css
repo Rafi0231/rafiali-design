@@ -54,3 +54,75 @@
   letter-spacing: -0.01em;
   line-height: var(--leading-body);
 }
+
+/* ── panel 1: The Result ── */
+
+.overview {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: -0.01em;
+}
+
+.overviewHeading {
+  font-size: 1.786cqw;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--color-brown) 85%, transparent);
+  line-height: var(--leading-tight);
+  margin-bottom: 0.35em;
+}
+
+.overviewList {
+  list-style: none;
+  font-size: 1.389cqw;
+  line-height: var(--leading-body);
+}
+
+.overviewList li {
+  position: relative;
+  padding-left: 1em;
+}
+
+.overviewList li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0.3em;
+}
+
+.divider {
+  position: absolute;
+  height: 1px;
+  border: none;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.statusRows {
+  position: absolute;
+  font-size: 1.389cqw;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+.statusRow {
+  padding-block: 0.6em;
+}
+
+.statusRow:first-child {
+  padding-top: 0;
+}
+
+.statusRow + .statusRow {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.statusLabel {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.gallery {
+  position: absolute;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.18);
+}
