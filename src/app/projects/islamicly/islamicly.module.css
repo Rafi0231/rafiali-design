@@ -55,59 +55,62 @@
   line-height: var(--leading-body);
 }
 
-/* ── panel 1: The Result ── */
+/* ── The Result — flow layout ──
+   Figma 1512 frame: body 22px / 35px, labels 30px bold, black 60%.
+   cqw = px / 1512; max() keeps text readable on phones. */
 
-.overview {
-  position: absolute;
+.resultText {
+  align-self: end;
   color: rgba(0, 0, 0, 0.6);
-  letter-spacing: -0.01em;
+  font-size: max(1.455cqw, 17px);
+  line-height: 1.59;
+  letter-spacing: -0.014em;
 }
 
 .overviewHeading {
-  font-size: 1.786cqw;
+  font-size: max(1.984cqw, 22px);
   font-weight: 700;
-  color: color-mix(in srgb, var(--color-brown) 85%, transparent);
-  line-height: var(--leading-tight);
-  margin-bottom: 0.35em;
+  line-height: 1.17;
+  margin: 0;
 }
 
 .overviewList {
   list-style: none;
-  font-size: 1.389cqw;
-  line-height: var(--leading-body);
+  margin: 0;
+  padding: 0;
 }
 
+/* bold "·" bullet with a hanging indent so wrapped lines align with the text */
 .overviewList li {
-  position: relative;
   padding-left: 1em;
+  text-indent: -1em;
 }
 
 .overviewList li::before {
-  content: "\2022";
-  position: absolute;
-  left: 0.3em;
+  content: "\00B7";
+  display: inline-block;
+  width: 0.733em;
+  text-indent: 0;
+  text-align: center;
+  font-size: 1.364em;
+  font-weight: 700;
+  line-height: 1;
 }
 
+/* dividers: 26px below Overview, 38px above Done; rows 17px apart */
 .divider {
-  position: absolute;
   height: 1px;
   border: none;
   background: rgba(0, 0, 0, 0.12);
-}
-
-.statusRows {
-  position: absolute;
-  font-size: 1.389cqw;
-  color: rgba(0, 0, 0, 0.6);
-  letter-spacing: -0.01em;
-  line-height: var(--leading-body);
+  margin: max(1.72cqw, 16px) 0 max(2.5cqw, 20px);
 }
 
 .statusRow {
-  padding-block: 0.6em;
+  margin: 0;
+  padding-block: max(1.13cqw, 10px);
 }
 
-.statusRow:first-child {
+.statusRow:first-of-type {
   padding-top: 0;
 }
 
@@ -116,13 +119,47 @@
 }
 
 .statusLabel {
-  font-size: 1.4em;
+  font-size: 1.364em;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.65);
+  line-height: 1;
 }
 
+/* staggered 2×2: two columns, right one dropped by ~1/6 of an image height.
+   margin-top % resolves against the gallery's content width, so
+   offset = column width × (1559 / 2400) × stagger, column width = (100% − gap) / 2 */
 .gallery {
-  position: absolute;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.18);
+  --gap: max(1cqw, 8px);
+  --stagger: 1 / 6;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap);
+  padding: var(--gap);
+  border-radius: 10px;
+  background: #A8A6A3;
+}
+
+.galleryCol {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.galleryColLow {
+  margin-top: calc((100% - var(--gap)) / 2 * 1559 / 2400 * var(--stagger));
+}
+
+@media (max-width: 767.98px) {
+  .gallery {
+    --stagger: 1 / 12;
+  }
+}
+
+.galleryImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2400 / 1559;
+  object-fit: cover;
 }
