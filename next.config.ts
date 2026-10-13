@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    /* 75 is the default; 90 for case study screenshots */
+    qualities: [75, 90],
+  },
 };
 
 export default nextConfig;

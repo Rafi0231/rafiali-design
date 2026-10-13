@@ -128,14 +128,23 @@
    margin-top % resolves against the gallery's content width, so
    offset = column width × (1559 / 2400) × stagger, column width = (100% − gap) / 2 */
 .gallery {
-  --gap: max(1cqw, 8px);
+  /* slim grey edge (~4px) that anchors the images rather than framing them */
+  --gap: max(0.26cqw, 3px);
   --stagger: 1 / 6;
   display: flex;
   align-items: flex-start;
   gap: var(--gap);
   padding: var(--gap);
-  border-radius: 10px;
+  border-radius: 6px;
   background: #A8A6A3;
+}
+
+/* nudged ~24px right, same size */
+@media (min-width: 768px) {
+  .gallery {
+    margin-left: 1.6cqw;
+    margin-right: -1.6cqw;
+  }
 }
 
 .galleryCol {
@@ -162,4 +171,497 @@
   height: auto;
   aspect-ratio: 2400 / 1559;
   object-fit: cover;
+  border-radius: 2px;
+}
+
+/* ── The Diagnosis — text top right, two slides below, right one dropped ──
+   Figma content width 1307: text 454, slides 647 + 616 with a 44 gap, drop 116. */
+
+/* title, bar and text sit ~48px lower; the slides rise by the same amount
+   (beside the text, which only fills the right third), so they stay put */
+.diagnosisSection {
+  --diagnosis-shift: 3.175cqw;
+  padding-top: var(--diagnosis-shift);
+}
+
+.diagnosis {
+  display: flex;
+  flex-direction: column;
+  gap: max(1cqw, var(--space-4));
+}
+
+/* right-hand text block shared by The Diagnosis and The Audience's Opinion: 454 / 1307 */
+.sideText {
+  margin-left: auto;
+  width: 34.74%;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: max(1.455cqw, 17px);
+  line-height: 1.59;
+  letter-spacing: -0.014em;
+}
+
+/* rows ~30px either side of the divider */
+.sideRow {
+  margin: 0;
+  padding-block: max(2cqw, 14px);
+}
+
+.sideRow:first-child {
+  padding-top: 0;
+}
+
+.sideRow:last-child {
+  padding-bottom: 0;
+}
+
+.sideRow + .sideRow {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/* regular-weight "·" at label size */
+.labelDot {
+  font-size: 1.364em;
+  line-height: 1;
+}
+
+/* margin-top % resolves against the row's width: 116 / 1307 */
+.slides {
+  margin-top: calc(-1 * var(--diagnosis-shift));
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.slideLeft {
+  flex: 0 0 49.5%;
+  margin: 0;
+}
+
+.slideRight {
+  flex: 0 0 47.13%;
+  margin: 8.875% 0 0;
+}
+
+/* slim grey edge (~4px); radii concentric with the image's 2px */
+.slidePanel {
+  padding: max(0.26cqw, 3px);
+  border-radius: 6px;
+  background: #A8A6A3;
+}
+
+.slideImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.slideCaption {
+  margin-top: 0.4em;
+  font-size: max(1.323cqw, 15px);
+  font-style: italic;
+  color: rgba(31, 53, 29, 0.7);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+@media (max-width: 767.98px) {
+  .diagnosisSection {
+    --diagnosis-shift: 0px;
+  }
+
+  .sideText {
+    margin-left: 0;
+    width: auto;
+  }
+
+  .slides {
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .slideLeft,
+  .slideRight {
+    flex-basis: auto;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+/* ── The Audience's Opinion ──
+   Row 1: Questions (pushed right, 40px lower) | text.  Row 2: Survey | citations.
+   Widths / offsets are fractions of the Figma content width (1307). */
+
+.audience {
+  display: flex;
+  flex-direction: column;
+  gap: max(1.06cqw, var(--space-4));
+}
+
+.audienceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.audienceRowBottom {
+  align-items: flex-end;
+}
+
+/* margin % resolves against the row's width: 202 / 1307 right, 40 / 1307 down */
+.audienceQuestions {
+  width: 45.22%;
+  margin: 3.06% 0 0 15.46%;
+}
+
+.audienceSurvey {
+  width: 45.14%;
+}
+
+.citations {
+  width: 49.66%;
+  padding: max(0.8cqw, 12px) max(1.06cqw, 16px);
+  border-radius: 15px;
+  background: rgba(139, 107, 92, 0.5);
+  color: var(--color-green);
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.citationsTitle {
+  margin: 0;
+  font-size: max(1.455cqw, 17px);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* quotes hang ~75px in from the title */
+.citationsList {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 3.75em;
+  font-size: max(1.323cqw, 15px);
+  line-height: 1.6;
+}
+
+@media (max-width: 767.98px) {
+  /* rows dissolve so the items can reorder: text, citations, Questions, Survey */
+  .audience {
+    gap: var(--space-6);
+  }
+
+  .audienceRow {
+    display: contents;
+  }
+
+  .audience .sideText {
+    order: 1;
+  }
+
+  .citations {
+    order: 2;
+    width: auto;
+  }
+
+  .citationsList {
+    padding-left: 1.5em;
+  }
+
+  .audienceQuestions {
+    order: 3;
+    width: auto;
+    margin: 0;
+  }
+
+  .audienceSurvey {
+    order: 4;
+    width: auto;
+  }
+}
+
+/* ── Where's the personality? ──
+   Horizontal: fractions of the Figma span x 100–1400 (1300), stretched to the content width.
+   Vertical: Figma px as cqw (px / 1512). */
+
+/* text starts level with the heading's bottom, so cancel the heading gap */
+.personality {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: calc(-1 * max(1.5cqw, var(--space-4)));
+}
+
+/* 660 / 1300; starts 60px below the text */
+.personalityLeft {
+  width: 50.77%;
+  margin-top: 3.97cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.53cqw;
+}
+
+/* 627 / 1300 */
+.personalityRight {
+  width: 48.23%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* text at x 946: 454 of the 627 column, right-aligned */
+.personalityText {
+  width: 72.41%;
+}
+
+/* rows 23px either side of the divider */
+.sideRowTight {
+  padding-block: max(1.52cqw, 12px);
+}
+
+/* 20px "·" beside 22px text */
+.labelDotSmall {
+  font-size: 0.909em;
+}
+
+.draftCaption {
+  margin: 0;
+  font-size: max(1.323cqw, 15px);
+  font-style: italic;
+  color: rgba(31, 53, 29, 0.7);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+/* single line above Faith: Figma's box is 27px tall */
+.personalityLeft > .draftCaption {
+  line-height: 1.35;
+}
+
+/* 616 / 660 */
+.faith {
+  width: 93.33%;
+}
+
+/* caption hangs 36px left of the column; row = 696: caption 223, gap 7, Learning 466 */
+.learningRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.01%;
+  margin-left: -5.45%;
+}
+
+.learningRow .draftCaption {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.learning {
+  flex: 0 0 66.95%;
+}
+
+/* 154px below the text */
+.sahaba {
+  margin-top: 10.19cqw;
+}
+
+.draftCaptionBelow {
+  margin-top: 0.2em;
+}
+
+@media (max-width: 767.98px) {
+  /* columns dissolve: text, Faith, Draft 1, Learning, Draft 2, Sahaba, Draft 3 */
+  .personality {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .personalityRight {
+    display: contents;
+  }
+
+  .personalityText {
+    order: 1;
+    width: auto;
+    margin-left: 0;
+  }
+
+  .personalityLeft {
+    order: 2;
+    width: auto;
+    margin-top: 0;
+    gap: var(--space-2);
+  }
+
+  .faith {
+    order: 1;
+    width: auto;
+  }
+
+  .personalityLeft > .draftCaption {
+    order: 2;
+    line-height: var(--leading-body);
+  }
+
+  .learningRow {
+    order: 3;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: var(--space-2);
+    margin: var(--space-4) 0 0;
+  }
+
+  .learning {
+    flex-basis: auto;
+  }
+
+  .sahaba {
+    order: 3;
+    margin-top: 0;
+  }
+
+  .draftCaptionBelow {
+    order: 4;
+    margin-top: calc(var(--space-2) - var(--space-6));
+  }
+}
+
+/* ── Finding the Voice ──
+   extra breathing room above this section (its images sit beside the heading) */
+.voiceSection {
+  margin-top: max(3cqw, var(--space-4));
+}
+
+/* ── Finding the Voice (layout) ──
+   Horizontal: fractions of the Figma span x 124–1464 (1340); inside the image
+   column, fractions of its width (915) so the diagonal stagger keeps its shape.
+   Vertical between columns: Figma px as cqw. */
+
+/* pulled up beside the heading: Unit 1's image sits 27px below the heading's top.
+   Offsets below are measured image-to-image (the slim panels are thinner than Figma's). */
+.voice {
+  display: flex;
+  align-items: flex-start;
+  margin-top: calc(1.52cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
+}
+
+/* 454 / 1340, starts 301px below Unit 1's panel */
+.voiceText {
+  flex: 0 0 33.88%;
+  width: 33.88%;
+  margin: 19.91cqw 0 0;
+}
+
+/* rows ~35px either side of the dividers */
+.sideRowLoose {
+  padding-block: max(2.3cqw, 14px);
+}
+
+/* match Figma's text boxes (436 and 396 of 454) while dividers stay full width */
+.voiceText .sideRow:first-child {
+  padding-right: 4%;
+}
+
+.voiceText .sideRow + .sideRow {
+  padding-right: 12.8%;
+}
+
+/* 915 / 1340, starting 29px inside the text column's right edge (x 549) */
+.voiceImages {
+  flex: 0 0 68.28%;
+  margin-left: -2.16%;
+  display: flex;
+  flex-direction: column;
+}
+
+.voiceRow {
+  display: flex;
+  align-items: flex-start;
+}
+
+.voiceRow > .draftCaption {
+  min-width: 0;
+}
+
+/* Unit 1 333 + gap 9 + caption 213, of 915 */
+.voiceRowOne {
+  gap: 0.98%;
+}
+
+.voiceRowOne > :first-child {
+  flex: 0 0 36.39%;
+}
+
+.voiceRowOne > .draftCaption {
+  flex: 0 0 23.28%;
+}
+
+/* 346 right; image 163 below Unit 1's image (row overlaps Unit 1 by 57); row = 569 */
+.voiceRowTwo {
+  margin: -6.31% 0 0 37.81%;
+  gap: 2.81%;
+}
+
+.voiceRowTwo > :first-child {
+  flex: 0 0 58.52%;
+}
+
+.voiceRowTwo > .draftCaption {
+  flex: 0 0 35.15%;
+}
+
+/* 103 right; image 242 below Unit 2's image; row = 812; caption bottom-aligned */
+.voiceRowThree {
+  margin: 2.44% 0 0 11.26%;
+  align-items: flex-end;
+  gap: 1.97%;
+}
+
+.voiceRowThree > :first-child {
+  flex: 0 0 70.94%;
+}
+
+.voiceRowThree > .draftCaption {
+  flex: 0 0 27.09%;
+}
+
+@media (max-width: 767.98px) {
+  /* text, then Unit 1, Unit 2, Course Topics, each with its caption below */
+  .voice {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .voiceText {
+    flex: none;
+    width: auto;
+    margin: 0;
+  }
+
+  .voiceText .sideRow:first-child,
+  .voiceText .sideRow + .sideRow {
+    padding-right: 0;
+  }
+
+  .voiceImages {
+    flex: none;
+    margin: 0;
+    gap: var(--space-6);
+  }
+
+  .voiceRow,
+  .voiceRowTwo,
+  .voiceRowThree {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+    margin: 0;
+  }
+
+  .voiceRow > :first-child,
+  .voiceRow > .draftCaption {
+    flex: none;
+  }
 }

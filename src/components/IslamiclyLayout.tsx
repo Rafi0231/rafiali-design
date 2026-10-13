@@ -10,14 +10,15 @@ type SectionProps = {
   heading: string;
   /* grid-template-columns on desktop, e.g. "1fr 1.9fr"; defaults to equal columns */
   columns?: string;
+  className?: string;
   children?: ReactNode;
 };
 
-export function Section({ heading, columns, children }: SectionProps) {
+export function Section({ heading, columns, className, children }: SectionProps) {
   const style = columns ? ({ "--cols": columns } as CSSProperties) : undefined;
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${className ?? ""}`}>
       <h2 className={styles.sectionHeading}>{heading}</h2>
       {children && (
         <div className={styles.columns} style={style}>
@@ -47,7 +48,7 @@ export default function IslamiclyLayout({
     <div className={styles.frame}>
       <div className={styles.chrome}>
         <h1 className={chrome.title}>{title}</h1>
-        <hr className={chrome.rule} />
+        <hr className={`${chrome.rule} ${styles.ruleSoft}`} />
         <div className={`${chrome.backPill} ${styles.backPillMobile}`}>
           <div className={pillStyles.buttonWrap}>
             <Link href={backHref} className={pillStyles.pill}>

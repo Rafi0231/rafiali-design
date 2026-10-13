@@ -24,6 +24,11 @@
   pointer-events: auto;
 }
 
+/* rule under the title at 50% (shared rule is 80%); Islamicly only */
+.chrome .ruleSoft {
+  background: rgba(107, 82, 68, 0.5);
+}
+
 /* Back pill keeps a readable size on small screens; desktop untouched */
 @media (max-width: 767.98px) {
   .chrome .backPillMobile {
@@ -44,7 +49,7 @@
   padding-block: max(2.6cqw, var(--space-6));
   display: flex;
   flex-direction: column;
-  gap: max(5cqw, var(--space-12));
+  gap: max(7cqw, var(--space-16));
 }
 
 /* ═══ SECTION ═══ */
@@ -66,12 +71,13 @@
   margin: 0;
 }
 
+/* from cap top (0.15em) to just below the baseline (0.87em) of a 1.15em line */
 .sectionHeading::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.2em;
-  bottom: 0.15em;
+  top: 0.15em;
+  bottom: 0.28em;
   width: 3px;
   border-radius: 1px;
   background: rgba(0, 0, 0, 0.3);
