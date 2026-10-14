@@ -115,11 +115,10 @@
 /* ── The Diagnosis — text top right, two slides below, right one dropped ──
    Figma content width 1307: text 454, slides 647 + 616 with a 44 gap, drop 116. */
 
-/* title, bar and text sit ~48px lower; the slides rise by the same amount
-   (beside the text, which only fills the right third), so they stay put */
+/* the slides rise ~48px beside the text (which only fills the right third),
+   closing the space between the title and the images */
 .diagnosisSection {
   --diagnosis-shift: 3.175cqw;
-  padding-top: var(--diagnosis-shift);
 }
 
 .diagnosis {
@@ -433,12 +432,6 @@
 }
 
 /* ── Finding the Voice ──
-   extra breathing room above this section (its images sit beside the heading) */
-.voiceSection {
-  margin-top: max(3cqw, var(--space-4));
-}
-
-/* ── Finding the Voice (layout) ──
    Horizontal: fractions of the Figma span x 124–1464 (1340); inside the image
    column, fractions of its width (915) so the diagonal stagger keeps its shape.
    Vertical between columns: Figma px as cqw. */

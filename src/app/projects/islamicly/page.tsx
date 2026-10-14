@@ -326,7 +326,7 @@ export default function IslamiclyPage() {
           </div>
         </div>
       </Section>
-      <Section heading="Finding the Voice" className={styles.voiceSection}>
+      <Section heading="Finding the Voice">
         <div className={styles.voice}>
           <div className={`${styles.sideText} ${styles.voiceText}`}>
             <p className={`${styles.sideRow} ${styles.sideRowLoose}`}>

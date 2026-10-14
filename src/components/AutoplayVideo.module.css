@@ -1,0 +1,40 @@
+.wrap {
+  position: relative;
+}
+
+/* small round play button, centred on the poster (reduced-motion visitors only) */
+.toggle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  padding: 10px;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 50%;
+  background: rgba(31, 53, 29, 0.75);
+  color: var(--color-ivory);
+  cursor: pointer;
+}
+
+.toggle:hover {
+  background: rgba(31, 53, 29, 0.9);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--color-ivory);
+  outline-offset: 2px;
+}
+
+/* while playing, a smaller pause button tucks into the corner */
+.toggleCorner {
+  left: auto;
+  top: auto;
+  right: 10px;
+  bottom: 10px;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  transform: none;
+}

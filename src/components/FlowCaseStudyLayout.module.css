@@ -49,7 +49,8 @@
   padding-block: max(2.6cqw, var(--space-6));
   display: flex;
   flex-direction: column;
-  gap: max(7cqw, var(--space-16));
+  /* ~1.5in (144px at 1512) between sections */
+  gap: max(9.52cqw, var(--space-16));
 }
 
 /* ═══ SECTION ═══ */

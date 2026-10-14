@@ -134,3 +134,239 @@
     margin: 0;
   }
 }
+
+/* ── The Assignment — text only ──
+   870 / 1324 wide; rows ~50px either side of the dividers.
+   Figma leaves ~195px above Brief; set to 144px (1.5in) below the heading. */
+
+/* 144px gap = 121px here + the 23px heading gap */
+.assignment {
+  width: 65.7%;
+  margin-top: 8cqw;
+}
+
+.assignment > p {
+  padding-block: max(3.3cqw, 20px);
+}
+
+.assignment > p:last-child {
+  padding-bottom: 0;
+}
+
+@media (max-width: 767.98px) {
+  .assignment {
+    width: auto;
+    margin-top: 0;
+  }
+}
+
+/* ── How do you represent Justice? ──
+   Horizontal: fractions of the Figma span x 113–1428 (1315); grid 747 wide, 2×2.
+   Vertical: Figma px as cqw. Row 2's 1–3px offsets in Figma are evened out. */
+
+/* grid starts ~52px below the heading */
+.represent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 1.92cqw;
+}
+
+/* 487 / 1315; starts level with the bottom of the first image row (276px down) */
+.representText {
+  width: 37.03%;
+  margin-top: 18.25cqw;
+}
+
+/* rows ~27px either side of the dividers (also used by The Turn and Showtime) */
+.representText > p,
+.turnText > p,
+.showtimeText > p {
+  padding-block: max(1.8cqw, 12px);
+}
+
+.representText > p:last-child,
+.turnText > p:last-child,
+.showtimeText > p:last-child {
+  padding-bottom: 0;
+}
+
+/* 747 / 1315; 33px column gap, 57px from a caption to the next row */
+.representGrid {
+  width: 56.81%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 4.42%;
+  row-gap: max(3.77cqw, var(--space-6));
+}
+
+.representFigure {
+  margin: 0;
+}
+
+.representFigure figcaption {
+  margin-top: 0.15em;
+}
+
+/* the four sketches differ by <1% in shape; show them at one shape */
+.representImg {
+  aspect-ratio: 1126 / 850;
+  object-fit: cover;
+}
+
+@media (max-width: 767.98px) {
+  /* text, then the sketches two-up */
+  .represent {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .representText,
+  .representGrid {
+    width: auto;
+    margin-top: 0;
+  }
+
+  .representGrid {
+    column-gap: var(--space-3);
+    row-gap: var(--space-4);
+  }
+}
+
+/* ── The Turn ──
+   Horizontal: fractions of the Figma span x 107–1408 (1301); image column 661 wide.
+   Vertical: Figma px as cqw. */
+
+/* pulled up beside the heading: the sketches start ~10px below the heading's top */
+.turn {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: calc(0.4cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
+}
+
+/* 552 / 1301; Insight starts 248px below the heading's top */
+.turnText {
+  width: 42.43%;
+  margin-top: 16cqw;
+}
+
+/* 661 / 1301 */
+.turnImages {
+  width: 50.81%;
+}
+
+/* two equal sketches, 25px apart */
+.turnSketches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 3.78%;
+}
+
+.turnFigure {
+  margin: 0;
+}
+
+.turnFigure figcaption {
+  margin-top: 0.15em;
+}
+
+/* 564 / 661, centered, 32px below the sketch captions */
+.turnResearch {
+  width: 85.33%;
+  margin: 2.12cqw auto 0;
+}
+
+.turnResearch figcaption {
+  text-align: center;
+}
+
+/* the two pages stay separate, 25px apart, as in Figma */
+.researchPanel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: max(1.65cqw, 8px);
+}
+
+/* the pages differ by <0.5% in shape; show them at one shape */
+.researchImg {
+  aspect-ratio: 822 / 1062;
+  object-fit: cover;
+}
+
+@media (max-width: 767.98px) {
+  /* text, then the sketches two-up, then the research pages */
+  .turn {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .turnText,
+  .turnImages {
+    width: auto;
+    margin-top: 0;
+  }
+
+  .turnSketches {
+    column-gap: var(--space-3);
+  }
+
+  .turnResearch {
+    width: auto;
+    margin-top: var(--space-6);
+  }
+}
+
+/* ── Showtime ──
+   Horizontal: fractions of the Figma span x 107–1422 (1315). Vertical: Figma px as cqw. */
+
+/* the video panel starts ~95px below the heading's top */
+.showtime {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 0.96cqw;
+}
+
+/* 552 / 1315; Constraint starts 266px below the video's top */
+.showtimeText {
+  width: 41.98%;
+  margin-top: 17.6cqw;
+}
+
+/* 705 / 1315 */
+.showtimeVideo {
+  width: 53.61%;
+  margin: 0;
+}
+
+.showtimeVideo figcaption {
+  text-align: center;
+}
+
+.videoEl {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+@media (max-width: 767.98px) {
+  /* text, then the video */
+  .showtime {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .showtimeText,
+  .showtimeVideo {
+    width: auto;
+    margin-top: 0;
+  }
+}
