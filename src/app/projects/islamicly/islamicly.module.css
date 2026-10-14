@@ -56,72 +56,10 @@
 }
 
 /* ── The Result — flow layout ──
-   Figma 1512 frame: body 22px / 35px, labels 30px bold, black 60%.
-   cqw = px / 1512; max() keeps text readable on phones. */
+   Text, list, divider and status rows come from caseStudyContent.module.css. */
 
 .resultText {
   align-self: end;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: max(1.455cqw, 17px);
-  line-height: 1.59;
-  letter-spacing: -0.014em;
-}
-
-.overviewHeading {
-  font-size: max(1.984cqw, 22px);
-  font-weight: 700;
-  line-height: 1.17;
-  margin: 0;
-}
-
-.overviewList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* bold "·" bullet with a hanging indent so wrapped lines align with the text */
-.overviewList li {
-  padding-left: 1em;
-  text-indent: -1em;
-}
-
-.overviewList li::before {
-  content: "\00B7";
-  display: inline-block;
-  width: 0.733em;
-  text-indent: 0;
-  text-align: center;
-  font-size: 1.364em;
-  font-weight: 700;
-  line-height: 1;
-}
-
-/* dividers: 26px below Overview, 38px above Done; rows 17px apart */
-.divider {
-  height: 1px;
-  border: none;
-  background: rgba(0, 0, 0, 0.12);
-  margin: max(1.72cqw, 16px) 0 max(2.5cqw, 20px);
-}
-
-.statusRow {
-  margin: 0;
-  padding-block: max(1.13cqw, 10px);
-}
-
-.statusRow:first-of-type {
-  padding-top: 0;
-}
-
-.statusRow + .statusRow {
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-.statusLabel {
-  font-size: 1.364em;
-  font-weight: 700;
-  line-height: 1;
 }
 
 /* staggered 2×2: two columns, right one dropped by ~1/6 of an image height.
@@ -240,29 +178,6 @@
 .slideRight {
   flex: 0 0 47.13%;
   margin: 8.875% 0 0;
-}
-
-/* slim grey edge (~4px); radii concentric with the image's 2px */
-.slidePanel {
-  padding: max(0.26cqw, 3px);
-  border-radius: 6px;
-  background: #A8A6A3;
-}
-
-.slideImg {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 2px;
-}
-
-.slideCaption {
-  margin-top: 0.4em;
-  font-size: max(1.323cqw, 15px);
-  font-style: italic;
-  color: rgba(31, 53, 29, 0.7);
-  letter-spacing: -0.01em;
-  line-height: var(--leading-body);
 }
 
 @media (max-width: 767.98px) {
@@ -422,17 +337,8 @@
   font-size: 0.909em;
 }
 
-.draftCaption {
-  margin: 0;
-  font-size: max(1.323cqw, 15px);
-  font-style: italic;
-  color: rgba(31, 53, 29, 0.7);
-  letter-spacing: -0.01em;
-  line-height: var(--leading-body);
-}
-
 /* single line above Faith: Figma's box is 27px tall */
-.personalityLeft > .draftCaption {
+.personalityLeft > p {
   line-height: 1.35;
 }
 
@@ -449,7 +355,7 @@
   margin-left: -5.45%;
 }
 
-.learningRow .draftCaption {
+.learningRow > p {
   flex: 1 1 0;
   min-width: 0;
 }
@@ -463,7 +369,7 @@
   margin-top: 10.19cqw;
 }
 
-.draftCaptionBelow {
+.personalityRight > .draftCaptionBelow {
   margin-top: 0.2em;
 }
 
@@ -498,7 +404,7 @@
     width: auto;
   }
 
-  .personalityLeft > .draftCaption {
+  .personalityLeft > p {
     order: 2;
     line-height: var(--leading-body);
   }
@@ -520,7 +426,7 @@
     margin-top: 0;
   }
 
-  .draftCaptionBelow {
+  .personalityRight > .draftCaptionBelow {
     order: 4;
     margin-top: calc(var(--space-2) - var(--space-6));
   }
@@ -579,7 +485,7 @@
   align-items: flex-start;
 }
 
-.voiceRow > .draftCaption {
+.voiceRow > p {
   min-width: 0;
 }
 
@@ -592,7 +498,7 @@
   flex: 0 0 36.39%;
 }
 
-.voiceRowOne > .draftCaption {
+.voiceRowOne > p {
   flex: 0 0 23.28%;
 }
 
@@ -606,7 +512,7 @@
   flex: 0 0 58.52%;
 }
 
-.voiceRowTwo > .draftCaption {
+.voiceRowTwo > p {
   flex: 0 0 35.15%;
 }
 
@@ -621,7 +527,7 @@
   flex: 0 0 70.94%;
 }
 
-.voiceRowThree > .draftCaption {
+.voiceRowThree > p {
   flex: 0 0 27.09%;
 }
 
@@ -661,7 +567,7 @@
   }
 
   .voiceRow > :first-child,
-  .voiceRow > .draftCaption {
+  .voiceRow > p {
     flex: none;
   }
 }

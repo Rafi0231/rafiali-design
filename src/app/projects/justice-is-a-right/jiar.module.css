@@ -39,3 +39,98 @@
   letter-spacing: -0.01em;
   line-height: var(--leading-body);
 }
+
+/* ── The Verdict — flow layout ──
+   Horizontal: fractions of the Figma span x 98–1422 (1324); inside the image
+   column, fractions of its width (773). Vertical between columns: Figma px as cqw.
+   Text, panels and captions come from caseStudyContent.module.css. */
+
+/* pulled up beside the heading: Presentation's image sits 30px below the heading's top */
+.verdict {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: calc(1.72cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
+}
+
+/* 464 / 1324; Overview starts 128px below Presentation's panel */
+.verdictText {
+  width: 35.05%;
+  margin-top: 8.47cqw;
+}
+
+/* 773 / 1324; the row below starts right under Presentation's caption, as in Figma */
+.verdictImages {
+  width: 58.38%;
+  display: flex;
+  flex-direction: column;
+}
+
+.verdictFigure {
+  margin: 0;
+}
+
+.presentation figcaption {
+  margin-top: 0.1em;
+  line-height: 1.2;
+}
+
+/* 575 / 773, right-aligned */
+.presentation {
+  width: 74.39%;
+  margin-left: auto;
+}
+
+.verdictRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* 405 / 773, sitting 34px lower than Team Picture */
+.acceptance {
+  width: 52.39%;
+  margin-top: 4.4%;
+}
+
+/* 344 / 773 */
+.teamPicture {
+  width: 44.5%;
+}
+
+@media (max-width: 767.98px) {
+  /* text, then Presentation, Poster acceptance, Team Picture */
+  .verdict {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .verdictText,
+  .verdictImages {
+    width: auto;
+    margin-top: 0;
+  }
+
+  .verdictImages,
+  .verdictRow {
+    gap: var(--space-6);
+  }
+
+  .presentation figcaption {
+    margin-top: 0.4em;
+    line-height: var(--leading-body);
+  }
+
+  .verdictRow {
+    flex-direction: column;
+  }
+
+  .presentation,
+  .acceptance,
+  .teamPicture {
+    width: auto;
+    margin: 0;
+  }
+}

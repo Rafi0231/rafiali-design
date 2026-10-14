@@ -1,5 +1,6 @@
 import Image from "next/image";
 import FlowCaseStudyLayout, { Section } from "@/components/FlowCaseStudyLayout";
+import content from "@/components/caseStudyContent.module.css";
 import styles from "./islamicly.module.css";
 
 /* rendered tile width: ~410px of a 1512 frame (27.1vw) on desktop, ~43vw on phones.
@@ -120,9 +121,9 @@ export default function IslamiclyPage() {
   return (
     <FlowCaseStudyLayout title="Islamicly">
       <Section heading="The Result" columns="460fr 833fr">
-        <div className={styles.resultText}>
-          <h3 className={styles.overviewHeading}>Overview</h3>
-          <ul className={styles.overviewList}>
+        <div className={`${content.textBlock} ${styles.resultText}`}>
+          <h3 className={content.overviewHeading}>Overview</h3>
+          <ul className={content.overviewList}>
             <li><em>Role</em>: Product Designer</li>
             <li><em>Timeline</em>: September 2025 &ndash; Present</li>
             <li><em>Tools</em>: Figma (currently building backend system)</li>
@@ -132,18 +133,18 @@ export default function IslamiclyPage() {
             </li>
           </ul>
 
-          <hr className={styles.divider} />
+          <hr className={content.divider} />
 
-          <p className={styles.statusRow}>
-            <span className={styles.statusLabel}>Done &middot;</span> A full
+          <p className={content.statusRow}>
+            <span className={content.statusLabel}>Done &middot;</span> A full
             curriculum, designed end to end.
           </p>
-          <p className={styles.statusRow}>
-            <span className={styles.statusLabel}>Next &middot;</span> Progress
+          <p className={content.statusRow}>
+            <span className={content.statusLabel}>Next &middot;</span> Progress
             tracking for students and parents.
           </p>
-          <p className={styles.statusRow}>
-            <span className={styles.statusLabel}>Then &middot;</span> An AI layer
+          <p className={content.statusRow}>
+            <span className={content.statusLabel}>Then &middot;</span> An AI layer
             that personalizes lessons, built in code.
           </p>
         </div>
@@ -175,13 +176,13 @@ export default function IslamiclyPage() {
         <div className={styles.diagnosis}>
           <div className={styles.sideText}>
             <p className={styles.sideRow}>
-              <span className={styles.statusLabel}>Problem</span>
+              <span className={content.statusLabel}>Problem</span>
               <span className={styles.labelDot}> &middot; </span>
               Islamic learning apps use decade-old patterns, and each does one
               thing.
             </p>
             <p className={styles.sideRow}>
-              <span className={styles.statusLabel}>Opportunity</span>
+              <span className={content.statusLabel}>Opportunity</span>
               <span className={styles.labelDot}> &middot; </span>
               One platform with a full curriculum and modern craft.
             </p>
@@ -189,24 +190,24 @@ export default function IslamiclyPage() {
 
           <div className={styles.slides}>
             <figure className={styles.slideLeft}>
-              <div className={styles.slidePanel}>
+              <div className={content.slidePanel}>
                 <Image
                   {...DIAGNOSIS_SLIDES.marketResearch}
                   alt={DIAGNOSIS_SLIDES.marketResearch.alt}
                   quality={IMAGE_QUALITY}
-                  className={styles.slideImg}
+                  className={content.slideImg}
                 />
               </div>
-              <figcaption className={styles.slideCaption}>
+              <figcaption className={content.slideCaption}>
                 (Actual slides from Fall 2025 Design Seminar presentation)
               </figcaption>
             </figure>
-            <div className={`${styles.slidePanel} ${styles.slideRight}`}>
+            <div className={`${content.slidePanel} ${styles.slideRight}`}>
               <Image
                 {...DIAGNOSIS_SLIDES.similarProducts}
                 alt={DIAGNOSIS_SLIDES.similarProducts.alt}
                 quality={IMAGE_QUALITY}
-                className={styles.slideImg}
+                className={content.slideImg}
               />
             </div>
           </div>
@@ -215,28 +216,28 @@ export default function IslamiclyPage() {
       <Section heading="The Audience’s Opinion">
         <div className={styles.audience}>
           <div className={styles.audienceRow}>
-            <div className={`${styles.slidePanel} ${styles.audienceQuestions}`}>
+            <div className={`${content.slidePanel} ${styles.audienceQuestions}`}>
               <Image
                 {...AUDIENCE_SLIDES.questions}
                 alt={AUDIENCE_SLIDES.questions.alt}
                 sizes={AUDIENCE_SIZES}
                 quality={IMAGE_QUALITY}
-                className={styles.slideImg}
+                className={content.slideImg}
               />
             </div>
             <div className={styles.sideText}>
               <p className={styles.sideRow}>
-                <span className={styles.statusLabel}>Research &middot;</span>{" "}
+                <span className={content.statusLabel}>Research &middot;</span>{" "}
                 Surveyed 3 students about Islamic apps, and conducted usability
                 tests with ~10 people, an Islamic scholar, and a school&rsquo;s
                 board of education
               </p>
               <p className={styles.sideRow}>
-                <span className={styles.statusLabel}>Finding &middot;</span> The
+                <span className={content.statusLabel}>Finding &middot;</span> The
                 clearest request: the Seerah (the Prophet&rsquo;s biography).
               </p>
               <p className={styles.sideRow}>
-                <span className={styles.statusLabel}>What changed &middot;</span>{" "}
+                <span className={content.statusLabel}>What changed &middot;</span>{" "}
                 Restructured the curriculum to fit the Seerah into Course
                 Lectures.
               </p>
@@ -244,13 +245,13 @@ export default function IslamiclyPage() {
           </div>
 
           <div className={`${styles.audienceRow} ${styles.audienceRowBottom}`}>
-            <div className={`${styles.slidePanel} ${styles.audienceSurvey}`}>
+            <div className={`${content.slidePanel} ${styles.audienceSurvey}`}>
               <Image
                 {...AUDIENCE_SLIDES.survey}
                 alt={AUDIENCE_SLIDES.survey.alt}
                 sizes={AUDIENCE_SIZES}
                 quality={IMAGE_QUALITY}
-                className={styles.slideImg}
+                className={content.slideImg}
               />
             </div>
             <div className={styles.citations}>
@@ -269,28 +270,28 @@ export default function IslamiclyPage() {
       <Section heading="Where’s the personality?">
         <div className={styles.personality}>
           <div className={styles.personalityLeft}>
-            <p className={styles.draftCaption}>
+            <p className={content.draftCaption}>
               Draft 1: tested and received feedback of not having personality.
             </p>
-            <div className={`${styles.slidePanel} ${styles.faith}`}>
+            <div className={`${content.slidePanel} ${styles.faith}`}>
               <Image
                 {...PERSONALITY_DRAFTS.faith}
                 alt={PERSONALITY_DRAFTS.faith.alt}
                 quality={IMAGE_QUALITY}
-                className={styles.slideImg}
+                className={content.slideImg}
               />
             </div>
             <div className={styles.learningRow}>
-              <p className={styles.draftCaption}>
+              <p className={content.draftCaption}>
                 Draft 2: the fix, added Arabic and general &ldquo;Islamic&rdquo;
                 aesthetic to show personality.
               </p>
-              <div className={`${styles.slidePanel} ${styles.learning}`}>
+              <div className={`${content.slidePanel} ${styles.learning}`}>
                 <Image
                   {...PERSONALITY_DRAFTS.learning}
                   alt={PERSONALITY_DRAFTS.learning.alt}
                   quality={IMAGE_QUALITY}
-                  className={styles.slideImg}
+                  className={content.slideImg}
                 />
               </div>
             </div>
@@ -299,26 +300,26 @@ export default function IslamiclyPage() {
           <div className={styles.personalityRight}>
             <div className={`${styles.sideText} ${styles.personalityText}`}>
               <p className={`${styles.sideRow} ${styles.sideRowTight}`}>
-                <span className={styles.statusLabel}>Critique</span>
+                <span className={content.statusLabel}>Critique</span>
                 <span className={styles.labelDotSmall}> &middot; </span>
                 &ldquo;There&rsquo;s no personality in that design,&rdquo; my
                 professor said. I&rsquo;d designed for familiarity over identity.
               </p>
               <p className={`${styles.sideRow} ${styles.sideRowTight}`}>
-                <span className={styles.statusLabel}>What changed</span>
+                <span className={content.statusLabel}>What changed</span>
                 <span className={styles.labelDotSmall}> &middot; </span>
                 Three drafts searching for a voice of its own.
               </p>
             </div>
-            <div className={`${styles.slidePanel} ${styles.sahaba}`}>
+            <div className={`${content.slidePanel} ${styles.sahaba}`}>
               <Image
                 {...PERSONALITY_DRAFTS.sahaba}
                 alt={PERSONALITY_DRAFTS.sahaba.alt}
                 quality={IMAGE_QUALITY}
-                className={styles.slideImg}
+                className={content.slideImg}
               />
             </div>
-            <p className={`${styles.draftCaption} ${styles.draftCaptionBelow}`}>
+            <p className={`${content.draftCaption} ${styles.draftCaptionBelow}`}>
               Draft 3: a voice that got closer to Islamicly with the manuscript and
               visual layout.
             </p>
@@ -329,60 +330,60 @@ export default function IslamiclyPage() {
         <div className={styles.voice}>
           <div className={`${styles.sideText} ${styles.voiceText}`}>
             <p className={`${styles.sideRow} ${styles.sideRowLoose}`}>
-              <span className={styles.statusLabel}>Constraint &middot;</span> Feel
+              <span className={content.statusLabel}>Constraint &middot;</span> Feel
               distinct, not generic, without losing the familiarity students
               expect.
             </p>
             <p className={`${styles.sideRow} ${styles.sideRowLoose}`}>
-              <span className={styles.statusLabel}>My solution &middot;</span> Dim,
+              <span className={content.statusLabel}>My solution &middot;</span> Dim,
               warm tones that feel like a library, a place people seek out and
               full of knowledge.
             </p>
             <p className={`${styles.sideRow} ${styles.sideRowLoose}`}>
-              <span className={styles.statusLabel}>Kept &middot;</span> Elements
+              <span className={content.statusLabel}>Kept &middot;</span> Elements
               such as rounded buttons and the nav bar, for familiarity.
             </p>
           </div>
 
           <div className={styles.voiceImages}>
             <div className={`${styles.voiceRow} ${styles.voiceRowOne}`}>
-              <div className={styles.slidePanel}>
+              <div className={content.slidePanel}>
                 <Image
                   {...VOICE_DRAFTS.unit1}
                   alt={VOICE_DRAFTS.unit1.alt}
                   quality={IMAGE_QUALITY}
-                  className={styles.slideImg}
+                  className={content.slideImg}
                 />
               </div>
-              <p className={styles.draftCaption}>
+              <p className={content.draftCaption}>
                 Post-Feedback Draft 1: new color palette, new layout and includes
                 the Seerah.
               </p>
             </div>
             <div className={`${styles.voiceRow} ${styles.voiceRowTwo}`}>
-              <div className={styles.slidePanel}>
+              <div className={content.slidePanel}>
                 <Image
                   {...VOICE_DRAFTS.unit2}
                   alt={VOICE_DRAFTS.unit2.alt}
                   quality={IMAGE_QUALITY}
-                  className={styles.slideImg}
+                  className={content.slideImg}
                 />
               </div>
-              <p className={styles.draftCaption}>
+              <p className={content.draftCaption}>
                 Post-Feedback Draft 2: kept the color palette, added new texture, a
                 new layout, and more topics.
               </p>
             </div>
             <div className={`${styles.voiceRow} ${styles.voiceRowThree}`}>
-              <div className={styles.slidePanel}>
+              <div className={content.slidePanel}>
                 <Image
                   {...VOICE_DRAFTS.courseTopics}
                   alt={VOICE_DRAFTS.courseTopics.alt}
                   quality={IMAGE_QUALITY}
-                  className={styles.slideImg}
+                  className={content.slideImg}
                 />
               </div>
-              <p className={styles.draftCaption}>
+              <p className={content.draftCaption}>
                 Post-Feedback Draft 3: added a new image in the back to add depth,
                 kept the same topics and layout.
               </p>

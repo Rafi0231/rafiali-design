@@ -1,0 +1,101 @@
+/* Shared content pieces for FlowCaseStudyLayout pages (Islamicly, JIAR).
+   Figma 1512 frame: body 22px / 35px, labels 30px bold, black 60%, captions 20px italic.
+   cqw = px / 1512; max() keeps text readable on phones. */
+
+/* body text column */
+.textBlock {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: max(1.455cqw, 17px);
+  line-height: 1.59;
+  letter-spacing: -0.014em;
+}
+
+.overviewHeading {
+  font-size: max(1.984cqw, 22px);
+  font-weight: 700;
+  line-height: 1.17;
+  margin: 0;
+}
+
+.overviewList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* bold "·" bullet with a hanging indent so wrapped lines align with the text */
+.overviewList li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.overviewList li::before {
+  content: "\00B7";
+  display: inline-block;
+  width: 0.733em;
+  text-indent: 0;
+  text-align: center;
+  font-size: 1.364em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* dividers: 26px below the list, 38px above the first row; rows 17px apart */
+.divider {
+  height: 1px;
+  border: none;
+  background: rgba(0, 0, 0, 0.12);
+  margin: max(1.72cqw, 16px) 0 max(2.5cqw, 20px);
+}
+
+.statusRow {
+  margin: 0;
+  padding-block: max(1.13cqw, 10px);
+}
+
+.statusRow:first-of-type {
+  padding-top: 0;
+}
+
+.statusRow + .statusRow {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/* bold 30px label beside 22px text */
+.statusLabel {
+  font-size: 1.364em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* slim grey edge (~4px); radii concentric with the image's 2px */
+.slidePanel {
+  padding: max(0.26cqw, 3px);
+  border-radius: 6px;
+  background: #A8A6A3;
+}
+
+.slideImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.slideCaption {
+  margin-top: 0.4em;
+  font-size: max(1.323cqw, 15px);
+  font-style: italic;
+  color: rgba(31, 53, 29, 0.7);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
+
+.draftCaption {
+  margin: 0;
+  font-size: max(1.323cqw, 15px);
+  font-style: italic;
+  color: rgba(31, 53, 29, 0.7);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+}
