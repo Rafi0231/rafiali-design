@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import chrome from "./CaseStudyLayout.module.css";
 import pillStyles from "./GlassPill.module.css";
-import styles from "./IslamiclyLayout.module.css";
+import styles from "./FlowCaseStudyLayout.module.css";
 
 /* ── Section — heading with accent bar, children laid out as columns ── */
 
@@ -29,7 +29,7 @@ export function Section({ heading, columns, className, children }: SectionProps)
   );
 }
 
-/* ── IslamiclyLayout — flow version of CaseStudyLayout, Islamicly only.
+/* ── FlowCaseStudyLayout — flowing, scrollable version of CaseStudyLayout.
    Title, rule and Back pill reuse CaseStudyLayout's classes inside a
    1512 × 982 overlay so they land exactly where they do on the other pages. ── */
 
@@ -39,7 +39,7 @@ type LayoutProps = {
   children: ReactNode;
 };
 
-export default function IslamiclyLayout({
+export default function FlowCaseStudyLayout({
   title,
   backHref = "/#projects",
   children,

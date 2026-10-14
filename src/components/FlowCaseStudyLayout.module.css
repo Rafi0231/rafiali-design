@@ -24,7 +24,7 @@
   pointer-events: auto;
 }
 
-/* rule under the title at 50% (shared rule is 80%); Islamicly only */
+/* rule under the title at 50% (CaseStudyLayout's is 80%) */
 .chrome .ruleSoft {
   background: rgba(107, 82, 68, 0.5);
 }

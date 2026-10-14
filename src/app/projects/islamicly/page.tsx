@@ -1,5 +1,5 @@
 import Image from "next/image";
-import IslamiclyLayout, { Section } from "@/components/IslamiclyLayout";
+import FlowCaseStudyLayout, { Section } from "@/components/FlowCaseStudyLayout";
 import styles from "./islamicly.module.css";
 
 /* rendered tile width: ~410px of a 1512 frame (27.1vw) on desktop, ~43vw on phones.
@@ -118,7 +118,7 @@ const VOICE_DRAFTS = {
 
 export default function IslamiclyPage() {
   return (
-    <IslamiclyLayout title="Islamicly">
+    <FlowCaseStudyLayout title="Islamicly">
       <Section heading="The Result" columns="460fr 833fr">
         <div className={styles.resultText}>
           <h3 className={styles.overviewHeading}>Overview</h3>
@@ -390,6 +390,6 @@ export default function IslamiclyPage() {
           </div>
         </div>
       </Section>
-    </IslamiclyLayout>
+    </FlowCaseStudyLayout>
   );
 }
