@@ -13,7 +13,9 @@ export default function Hero() {
           src="/images/BaseImage.webp"
           alt=""
           fill
-          priority
+          sizes="100vw"
+          quality={90}
+          preload
           className={styles.img}
         />
       </div>
@@ -45,6 +47,9 @@ export default function Hero() {
           src="/images/Cutout.webp"
           alt=""
           fill
+          sizes="100vw"
+          quality={90}
+          preload
           className={styles.img}
         />
       </div>
