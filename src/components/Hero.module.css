@@ -59,12 +59,12 @@
 
 /* ── credentials ── */
 /* Figma's bar: 5 × 113, #59453F at 40%, 18px left of the text and centred
-   5px above the middle of the two lines. Placed against this layout's text
+   on the two lines (lowered 10px from Figma's 5px-above-centre). Placed against this layout's text
    (which sits ~40px higher than Figma's), not Figma's page coordinates */
 .rule {
   position: absolute;
   left: 15.476%;
-  top: 68.177%;
+  top: 69.195%;
   width: 0.331cqw;
   height: 11.507%;
   background: rgba(89, 69, 63, 0.4);

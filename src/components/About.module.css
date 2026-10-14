@@ -5,7 +5,7 @@
   aspect-ratio: 1512 / 982;
   container-type: inline-size;
   overflow: hidden;
-  background: #DDD7CF;
+  background: #BFBFBF; /* same as the Projects section */
 }
 
 /* ═══ HEADING ═══ — identical treatment to Projects */
@@ -103,10 +103,10 @@
 }
 
 /* ═══ LINK PILLS ═══ */
-/* Resume: left=75.661% top=90.5%   LinkedIn: left=85.119% top=90.5% */
+/* Resume: left=75.661%   LinkedIn: left=85.119%   both top=88.46% (moved up 20px from 90.5%) */
 .pillWrap {
   position: absolute;
-  top: 90.5%;
+  top: 88.46%;
   height: 3.565%;
   font-family: var(--font-serif);
   font-size: 1.653cqw;

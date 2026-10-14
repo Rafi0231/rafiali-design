@@ -5,18 +5,18 @@
   aspect-ratio: 1512 / 982;
   container-type: inline-size;
   overflow: hidden;
-  background: #DDD7CF;
+  background: #BFBFBF;
 }
 
 /* ═══ HEADING ═══ */
+/* glyphs match Figma's "Projects" (150px, no tracking, top of box at y 0) */
 .heading {
   position: absolute;
   left: 6.085%;
-  top: 3%;
+  top: 4.633%;
   font-size: 9.921cqw;
   font-weight: 400;
   line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
   color: var(--color-green);
   /* entrance — initial state */
   opacity: 0;
@@ -39,11 +39,12 @@
 
 /* ═══ CARD WRAPPER — owns entrance animation ═══ */
 /* left is passed as inline style per card */
+/* 417 × 667 at y 260 */
 .cardWrap {
   position: absolute;
   top: 26.477%;
-  width: 25.265%;
-  height: 63.951%;
+  width: 27.579%;
+  height: 67.923%;
   /* entrance — initial state */
   opacity: 0;
   transform: translateY(16px);
@@ -68,17 +69,17 @@
   }
 }
 
-/* ═══ CARD — owns hover only, no entrance state ═══ */
+/* ═══ CARD — a link to the case study; owns hover only, no entrance state ═══ */
 .card {
   position: relative;
+  display: block;
   width: 100%;
   height: 100%;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  background: rgba(229, 229, 229, 0.5);
   overflow: hidden;
   transition:
     transform var(--duration-fast) var(--ease-out),
@@ -87,16 +88,20 @@
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    var(--shadow-lift);
+  box-shadow: var(--shadow-lift);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 4px;
 }
 
 /* ═══ CARD TITLE ═══ */
-/* top: (269 - 260) / 628 = 1.433% */
+/* Figma text box at y 269 (9 into the card), 45px with normal leading (69px box);
+   with our 1.15 line-height the glyphs land in the same place at 3.54% */
 .cardTitle {
   position: absolute;
-  top: 4.22%;
+  top: 3.54%;
   left: 0;
   right: 0;
   text-align: center;
@@ -107,21 +112,22 @@
 }
 
 /* ═══ PILLS ═══ */
-/* top: (348 - 260) / 628 = 14.013% */
+/* 22px pills at y 348 (88 into the card), 13px apart, 18px side padding */
 .pills {
   position: absolute;
-  top: 14.013%;
+  top: 13.193%;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
-  gap: var(--space-2);
+  gap: 0.86cqw;
 }
 
 .pill {
   display: inline-flex;
   align-items: center;
-  padding: var(--space-1) var(--space-3);
+  height: 1.455cqw;
+  padding: 0 1.09cqw;
   border-radius: 20px;
   background: color-mix(in srgb, var(--color-green) 50%, transparent);
   font-size: 1.323cqw;
@@ -131,26 +137,25 @@
 }
 
 /* ═══ IMAGE FRAMES ═══ */
-/* Card 1: x=146 y=401 → left=(146-92)/382=14.136%, top=(401-260)/628=22.452%
-           w=275/382=71.990%, h=180/628=28.662% */
+/* positions are % of the 417 × 667 card */
+/* Islamicly: 303 × 198 at (57, 141) */
 .imageFrame1 {
   position: absolute;
-  left: 14.136%;
-  top: 22.452%;
-  width: 71.990%;
-  height: 28.662%;
+  left: 13.669%;
+  top: 21.139%;
+  width: 72.662%;
+  height: 29.685%;
   border-radius: 2px;
   overflow: hidden;
 }
 
-/* Card 2: x=609 y=397 → left=(609-565)/382=11.518%, top=(397-260)/628=21.815%
-           w=280/382=73.298%, h=187/628=29.777% */
+/* JIAR: 296 × 198 at (57, 135) */
 .imageFrame2 {
   position: absolute;
-  left: 13%;
-  top: 21.815%;
-  width: 73.298%;
-  height: 29.777%;
+  left: 13.669%;
+  top: 20.24%;
+  width: 70.983%;
+  height: 29.685%;
   border-radius: 2px;
   overflow: hidden;
 }
@@ -160,45 +165,55 @@
 }
 
 /* ═══ POSTER IMAGES (Card 3) ═══ */
-/* Each: 92.18 × 143.45 → 24.130% × 22.843% of card */
-/* poster 1: x=1080 y=395 → left=(1080-1039)/382=10.733%, top=(395-260)/628=21.497% */
-/* poster 2: x=1187 y=419 → left=(1187-1039)/382=38.743%, top=(419-260)/628=25.318% */
-/* poster 3: x=1292 y=447 → left=(1292-1039)/382=66.230%, top=(447-260)/628=29.777% */
+/* Figma's three posters scaled up ~10% about the first poster's corner, so the
+   row spans exactly the title's width (x 41 → 375 of the card); same steps */
 .poster1,
 .poster2,
 .poster3 {
   position: absolute;
-  width: 24.130%;
-  height: 22.843%;
+  width: 24.288%;
+  height: 23.628%;
   border-radius: 1px;
   overflow: hidden;
 }
 
-.poster1 { left: 10.733%; top: 21.497%; }
-.poster2 { left: 38.743%; top: 25.318%; }
-.poster3 { left: 66.230%; top: 29.777%; }
+.poster1 { left: 9.832%; top: 20.24%; }
+.poster2 { left: 38.024%; top: 24.198%; width: 24.508%; }
+.poster3 { left: 65.683%; top: 28.801%; width: 24.24%; height: 23.553%; }
 
-/* ═══ DESCRIPTION ═══ */
-/* top: (617 - 260) / 628 = 56.847%
-   left: 21 / 382 = 5.497%   width: 340 / 382 = 89.005% */
-.description {
+/* ═══ SUMMARY — Audience / My role / Outcome ═══ */
+/* 392 wide at (15, 378) — Figma has 362; moved 16px down, tops still aligned
+   across the three cards; 15px on 24px lines, bold labels */
+.summary {
   position: absolute;
-  top: 56.847%;
-  left: 5.497%;
-  width: 89.005%;
+  top: 56.672%;
+  left: 3.597%;
+  width: 94.005%;
+  margin: 0;
   font-size: 0.992cqw;
+  line-height: 1.6;
   color: #352727;
-  line-height: var(--leading-body);
   z-index: 1;
 }
 
+.summary dt {
+  display: inline;
+  font-weight: 700;
+}
+
+.summary dd {
+  display: inline;
+  margin: 0;
+}
+
 /* ═══ GHOST NUMERAL ═══ */
-/* left: -9.948% (left-edge clip intentional, card overflow:hidden clips ~15%)
-   top: 73% places baseline ~7px below the card edge → ~5% of cap-height clipped */
+/* 220px at (-38, 425) in Figma's normal-leading box (245 tall); with
+   line-height 1 the glyphs land in the same place at top 76.1%.
+   The card's overflow clips it, as Figma's mask does */
 .ghostNumeral {
   position: absolute;
-  left: -9.948%;
-  top: 75%;
+  left: -9.113%;
+  top: 76.1%;
   font-size: 14.55cqw;
   font-weight: 400;
   letter-spacing: -0.12em;
@@ -210,14 +225,13 @@
 }
 
 /* ═══ EXPLORE BUTTON ═══ */
-/* x=321 y=820 → left=(321-92)/382=59.948%, top=(820-260)/628=89.172%
-   128 × 47 → width=33.508%, height=7.484% */
+/* 128 × 47 at (273, 594) */
 .exploreBtn {
   position: absolute;
-  left: 59.948%;
-  top: 89.172%;
-  width: 33.508%;
-  height: 7.484%;
+  left: 65.468%;
+  top: 89.055%;
+  width: 30.695%;
+  height: 7.046%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -225,7 +239,7 @@
   background: color-mix(in srgb, var(--color-green) 70%, transparent);
   font-family: var(--font-serif);
   font-size: 1.653cqw;
-  color: #E8D4CC;
+  color: #E0D2CC;
   text-decoration: none;
   z-index: 1;
   transition: background var(--duration-fast) var(--ease-out);

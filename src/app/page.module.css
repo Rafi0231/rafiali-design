@@ -1,3 +1,9 @@
 .pageCanvas {
   background: #DDD7CF;
 }
+
+/* ~80px at 1512 between Projects and About, in their shared #BFBFBF */
+.sectionGap {
+  height: 5.3vw;
+  background: #BFBFBF;
+}
