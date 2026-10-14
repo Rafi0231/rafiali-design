@@ -95,3 +95,250 @@
   height: 1px;
   border-radius: 1px;
 }
+
+/* ── The Result — flow layout, spacing exactly as the Figma frame ──
+   Every distance is Figma px / 1512 (cqw), so it's exact at 1512 and scales evenly.
+   Figma's accent bar sits at x 98; ours sits on the content edge, so x values
+   are measured from the bar. Text, panel and caption styles come from
+   caseStudyContent.module.css. */
+
+/* pulled up so the panel's top sits 63px below the heading's top */
+.result {
+  display: flex;
+  align-items: flex-start;
+  margin-top: calc(4.167cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
+}
+
+/* 508 wide, starting at the bar; Overview 84px below the panel's top */
+.resultText {
+  flex: 0 0 33.6cqw;
+  margin-top: 5.56cqw;
+}
+
+/* list ends 30px above the divider; Shipped starts 85px below it
+   (Figma has 61; 24px more room requested) */
+.resultText > hr {
+  margin: 1.98cqw 0 5.62cqw;
+}
+
+/* Shipped ends 18px above the second divider; Client response starts 16px below it */
+.resultText > p {
+  padding-block: 0 1.19cqw;
+}
+
+.resultText > p + p {
+  padding-block: 1.06cqw 0;
+}
+
+/* photo + note, 119px right of the text column; the note runs 33px past the
+   content edge into the card's padding, as in Figma */
+.resultMedia {
+  flex: 0 0 48.14cqw;
+  display: flex;
+  align-items: flex-end;
+  margin: 0 -2.18cqw 0 7.87cqw;
+}
+
+/* 497 × 633 panel */
+.resultPanel {
+  flex: 0 0 32.87cqw;
+}
+
+.resultImg {
+  aspect-ratio: 489 / 625;
+  object-fit: cover;
+}
+
+/* 219 wide, 12px right of the panel, its bottom 26px above the panel's bottom */
+.resultNote {
+  flex: 0 0 14.48cqw;
+  margin: 0 0 1.72cqw 0.79cqw;
+  font-size: max(0.992cqw, 13px);
+  font-style: italic;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--color-green);
+}
+
+@media (max-width: 767.98px) {
+  /* text, then the photo, then the note */
+  .result {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .resultMedia {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .resultText,
+  .resultMedia,
+  .resultPanel,
+  .resultNote {
+    flex: none;
+    margin: 0;
+  }
+
+  .resultText > hr {
+    margin: var(--space-4) 0 var(--space-6);
+  }
+
+  .resultText > p {
+    padding-bottom: var(--space-3);
+  }
+
+  .resultText > p + p {
+    padding-top: var(--space-3);
+  }
+
+  .resultNote {
+    margin-top: var(--space-3);
+  }
+}
+
+/* ── The Gap ──
+   Same approach as The Result: Figma px / 1512 (cqw), x measured from the accent bar. */
+
+/* pulled up so the panel's top sits 32px below the heading's top */
+.gap {
+  display: flex;
+  align-items: flex-start;
+  margin-top: calc(2.116cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
+}
+
+/* 508 wide; Problem starts 346px below the panel's top */
+.gapText {
+  flex: 0 0 33.6cqw;
+  margin-top: 22.88cqw;
+}
+
+/* rows ~30px either side of the dividers */
+.gapText > p {
+  padding-block: max(1.98cqw, 12px);
+}
+
+.gapText > p:last-child {
+  padding-bottom: 0;
+}
+
+/* 497 × 659 panel, 236px right of the text column */
+.gapFigure {
+  flex: 0 0 32.87cqw;
+  margin: 0 0 0 15.61cqw;
+}
+
+.gapFigure figcaption {
+  margin-top: 0.1em;
+  text-align: center;
+}
+
+@media (max-width: 767.98px) {
+  /* text, then the photo */
+  .gap {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .gapText,
+  .gapFigure {
+    flex: none;
+    margin: 0;
+  }
+}
+
+/* ── Their Voices ──
+   Figma px / 1512 (cqw), x measured from the accent bar (Figma x 107). */
+
+/* pulled up so the poster's panel sits 65px below the heading's top */
+.voices {
+  display: flex;
+  align-items: flex-start;
+  margin-top: calc(4.299cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
+}
+
+/* text + quote, 894 wide; Research starts 110px below the poster's panel */
+.voicesMain {
+  flex: 0 0 59.13cqw;
+  margin-top: 7.28cqw;
+}
+
+/* 535 wide; rows ~23px below each divider and ~30px above the next */
+.voicesText {
+  width: 35.38cqw;
+}
+
+.voicesText > p {
+  padding-block: max(1.52cqw, 10px) max(1.98cqw, 12px);
+}
+
+.voicesText > p:last-child {
+  padding-bottom: 0;
+}
+
+/* 894 × 177 box, 71px below Constraint's last line */
+.voicesQuote {
+  margin-top: 4.56cqw;
+  padding: 0.93cqw 0.79cqw 0.93cqw 1.19cqw;
+  border-radius: 18px;
+  background: rgba(139, 107, 92, 0.5);
+  color: var(--color-green);
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.voicesQuoteTitle {
+  margin: 0;
+  font-size: max(1.19cqw, 15px);
+  line-height: 1.39;
+}
+
+/* the quote hangs 68px in from the title */
+.voicesQuoteText {
+  margin: 0.86cqw 0 0 4.5cqw;
+  font-size: max(1.058cqw, 14px);
+  line-height: 1.73;
+}
+
+/* 414 × 632 panel, 43px right of the quote box; it runs 28px past the
+   content edge into the card's padding, as in Figma */
+.voicesFigure {
+  flex: 0 0 27.38cqw;
+  margin: 0 -1.85cqw 0 2.84cqw;
+}
+
+.voicesFigure figcaption {
+  margin-top: 0;
+  text-align: center;
+}
+
+@media (max-width: 767.98px) {
+  /* text, then the quote, then the poster */
+  .voices {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .voicesMain,
+  .voicesText,
+  .voicesFigure {
+    flex: none;
+    width: auto;
+    margin: 0;
+  }
+
+  .voicesQuote {
+    margin-top: var(--space-6);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .voicesQuoteText {
+    margin: var(--space-2) 0 0 var(--space-4);
+  }
+}
