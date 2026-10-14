@@ -47,7 +47,7 @@ export default function FlowCaseStudyLayout({
   return (
     <div className={styles.frame}>
       <div className={styles.chrome}>
-        <h1 className={chrome.title}>{title}</h1>
+        <h1 className={`${chrome.title} ${styles.titleLow}`}>{title}</h1>
         <hr className={`${chrome.rule} ${styles.ruleSoft}`} />
         <div className={`${chrome.backPill} ${styles.backPillMobile}`}>
           <div className={pillStyles.buttonWrap}>

@@ -70,6 +70,11 @@
   margin: 0;
 }
 
+/* 24px more room between the Overview list and Presented (38 → 62 below the divider) */
+.verdictText > hr {
+  margin-bottom: max(4.1cqw, 28px);
+}
+
 .presentation figcaption {
   margin-top: 0.1em;
   line-height: 1.2;

@@ -157,7 +157,7 @@
   font-style: italic;
   line-height: 1.4;
   letter-spacing: -0.01em;
-  color: var(--color-green);
+  color: rgba(31, 53, 29, 0.7); /* same as every other caption */
 }
 
 @media (max-width: 767.98px) {
@@ -340,5 +340,275 @@
 
   .voicesQuoteText {
     margin: var(--space-2) 0 0 var(--space-4);
+  }
+}
+
+/* ── Brick by Brick ──
+   Figma px / 1512 (cqw), x measured from the accent bar (Figma x 107). */
+
+/* Critique starts 130px below the heading's top (Figma has 59px; more room
+   requested, a little less than Their Voices' 175px) */
+.brickText {
+  width: 35.38cqw;
+  margin: calc(8.598cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4))) 0 0 52.38cqw;
+}
+
+/* Critique ends 25px above the divider; What changed starts 23px below it */
+.brickText > p:first-child {
+  padding: 0 0 1.65cqw;
+}
+
+.brickText > p + p {
+  padding: 1.52cqw 0 0;
+}
+
+/* five 267 × 403 panels with equal 11px gaps (1379px), centred in the card
+   so the space to the card's edge is the same on both sides; the row is
+   wider than the content box, so it's centred against that box's width */
+.brickRow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: 0.7275cqw;
+  width: 91.2cqw;
+  margin: 4.37cqw 0 0 calc((100% - 91.2cqw) / 2);
+}
+
+.brickFigure {
+  margin: 0;
+}
+
+.brickImg {
+  aspect-ratio: 259 / 395;
+  object-fit: cover;
+}
+
+/* 13px italic, flush under each panel */
+.brickCaption {
+  margin-top: 0;
+  font-size: max(0.86cqw, 12px);
+  font-style: italic;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  color: rgba(31, 53, 29, 0.7); /* same as every other caption */
+}
+
+@media (max-width: 767.98px) {
+  /* text, then the drafts two-up */
+  .brickText {
+    width: auto;
+    margin: 0;
+  }
+
+  .brickText > p:first-child {
+    padding-bottom: var(--space-3);
+  }
+
+  .brickText > p + p {
+    padding-top: var(--space-3);
+  }
+
+  .brickRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4) var(--space-3);
+    width: auto;
+    margin: var(--space-6) 0 0;
+  }
+
+  .brickCaption {
+    margin-top: var(--space-1);
+  }
+}
+
+/* ── A System ──
+   Figma px / 1512 (cqw). Text x is measured from the accent bar (Figma x 107).
+   The annotated diagram is one box whose origin is Figma (681, 179): the
+   poster panel and its seven callouts are placed inside it exactly as in
+   Figma, and the whole box scales with the page. */
+
+/* pulled up so the diagram's top (the panel) sits 49px below the heading's top */
+.system {
+  display: flex;
+  align-items: flex-start;
+  margin-top: calc(3.241cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
+}
+
+/* 447 wide; Fixed starts 324px below the panel's top */
+.systemText {
+  flex: 0 0 29.563cqw;
+  margin-top: 21.429cqw;
+}
+
+/* each row ends 31px above its divider; the next starts 29px below it */
+.systemText > p {
+  padding-block: 1.918cqw 2.05cqw;
+}
+
+.systemText > p:first-child {
+  padding-top: 0;
+}
+
+.systemText > p:last-child {
+  padding-bottom: 0;
+}
+
+/* 788 × 691 box, 127px right of the text column */
+.systemDiagram {
+  position: relative;
+  flex: 0 0 52.116cqw;
+  height: 45.701cqw;
+  margin: 0 0 0 8.399cqw;
+}
+
+/* 421 × 645 panel, 178px into the box */
+.systemPanel {
+  position: absolute;
+  left: 11.772cqw;
+  top: 0;
+  width: 27.844cqw;
+  margin: 0;
+}
+
+.systemImg {
+  aspect-ratio: 413 / 637;
+  object-fit: cover;
+}
+
+.callouts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 13px italic, 20px lines; the label word is bold italic */
+.callout {
+  position: absolute;
+  font-size: max(0.86cqw, 12px);
+  font-style: italic;
+  line-height: 1.538;
+  letter-spacing: -0.01em;
+  color: var(--color-green);
+}
+
+.callout strong {
+  font-weight: 700;
+}
+
+/* 18px tick level with the first line */
+.callout::before {
+  content: "";
+  position: absolute;
+  top: 0.562cqw;
+  width: 1.19cqw;
+  height: 1.5px;
+  background: currentColor;
+}
+
+.calloutFlex {
+  color: #8B6B5C;
+}
+
+/* left column: ticks run from the label's right edge (Figma x 826) */
+.calloutLeft::before {
+  left: 100%;
+}
+
+.calloutFilm {
+  left: 0.198cqw;
+  top: 19.312cqw;
+  width: 9.392cqw;
+}
+
+.calloutWork {
+  left: 0.198cqw;
+  top: 28.108cqw;
+  width: 9.392cqw;
+}
+
+.calloutGradient {
+  left: 0;
+  top: 36.839cqw;
+  width: 9.59cqw;
+}
+
+/* right column: ticks sit 35px left of the label (Figma x 1294) */
+.calloutRight {
+  left: 42.857cqw;
+  width: 9.259cqw;
+}
+
+.calloutRight::before {
+  left: -2.315cqw;
+}
+
+.calloutPortrait {
+  top: 6.944cqw;
+}
+
+.calloutName {
+  top: 19.907cqw;
+}
+
+.calloutBio {
+  top: 32.407cqw;
+}
+
+/* under the panel, with a vertical tick 10px below it (1.5px, same weight as the others) */
+.calloutLogo {
+  left: 13.889cqw;
+  top: 44.775cqw;
+  width: 18.254cqw;
+  line-height: 1.1;
+}
+
+.calloutLogo::before {
+  left: 0.86cqw;
+  top: -1.455cqw;
+  width: 1.5px;
+  height: 1.19cqw;
+}
+
+@media (max-width: 767.98px) {
+  /* text, then the poster, then the callouts as a plain list */
+  .system {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .systemText,
+  .systemDiagram {
+    flex: none;
+    margin: 0;
+    height: auto;
+  }
+
+  .systemText > p {
+    padding-block: var(--space-3);
+  }
+
+  .systemText > p:first-child {
+    padding-top: 0;
+  }
+
+  .systemPanel {
+    position: static;
+    width: auto;
+  }
+
+  .callouts {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .callout {
+    position: static;
+    width: auto;
+    line-height: 1.5;
+  }
+
+  .callout::before {
+    display: none;
   }
 }

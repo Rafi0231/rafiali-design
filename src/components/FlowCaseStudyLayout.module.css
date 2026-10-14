@@ -4,7 +4,7 @@
   width: 100%;
   min-height: 100vh;
   container-type: inline-size;
-  background: linear-gradient(to bottom, #EAE6DE 0%, #C0BBB4 100%);
+  background: var(--color-silver);
   /* card starts at y 196 of 982 → 19.959% × 982/1512 of the width */
   padding-top: 12.963%;
   padding-bottom: max(3cqw, var(--space-6));
@@ -22,6 +22,12 @@
 
 .chrome > * {
   pointer-events: auto;
+}
+
+/* title sits 35px lower than CaseStudyLayout's (top 6 → 41 of 982),
+   matching where its letters fall in the Figma frames */
+.chrome .titleLow {
+  top: 4.175%;
 }
 
 /* rule under the title at 50% (CaseStudyLayout's is 80%) */

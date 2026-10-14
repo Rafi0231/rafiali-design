@@ -193,7 +193,7 @@ export default function JIARPage() {
             <p className={content.statusRow}>
               <span className={content.statusLabel}>Critique &middot;</span>{" "}
               &ldquo;You&rsquo;re bringing attention to the problem, but where&rsquo;s
-              the solution.&rdquo;
+              the solution?&rdquo;
             </p>
             <p className={content.statusRow}>
               <span className={content.statusLabel}>What changed &middot;</span> The

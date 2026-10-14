@@ -5,6 +5,50 @@ import styles from "./lta.module.css";
 
 const IMAGE_QUALITY = 90;
 
+/* drafts render at ~259px of a 1512 frame; two-up on phones */
+const BRICK_DRAFTS = [
+  {
+    src: "/images/lta/Draft1.webp",
+    width: 1138,
+    height: 1736,
+    alt: "Draft 1 of Jassiel Serna's poster: his name running vertically beside photos of him and his red fiber sculptures",
+    caption:
+      "Draft 1: presented as the thesis, with no system yet. This draft earned the note that became a rule: give people the fastest route to the artist.",
+  },
+  {
+    src: "/images/lta/Draft2.webp",
+    width: 1136,
+    height: 1733,
+    alt: "Draft 2: a pink poster with a circular portrait, his name in mono type, a bio block, the CAD mark, and a QR code",
+    caption:
+      "Draft 2: more organized, with portrait, mono name, bio block, CAD mark, and a QR code. With no interview, his words came verbatim from CAD’s public record.",
+  },
+  {
+    src: "/images/lta/Draft3.webp",
+    width: 1136,
+    height: 1733,
+    alt: "Draft 3: a red gradient poster with a circular portrait above his name and a row of cropped artworks",
+    caption:
+      "Draft 3: the gradient starts reflecting the artist. Critique: show the art whole. Nothing cropped, nothing layered over it, and the artists choose the pieces.",
+  },
+  {
+    src: "/images/lta/Draft4.webp",
+    width: 1140,
+    height: 1739,
+    alt: "Draft 4: a large portrait over a red-brown gradient, his name split across the poster, and one sculpture shown whole",
+    caption:
+      "Draft 4: the QR code broke the system. Some artists had everything to link and others almost nothing. My professor’s fix: the CAD mark, one destination all three share.",
+  },
+  {
+    src: "/images/lta/Draft5.webp",
+    width: 638,
+    height: 973,
+    alt: "Draft 5, the final poster: portrait and name on a print-ready red gradient, a column of whole artworks, and the CAD mark",
+    caption:
+      "Draft 5: the system comes together. The gradient that looked clean on screen fell apart on paper, so it was rebuilt for print.",
+  },
+] as const;
+
 export default function LTAPage() {
   return (
     <FlowCaseStudyLayout title="Light to the Artists">
@@ -157,8 +201,100 @@ export default function LTAPage() {
           </figure>
         </div>
       </Section>
-      <Section heading="Brick by Brick" />
-      <Section heading="A System" />
+      <Section heading="Brick by Brick">
+        <div>
+          <div className={`${content.textBlock} ${styles.brickText}`}>
+            <p className={content.statusRow}>
+              <span className={content.statusLabel}>Critique &middot;</span>{" "}
+              &ldquo;Give people the fastest route to the artist,&rdquo; and &ldquo;When
+              you show someone else&rsquo;s art, show it whole.&rdquo;
+            </p>
+            <p className={content.statusRow}>
+              <span className={content.statusLabel}>What changed &middot;</span> Five
+              drafts, each one turning a critique into a rule.
+            </p>
+          </div>
+
+          <div className={styles.brickRow}>
+            {BRICK_DRAFTS.map(({ caption, ...image }) => (
+              <figure key={image.src} className={styles.brickFigure}>
+                <div className={content.slidePanel}>
+                  <Image
+                    {...image}
+                    alt={image.alt}
+                    sizes="(max-width: 767px) 45vw, 18vw"
+                    quality={IMAGE_QUALITY}
+                    className={`${content.slideImg} ${styles.brickImg}`}
+                  />
+                </div>
+                <figcaption className={styles.brickCaption}>{caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </Section>
+      <Section heading="A System">
+        <div className={styles.system}>
+          <div className={`${content.textBlock} ${styles.systemText}`}>
+            <p className={content.statusRow}>
+              <span className={content.statusLabel}>Fixed &middot;</span> Film roll,
+              portrait, name, and CAD mark, so the set reads as one family.
+            </p>
+            <p className={content.statusRow}>
+              <span className={content.statusLabel}>Flexes &middot;</span> The art
+              and a gradient drawn from the mood of each artist&rsquo;s work.
+            </p>
+            <p className={content.statusRow}>
+              <span className={content.statusLabel}>Rule change &middot;</span> Bios
+              moved from first person to third person, with the artists&rsquo; words
+              kept as intact as possible.
+            </p>
+          </div>
+
+          <div className={styles.systemDiagram}>
+            <figure className={`${content.slidePanel} ${styles.systemPanel}`}>
+              {/* renders at ~413px of a 1512 frame; full card width on phones */}
+              <Image
+                src="/images/lta/SystemDiagram.webp"
+                alt="Sarah Whyte's final poster: film-roll strip of her work on the left, portrait top right, her name in mono type, her bio, and the CAD mark"
+                width={636}
+                height={981}
+                sizes="(max-width: 767px) 90vw, 28vw"
+                quality={IMAGE_QUALITY}
+                className={`${content.slideImg} ${styles.systemImg}`}
+              />
+            </figure>
+
+            <ul className={styles.callouts}>
+              <li className={`${styles.callout} ${styles.calloutLeft} ${styles.calloutFilm}`}>
+                <strong>Film Roll</strong> &ndash; fixed, connects the set into one family
+              </li>
+              <li className={`${styles.callout} ${styles.calloutLeft} ${styles.calloutFlex} ${styles.calloutWork}`}>
+                <strong>Work</strong> &ndash; flex, the frame is consistent, but the art
+                gets swapped
+              </li>
+              <li className={`${styles.callout} ${styles.calloutLeft} ${styles.calloutFlex} ${styles.calloutGradient}`}>
+                <strong>Gradient</strong> &ndash; flex, drawn from the mood of each
+                artist&rsquo;s work
+              </li>
+              <li className={`${styles.callout} ${styles.calloutRight} ${styles.calloutPortrait}`}>
+                <strong>Portrait</strong> &ndash; fixed, same square and placement
+              </li>
+              <li className={`${styles.callout} ${styles.calloutRight} ${styles.calloutName}`}>
+                <strong>Name</strong> &ndash; fixed, mono type, same position
+              </li>
+              <li className={`${styles.callout} ${styles.calloutRight} ${styles.calloutBio}`}>
+                <strong>Bio</strong> &ndash; fixed position, her words, shifted to third
+                person.
+              </li>
+              <li className={`${styles.callout} ${styles.calloutLogo}`}>
+                <strong>Logo</strong> &ndash; fixed, replaces the QR: the gallery is the
+                destination
+              </li>
+            </ul>
+          </div>
+        </div>
+      </Section>
     </FlowCaseStudyLayout>
   );
 }
