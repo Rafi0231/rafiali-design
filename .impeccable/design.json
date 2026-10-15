@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T00:00:00Z",
+  "title": "Design System: Rafi Ali",
+  "extensions": {
+    "colorMeta": {
+      "forest-ink": {
+        "role": "primary",
+        "displayName": "Forest Ink",
+        "canonical": "#1F351D",
+        "tonalRamp": [
+          "#0c160b",
+          "#1F351D",
+          "#34512f",
+          "#4e6e48",
+          "#6d8c66",
+          "#91ab8a",
+          "#b9cdb3",
+          "#e2ece0"
+        ]
+      },
+      "walnut": {
+        "role": "secondary",
+        "displayName": "Walnut",
+        "canonical": "#4A3530",
+        "tonalRamp": [
+          "#1e1513",
+          "#4A3530",
+          "#5f4842",
+          "#7a5f57",
+          "#8B6B5C",
+          "#ab8f83",
+          "#cdb8af",
+          "#ece0db"
+        ]
+      },
+      "walnut-light": {
+        "role": "secondary",
+        "displayName": "Walnut Light",
+        "canonical": "#8B6B5C"
+      },
+      "linen": {
+        "role": "neutral",
+        "displayName": "Linen",
+        "canonical": "#DDD7CF"
+      },
+      "gallery-grey": {
+        "role": "neutral",
+        "displayName": "Gallery Grey",
+        "canonical": "#BFBFBF"
+      },
+      "silver": {
+        "role": "neutral",
+        "displayName": "Silver",
+        "canonical": "#BBB6B6"
+      }
+    },
+    "typographyMeta": {
+      "hero-name": {
+        "displayName": "Hero Name",
+        "purpose": "The name in the hero only."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home section titles."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Case-study page titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Case-study section headings with accent bar."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Case-study prose."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Italic plate captions."
+      }
+    },
+    "shadows": [
+      {
+        "name": "soft",
+        "value": "0 2px 8px rgba(31, 53, 29, 0.18)",
+        "purpose": "Hover text-shadow on hero nav."
+      },
+      {
+        "name": "lift",
+        "value": "0 20px 48px rgba(31, 53, 29, 0.28)",
+        "purpose": "Project card hover lift."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default state transitions (200ms) and section reveals (400ms)."
+      },
+      {
+        "name": "pill-hover",
+        "value": "400ms cubic-bezier(0.25, 1, 0.5, 1)",
+        "purpose": "Glass pill hover/press."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "767.98px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "Home project tile; lifts on hover.",
+      "html": "<a class=\"ds-card\" href=\"#\"><h3 class=\"ds-card-title\">Islamicly</h3><span class=\"ds-tag\">Research</span><p class=\"ds-card-sum\"><b>Outcome</b> · A full Islamic curriculum in one platform.</p><span class=\"ds-explore\">Explore</span></a>",
+      "css": ".ds-card{display:flex;flex-direction:column;align-items:center;gap:12px;width:280px;padding:16px;border-radius:20px;background:rgba(229,229,229,.5);color:#352727;font-family:Amiri,Georgia,serif;text-decoration:none;transition:transform 200ms cubic-bezier(.4,0,.2,1),box-shadow 200ms cubic-bezier(.4,0,.2,1)}.ds-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(31,53,29,.28)}.ds-card:focus-visible{outline:2px solid #1F351D;outline-offset:4px}.ds-card-title{margin:0;font-weight:400;font-size:30px;color:#8B6B5C}.ds-tag{padding:2px 12px;border-radius:20px;background:color-mix(in srgb,#1F351D 50%,transparent);color:rgba(255,255,255,.7);font-size:14px}.ds-card-sum{margin:0;font-size:14px;line-height:1.6}.ds-explore{align-self:flex-end;padding:8px 20px;border-radius:15px;background:color-mix(in srgb,#1F351D 70%,transparent);color:#E0D2CC}.ds-card:hover .ds-explore{background:color-mix(in srgb,#1F351D 85%,transparent)}"
+    },
+    {
+      "name": "Tag Pill",
+      "kind": "chip",
+      "refersTo": "tag-pill",
+      "description": "Project category tag.",
+      "html": "<span class=\"ds-tag\">Research</span>",
+      "css": ".ds-tag{display:inline-flex;align-items:center;padding:2px 14px;border-radius:20px;background:color-mix(in srgb,#1F351D 50%,transparent);color:rgba(255,255,255,.7);font-family:Amiri,Georgia,serif;font-size:16px;line-height:1}"
+    },
+    {
+      "name": "Section Heading",
+      "kind": "custom",
+      "refersTo": "title",
+      "description": "Case-study section heading with grey accent bar.",
+      "html": "<h2 class=\"ds-sh\">The Diagnosis</h2>",
+      "css": ".ds-sh{position:relative;margin:0;padding-left:.25em;font-family:Amiri,Georgia,serif;font-weight:400;font-size:40px;line-height:1.15;color:#1F351D}.ds-sh::before{content:'';position:absolute;left:0;top:.15em;bottom:.28em;width:3px;border-radius:1px;background:rgba(0,0,0,.3)}"
+    },
+    {
+      "name": "Slide Panel",
+      "kind": "custom",
+      "refersTo": "slide-panel",
+      "description": "Matted screenshot with italic caption.",
+      "html": "<figure class=\"ds-slide\"><div class=\"ds-mat\"><div class=\"ds-img\"></div></div><figcaption>Unit 1 — first draft</figcaption></figure>",
+      "css": ".ds-slide{margin:0;width:320px;font-family:Amiri,Georgia,serif}.ds-mat{padding:4px;border-radius:6px;background:#A8A6A3}.ds-img{height:180px;border-radius:2px;background:#DDD7CF}.ds-slide figcaption{margin-top:.4em;font-size:15px;font-style:italic;color:rgba(31,53,29,.7);line-height:1.65}"
+    },
+    {
+      "name": "Case-Study Card",
+      "kind": "card",
+      "refersTo": "case-study-card",
+      "description": "Frosted glass container for case-study content.",
+      "html": "<div class=\"ds-glass\"><p>Body copy sits inside frosted cream glass.</p></div>",
+      "css": ".ds-glass{padding:24px 32px;border-radius:20px;background:color-mix(in srgb,#D9D9D9 60%,transparent);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.35);font-family:Amiri,Georgia,serif;font-size:17px;line-height:1.59;color:rgba(0,0,0,.6)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Calm Yet Confident",
+    "overview": "A single serif voice (Amiri) at very large sizes on warm linen and gallery-grey grounds, composed like an editorial folio against a 1512 × 982 frame. Confidence comes from scale; calm from restraint. Depth is tactile: cards lift, glass pills press.",
+    "keyCharacteristics": [
+      "One serif family at every level",
+      "Forest Ink headings, 60% black body",
+      "Positions locked to the 1512 frame; type from one shared scale",
+      "Walnut hairline rule under titles",
+      "Italic plate captions"
+    ],
+    "rules": [
+      {
+        "name": "The One Ink Rule",
+        "body": "Headings and chrome speak in Forest Ink; walnut is accent-only. Exception: project-card titles use Walnut Light.",
+        "section": "colors"
+      },
+      {
+        "name": "The Scale-Is-Voice Rule",
+        "body": "Hierarchy comes from size contrast within one family; never a second typeface.",
+        "section": "typography"
+      },
+      {
+        "name": "The Touch-Earns-Shadow Rule",
+        "body": "Shadows appear or change only in response to the hand.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep Amiri as the only typeface",
+      "Do rule under page and section titles",
+      "Do size type from the defined scale tokens (--text-display … --text-xs); no one-off sizes",
+      "Do caption images in italic Caption Ink"
+    ],
+    "donts": [
+      "Don't introduce a second typeface",
+      "Don't add saturated colors",
+      "Don't change Back/Resume/LinkedIn pills without asking",
+      "Don't add resting shadows to static content"
+    ]
+  }
+}

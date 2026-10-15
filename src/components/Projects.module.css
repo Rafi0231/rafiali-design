@@ -18,6 +18,8 @@
   font-weight: 400;
   line-height: var(--leading-tight);
   color: var(--color-green);
+  /* above the rule, so the "j" descender sits in front of the line */
+  z-index: 1;
   /* entrance — initial state */
   opacity: 0;
   transform: translateY(16px);
