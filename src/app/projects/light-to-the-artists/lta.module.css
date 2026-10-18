@@ -130,18 +130,10 @@
   padding-block: 1.06cqw 0;
 }
 
-/* photo + note, 119px right of the text column; the note runs 33px past the
-   content edge into the card's padding, as in Figma */
+/* the 497 × 633 photo panel, 224px right of the text column (x 830 in Figma) */
 .resultMedia {
-  flex: 0 0 48.14cqw;
-  display: flex;
-  align-items: flex-end;
-  margin: 0 -2.18cqw 0 7.87cqw;
-}
-
-/* 497 × 633 panel */
-.resultPanel {
   flex: 0 0 32.87cqw;
+  margin-left: 14.81cqw;
 }
 
 .resultImg {
@@ -149,19 +141,8 @@
   object-fit: cover;
 }
 
-/* 219 wide, 12px right of the panel, its bottom 26px above the panel's bottom */
-.resultNote {
-  flex: 0 0 14.48cqw;
-  margin: 0 0 1.72cqw 0.79cqw;
-  font-size: max(0.992cqw, 13px);
-  font-style: italic;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  color: rgba(31, 53, 29, 0.7); /* same as every other caption */
-}
-
 @media (max-width: 767.98px) {
-  /* text, then the photo, then the note */
+  /* text, then the photo */
   .result {
     flex-direction: column;
     align-items: stretch;
@@ -169,15 +150,8 @@
     margin-top: 0;
   }
 
-  .resultMedia {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
   .resultText,
-  .resultMedia,
-  .resultPanel,
-  .resultNote {
+  .resultMedia {
     flex: none;
     margin: 0;
   }
@@ -192,62 +166,6 @@
 
   .resultText > p + p {
     padding-top: var(--space-3);
-  }
-
-  .resultNote {
-    margin-top: var(--space-3);
-  }
-}
-
-/* ── The Gap ──
-   Same approach as The Result: Figma px / 1512 (cqw), x measured from the accent bar. */
-
-/* pulled up so the panel's top sits 32px below the heading's top */
-.gap {
-  display: flex;
-  align-items: flex-start;
-  margin-top: calc(2.116cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
-}
-
-/* 508 wide; Problem starts 346px below the panel's top */
-.gapText {
-  flex: 0 0 33.6cqw;
-  margin-top: 22.88cqw;
-}
-
-/* rows ~30px either side of the dividers */
-.gapText > p {
-  padding-block: max(1.98cqw, 12px);
-}
-
-.gapText > p:last-child {
-  padding-bottom: 0;
-}
-
-/* 497 × 659 panel, 236px right of the text column */
-.gapFigure {
-  flex: 0 0 32.87cqw;
-  margin: 0 0 0 15.61cqw;
-}
-
-.gapFigure figcaption {
-  margin-top: 0.1em;
-  text-align: center;
-}
-
-@media (max-width: 767.98px) {
-  /* text, then the photo */
-  .gap {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-6);
-    margin-top: 0;
-  }
-
-  .gapText,
-  .gapFigure {
-    flex: none;
-    margin: 0;
   }
 }
 
@@ -553,11 +471,13 @@
 }
 
 /* under the panel, with a vertical tick 10px below it (1.5px, same weight as the others) */
+/* one line, as in Figma */
 .calloutLogo {
   left: 13.889cqw;
   top: 44.775cqw;
   width: 18.254cqw;
   line-height: 1.1;
+  white-space: nowrap;
 }
 
 .calloutLogo::before {
@@ -606,6 +526,7 @@
     position: static;
     width: auto;
     line-height: 1.5;
+    white-space: normal;
   }
 
   .callout::before {

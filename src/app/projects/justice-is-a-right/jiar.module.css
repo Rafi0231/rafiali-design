@@ -41,33 +41,20 @@
 }
 
 /* ── The Verdict — flow layout ──
-   Horizontal: fractions of the Figma span x 98–1422 (1324); inside the image
-   column, fractions of its width (773). Vertical between columns: Figma px as cqw.
-   Text, panels and captions come from caseStudyContent.module.css. */
+   Horizontal: fractions of the Figma span x 98–1422 (1324).
+   Vertical: Figma px as cqw, measured from the heading's top (the heading and its
+   gap take ~80px). Text and panels come from caseStudyContent.module.css. */
 
-/* pulled up beside the heading: Presentation's image sits 30px below the heading's top */
 .verdict {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: calc(1.72cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
 }
 
-/* 464 / 1324; Overview starts 128px below Presentation's panel */
+/* 464 / 1324; Overview starts 154px below the heading's top */
 .verdictText {
   width: 35.05%;
-  margin-top: 8.47cqw;
-}
-
-/* 773 / 1324; the row below starts right under Presentation's caption, as in Figma */
-.verdictImages {
-  width: 58.38%;
-  display: flex;
-  flex-direction: column;
-}
-
-.verdictFigure {
-  margin: 0;
+  margin-top: 4.9cqw;
 }
 
 /* 24px more room between the Overview list and Presented (38 → 62 below the divider) */
@@ -75,68 +62,35 @@
   margin-bottom: max(4.1cqw, 28px);
 }
 
-.presentation figcaption {
-  margin-top: 0.1em;
-  line-height: 1.2;
+/* 705 / 1324, right-aligned; the video starts 102px below the heading's top */
+.verdictVideo {
+  width: 53.25%;
+  margin: 1.46cqw 0 0;
 }
 
-/* 575 / 773, right-aligned */
-.presentation {
-  width: 74.39%;
-  margin-left: auto;
+.verdictVideo figcaption {
+  text-align: center;
 }
 
-.verdictRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-/* 405 / 773, sitting 34px lower than Team Picture */
-.acceptance {
-  width: 52.39%;
-  margin-top: 4.4%;
-}
-
-/* 344 / 773 */
-.teamPicture {
-  width: 44.5%;
+.videoEl {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
 }
 
 @media (max-width: 767.98px) {
-  /* text, then Presentation, Poster acceptance, Team Picture */
+  /* text, then the video */
   .verdict {
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-6);
-    margin-top: 0;
   }
 
   .verdictText,
-  .verdictImages {
+  .verdictVideo {
     width: auto;
     margin-top: 0;
-  }
-
-  .verdictImages,
-  .verdictRow {
-    gap: var(--space-6);
-  }
-
-  .presentation figcaption {
-    margin-top: 0.4em;
-    line-height: var(--leading-body);
-  }
-
-  .verdictRow {
-    flex-direction: column;
-  }
-
-  .presentation,
-  .acceptance,
-  .teamPicture {
-    width: auto;
-    margin: 0;
   }
 }
 
@@ -327,51 +281,95 @@
 }
 
 /* ── Showtime ──
-   Horizontal: fractions of the Figma span x 107–1422 (1315). Vertical: Figma px as cqw. */
+   Horizontal: fractions of the Figma span x 113–1456 (1343); inside the image
+   column, fractions of its width (773). Vertical: Figma px as cqw, measured from
+   the heading's top (the heading and its gap take ~80px). */
 
-/* the video panel starts ~95px below the heading's top */
 .showtime {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 0.96cqw;
 }
 
-/* 552 / 1315; Constraint starts 266px below the video's top */
+/* 552 / 1343; Constraint starts 230px below the heading's top */
 .showtimeText {
-  width: 41.98%;
-  margin-top: 17.6cqw;
+  width: 41.1%;
+  margin-top: 9.92cqw;
 }
 
-/* 705 / 1315 */
-.showtimeVideo {
-  width: 53.61%;
+/* 773 / 1343; Presentation's panel starts 65px below the heading's top */
+.showtimeImages {
+  width: 57.56%;
+  margin-top: -1cqw;
+  display: flex;
+  flex-direction: column;
+}
+
+.showtimeFigure {
   margin: 0;
 }
 
-.showtimeVideo figcaption {
-  text-align: center;
+.presentation figcaption {
+  margin-top: 0.1em;
+  line-height: 1.2;
 }
 
-.videoEl {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 2px;
+/* 575 / 773, right-aligned */
+.presentation {
+  width: 74.39%;
+  margin-left: auto;
+}
+
+/* starts right under Presentation's caption; the two captions sit level */
+.showtimeRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/* 405 / 773 */
+.acceptance {
+  width: 52.39%;
+}
+
+/* 344 / 773 */
+.teamPicture {
+  width: 44.5%;
 }
 
 @media (max-width: 767.98px) {
-  /* text, then the video */
+  /* text, then Presentation, Poster acceptance, Team Picture */
   .showtime {
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-6);
-    margin-top: 0;
   }
 
   .showtimeText,
-  .showtimeVideo {
+  .showtimeImages {
     width: auto;
     margin-top: 0;
+  }
+
+  .showtimeImages,
+  .showtimeRow {
+    gap: var(--space-6);
+  }
+
+  .presentation figcaption {
+    margin-top: 0.4em;
+    line-height: var(--leading-body);
+  }
+
+  .showtimeRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .presentation,
+  .acceptance,
+  .teamPicture {
+    width: auto;
+    margin: 0;
   }
 }

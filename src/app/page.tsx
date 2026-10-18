@@ -9,7 +9,6 @@ export default function Home() {
       <div className={styles.pageCanvas}>
         <Hero />
         <Projects />
-        <div className={styles.sectionGap} aria-hidden="true" />
         <About />
       </div>
       <section id="connect" />

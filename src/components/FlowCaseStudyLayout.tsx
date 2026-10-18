@@ -36,16 +36,32 @@ export function Section({ heading, columns, className, children }: SectionProps)
 type LayoutProps = {
   title: string;
   backHref?: string;
+  /* page background, title tracking and title-rule colour; default to the shared case study look */
+  background?: string;
+  titleTracking?: string;
+  ruleColor?: string;
+  /* card without padding or gap, for pages that place content at Figma positions */
+  bare?: boolean;
   children: ReactNode;
 };
 
 export default function FlowCaseStudyLayout({
   title,
   backHref = "/#projects",
+  background,
+  titleTracking,
+  ruleColor,
+  bare = false,
   children,
 }: LayoutProps) {
+  const style = {
+    ...(background && { "--frame-bg": background }),
+    ...(titleTracking && { "--title-tracking": titleTracking }),
+    ...(ruleColor && { "--rule-color": ruleColor }),
+  } as CSSProperties;
+
   return (
-    <div className={styles.frame}>
+    <div className={styles.frame} style={style}>
       <div className={styles.chrome}>
         <h1 className={`${chrome.title} ${styles.titleLow}`}>{title}</h1>
         <hr className={`${chrome.rule} ${styles.ruleSoft}`} />
@@ -58,7 +74,7 @@ export default function FlowCaseStudyLayout({
           </div>
         </div>
       </div>
-      <div className={styles.card}>{children}</div>
+      <div className={`${styles.card} ${bare ? styles.cardBare : ""}`}>{children}</div>
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import Image from "next/image";
+import HeroStats from "./HeroStats";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
   return (
     <section
       className={styles.hero}
-      aria-label="Rafi Ali — designer and founder"
+      aria-label="Rafi Ali — UX / Product Designer"
     >
       {/* Layer 1 — studio photo */}
       <div className={styles.base}>
@@ -19,6 +20,9 @@ export default function Hero() {
           className={styles.img}
         />
       </div>
+
+      {/* Floor fades into the Projects background; sits under the cutout so only the photo fades */}
+      <div className={styles.fade} aria-hidden="true" />
 
       {/* Layer 2 — text sits between the two images */}
       <div className={styles.textLayer}>
@@ -34,11 +38,8 @@ export default function Hero() {
 
         <h1 className={styles.name}>Rafi Ali</h1>
 
-        <div className={styles.rule} aria-hidden="true" />
-        <p className={styles.founder}>Founder of Lantern Software</p>
-        <p className={styles.credential}>
-          B.S. in Computer Science + Digital Design at University of Illinois Chicago
-        </p>
+        <p className={styles.role}>UX / Product Designer</p>
+        <HeroStats />
       </div>
 
       {/* Layer 3 — cutout; arm occludes the "i" in Ali */}

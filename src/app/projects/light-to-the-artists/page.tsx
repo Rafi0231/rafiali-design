@@ -51,7 +51,12 @@ const BRICK_DRAFTS = [
 
 export default function LTAPage() {
   return (
-    <FlowCaseStudyLayout title="Light to the Artists">
+    <FlowCaseStudyLayout
+      title="Light to the Artists"
+      background="#B9ADA3"
+      titleTracking="0"
+      ruleColor="rgba(107, 82, 68, 0.4)"
+    >
       <Section heading="The Result">
         <div className={styles.result}>
           <div className={`${content.textBlock} ${styles.resultText}`}>
@@ -78,7 +83,7 @@ export default function LTAPage() {
           </div>
 
           <div className={styles.resultMedia}>
-            <div className={`${content.slidePanel} ${styles.resultPanel}`}>
+            <div className={content.slidePanel}>
               {/* renders at ~489px of a 1512 frame; full card width on phones */}
               <Image
                 src="/images/lta/Gallery.webp"
@@ -91,53 +96,69 @@ export default function LTAPage() {
                 className={`${content.slideImg} ${styles.resultImg}`}
               />
             </div>
-
-            <p className={styles.resultNote}>
-              Full transparency: the printed poster misspells Catie Burrill&rsquo;s
-              name. It&rsquo;s corrected throughout this portfolio, and I now
-              triple-check every name I typeset. Sarah Whyte, Catie Burrill, and
-              Jassiel Serna&rsquo;s work is at the Chicago Art Department, 1926 S.
-              Halsted Street.
-            </p>
           </div>
         </div>
       </Section>
-      <Section heading="The Gap">
-        <div className={styles.gap}>
-          <div className={`${content.textBlock} ${styles.gapText}`}>
+      <Section heading="A System">
+        <div className={styles.system}>
+          <div className={`${content.textBlock} ${styles.systemText}`}>
             <p className={content.statusRow}>
-              <span className={content.statusLabel}>Problem &middot;</span> At CAD,
-              the only sign of who made each piece was a small Polaroid.
+              <span className={content.statusLabel}>Fixed &middot;</span> Film roll,
+              portrait, name, and CAD mark, so the set reads as one family.
             </p>
             <p className={content.statusRow}>
-              <span className={content.statusLabel}>Opportunity &middot;</span> A
-              system that makes each artist visible, so people appreciate the person
-              behind the work.
+              <span className={content.statusLabel}>Flexes &middot;</span> The art
+              and a gradient drawn from the mood of each artist&rsquo;s work.
             </p>
             <p className={content.statusRow}>
-              <span className={content.statusLabel}>Challenge &middot;</span> Every
-              artist should look unmistakably like themselves, while the set still
-              reads as one family.
+              <span className={content.statusLabel}>Rule change &middot;</span> Bios
+              moved from first person to third person, with the artists&rsquo; words
+              kept as intact as possible.
             </p>
           </div>
 
-          <figure className={styles.gapFigure}>
-            <div className={content.slidePanel}>
-              {/* renders at ~489px of a 1512 frame; full card width on phones */}
+          <div className={styles.systemDiagram}>
+            <figure className={`${content.slidePanel} ${styles.systemPanel}`}>
+              {/* renders at ~413px of a 1512 frame; full card width on phones */}
               <Image
-                src="/images/lta/Workspace.webp"
-                alt="An artist's cluttered workspace at CAD: textile pieces on the walls, a portrait print, and stacked shipping boxes on the floor"
-                width={2400}
-                height={3200}
-                sizes="(max-width: 767px) 90vw, 33vw"
+                src="/images/lta/SystemDiagram.webp"
+                alt="Sarah Whyte's final poster: film-roll strip of her work on the left, portrait top right, her name in mono type, her bio, and the CAD mark"
+                width={636}
+                height={981}
+                sizes="(max-width: 767px) 90vw, 28vw"
                 quality={IMAGE_QUALITY}
-                className={content.slideImg}
+                className={`${content.slideImg} ${styles.systemImg}`}
               />
-            </div>
-            <figcaption className={content.draftCaption}>
-              An artist&rsquo;s workspace at CAD
-            </figcaption>
-          </figure>
+            </figure>
+
+            <ul className={styles.callouts}>
+              <li className={`${styles.callout} ${styles.calloutLeft} ${styles.calloutFilm}`}>
+                <strong>Film Roll</strong> &ndash; fixed, connects the set into one family
+              </li>
+              <li className={`${styles.callout} ${styles.calloutLeft} ${styles.calloutFlex} ${styles.calloutWork}`}>
+                <strong>Work</strong> &ndash; flex, the frame is consistent, but the art
+                gets swapped
+              </li>
+              <li className={`${styles.callout} ${styles.calloutLeft} ${styles.calloutFlex} ${styles.calloutGradient}`}>
+                <strong>Gradient</strong> &ndash; flex, drawn from the mood of each
+                artist&rsquo;s work
+              </li>
+              <li className={`${styles.callout} ${styles.calloutRight} ${styles.calloutPortrait}`}>
+                <strong>Portrait</strong> &ndash; fixed, same square and placement
+              </li>
+              <li className={`${styles.callout} ${styles.calloutRight} ${styles.calloutName}`}>
+                <strong>Name</strong> &ndash; fixed, mono type, same position
+              </li>
+              <li className={`${styles.callout} ${styles.calloutRight} ${styles.calloutBio}`}>
+                <strong>Bio</strong> &ndash; fixed position, her words, shifted to third
+                person.
+              </li>
+              <li className={`${styles.callout} ${styles.calloutLogo}`}>
+                <strong>Logo</strong> &ndash; fixed, replaces the QR: the gallery is the
+                destination
+              </li>
+            </ul>
+          </div>
         </div>
       </Section>
       <Section heading="Their Voices">
@@ -230,68 +251,6 @@ export default function LTAPage() {
                 <figcaption className={styles.brickCaption}>{caption}</figcaption>
               </figure>
             ))}
-          </div>
-        </div>
-      </Section>
-      <Section heading="A System">
-        <div className={styles.system}>
-          <div className={`${content.textBlock} ${styles.systemText}`}>
-            <p className={content.statusRow}>
-              <span className={content.statusLabel}>Fixed &middot;</span> Film roll,
-              portrait, name, and CAD mark, so the set reads as one family.
-            </p>
-            <p className={content.statusRow}>
-              <span className={content.statusLabel}>Flexes &middot;</span> The art
-              and a gradient drawn from the mood of each artist&rsquo;s work.
-            </p>
-            <p className={content.statusRow}>
-              <span className={content.statusLabel}>Rule change &middot;</span> Bios
-              moved from first person to third person, with the artists&rsquo; words
-              kept as intact as possible.
-            </p>
-          </div>
-
-          <div className={styles.systemDiagram}>
-            <figure className={`${content.slidePanel} ${styles.systemPanel}`}>
-              {/* renders at ~413px of a 1512 frame; full card width on phones */}
-              <Image
-                src="/images/lta/SystemDiagram.webp"
-                alt="Sarah Whyte's final poster: film-roll strip of her work on the left, portrait top right, her name in mono type, her bio, and the CAD mark"
-                width={636}
-                height={981}
-                sizes="(max-width: 767px) 90vw, 28vw"
-                quality={IMAGE_QUALITY}
-                className={`${content.slideImg} ${styles.systemImg}`}
-              />
-            </figure>
-
-            <ul className={styles.callouts}>
-              <li className={`${styles.callout} ${styles.calloutLeft} ${styles.calloutFilm}`}>
-                <strong>Film Roll</strong> &ndash; fixed, connects the set into one family
-              </li>
-              <li className={`${styles.callout} ${styles.calloutLeft} ${styles.calloutFlex} ${styles.calloutWork}`}>
-                <strong>Work</strong> &ndash; flex, the frame is consistent, but the art
-                gets swapped
-              </li>
-              <li className={`${styles.callout} ${styles.calloutLeft} ${styles.calloutFlex} ${styles.calloutGradient}`}>
-                <strong>Gradient</strong> &ndash; flex, drawn from the mood of each
-                artist&rsquo;s work
-              </li>
-              <li className={`${styles.callout} ${styles.calloutRight} ${styles.calloutPortrait}`}>
-                <strong>Portrait</strong> &ndash; fixed, same square and placement
-              </li>
-              <li className={`${styles.callout} ${styles.calloutRight} ${styles.calloutName}`}>
-                <strong>Name</strong> &ndash; fixed, mono type, same position
-              </li>
-              <li className={`${styles.callout} ${styles.calloutRight} ${styles.calloutBio}`}>
-                <strong>Bio</strong> &ndash; fixed position, her words, shifted to third
-                person.
-              </li>
-              <li className={`${styles.callout} ${styles.calloutLogo}`}>
-                <strong>Logo</strong> &ndash; fixed, replaces the QR: the gallery is the
-                destination
-              </li>
-            </ul>
           </div>
         </div>
       </Section>

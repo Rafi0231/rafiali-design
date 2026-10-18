@@ -1,22 +1,27 @@
 /* ═══ SECTION FRAME 1512 × 982 ═══ */
+/* Positions are Figma px; --u converts them to the section's width */
 .section {
   position: relative;
   width: 100%;
   aspect-ratio: 1512 / 982;
   container-type: inline-size;
   overflow: hidden;
-  background: #BFBFBF; /* same as the Projects section */
+  background: #B9ADA3; /* same as the Projects section */
 }
 
-/* ═══ HEADING ═══ — identical treatment to Projects */
+.section > * {
+  --u: calc(100cqw / 1512);
+}
+
+/* ═══ HEADING ═══ */
+/* 150px, text box at (76, 0) with normal leading */
 .heading {
   position: absolute;
-  left: 6.085%;
-  top: 3%;
-  font-size: 9.921cqw;
+  left: calc(76 * var(--u));
+  top: 0;
+  font-size: calc(150 * var(--u));
   font-weight: 400;
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
+  line-height: normal;
   color: var(--color-green);
   opacity: 0;
   transform: translateY(16px);
@@ -25,25 +30,14 @@
     transform calc(var(--duration-fast) * 2) var(--ease-out);
 }
 
-/* ═══ RULE ═══ — identical to Projects */
-.rule {
-  position: absolute;
-  left: 6.085%;
-  top: 19.043%;
-  width: 87.963%;
-  height: 1.5px;
-  background: rgba(107, 82, 68, 0.8);
-  border: none;
-}
-
 /* ═══ PHOTO ═══ */
-/* left=6.085% top=30.652% w=26.190% h=51.324% */
+/* 422 × 538 at (76, 275) */
 .photo {
   position: absolute;
-  left: 6.085%;
-  top: 30.652%;
-  width: 26.190%;
-  height: 51.324%;
+  left: calc(76 * var(--u));
+  top: calc(275 * var(--u));
+  width: calc(422 * var(--u));
+  height: calc(538 * var(--u));
   border-radius: 18px;
 }
 
@@ -56,66 +50,69 @@
   object-fit: cover;
 }
 
-/* ═══ BACKGROUND BLOCK ═══ */
-/* heading: left=35.714% top=27.190% */
-.bgHeading {
+/* ═══ BACKGROUND / DESIGN PHILOSOPHY ═══ */
+/* 22px on 40px lines; the 40px bold heading runs in to the first line.
+   Tops are 5px above Figma's text boxes so the baselines land where Figma's do */
+.block {
   position: absolute;
-  left: 35.714%;
-  top: 27.190%;
-  font-size: 3.307cqw;
+  font-size: calc(22 * var(--u));
+  line-height: calc(40 * var(--u));
+  color: var(--color-green);
+}
+
+.bgBlock {
+  left: calc(580 * var(--u));
+  top: calc(324 * var(--u));
+  width: calc(742 * var(--u));
+}
+
+.dpBlock {
+  left: calc(580 * var(--u));
+  top: calc(609 * var(--u));
+  width: calc(714 * var(--u));
+}
+
+.blockHeading {
+  display: inline;
+  margin-right: calc(32 * var(--u));
+  font-size: calc(40 * var(--u));
   font-weight: 700;
-  color: var(--color-green);
-  line-height: var(--leading-tight);
 }
 
-/* body: left=35.714% top=35.743% w=58.333% */
-.bgBody {
-  position: absolute;
-  left: 35.714%;
-  top: 35.743%;
-  width: 58.333%;
-  font-size: 1.323cqw;
-  color: var(--color-green);
-  line-height: var(--leading-body);
+.blockBody {
+  display: inline;
 }
 
-/* ═══ DESIGN PHILOSOPHY BLOCK ═══ */
-/* heading: left=35.714% top=59.674% */
-.dpHeading {
+/* 712 × 3 at (580, 561), #584738 at 30% with round caps */
+.divider {
   position: absolute;
-  left: 35.714%;
-  top: 59.674%;
-  font-size: 3.307cqw;
-  font-weight: 700;
-  color: var(--color-green);
-  line-height: var(--leading-tight);
-}
-
-/* body: left=35.714% top=69.246% w=56.944% */
-.dpBody {
-  position: absolute;
-  left: 35.714%;
-  top: 69.246%;
-  width: 56.944%;
-  font-size: 1.323cqw;
-  color: var(--color-green);
-  line-height: var(--leading-body);
+  left: calc(580 * var(--u));
+  top: calc(561 * var(--u));
+  width: calc(712 * var(--u));
+  height: calc(3 * var(--u));
+  border: none;
+  border-radius: 999px;
+  background: rgba(88, 71, 56, 0.3);
 }
 
 /* ═══ LINK PILLS ═══ */
-/* Resume: left=75.661%   LinkedIn: left=85.119%   both top=88.46% (moved up 20px from 90.5%) */
-.pillWrap {
+/* Email, Resume, LinkedIn spread across the photo's width, at y 848 */
+.pills {
   position: absolute;
-  top: 88.46%;
-  height: 3.565%;
+  left: calc(76 * var(--u));
+  top: calc(848 * var(--u));
+  width: calc(422 * var(--u));
+  display: flex;
+  justify-content: space-between;
+}
+
+.pillWrap {
+  height: calc(35 * var(--u));
   font-family: var(--font-serif);
-  font-size: 1.653cqw;
+  font-size: calc(25 * var(--u));
   color: var(--color-green);
   white-space: nowrap;
 }
-
-.pillResume   { left: 75.661%; }
-.pillLinkedIn { left: 85.119%; }
 
 /* ═══ ENTRANCE ANIMATION ═══ */
 /* .revealItem — applied to all content blocks except .heading */

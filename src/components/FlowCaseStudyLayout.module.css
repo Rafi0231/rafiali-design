@@ -4,7 +4,7 @@
   width: 100%;
   min-height: 100vh;
   container-type: inline-size;
-  background: var(--color-silver);
+  background: var(--frame-bg, var(--color-silver));
   /* card starts at y 196 of 982 → 19.959% × 982/1512 of the width */
   padding-top: 12.963%;
   padding-bottom: max(3cqw, var(--space-6));
@@ -32,7 +32,7 @@
 
 /* rule under the title at 50% (CaseStudyLayout's is 80%) */
 .chrome .ruleSoft {
-  background: rgba(107, 82, 68, 0.5);
+  background: var(--rule-color, rgba(107, 82, 68, 0.5));
 }
 
 /* Back pill keeps a readable size on small screens; desktop untouched */
@@ -57,6 +57,15 @@
   flex-direction: column;
   /* ~1.5in (144px at 1512) between sections */
   gap: max(9.52cqw, var(--space-16));
+}
+
+/* bare — 1451 wide at x 28 with no border, padding or gap; children place themselves */
+.cardBare {
+  width: calc(1451 / 1512 * 100cqw);
+  margin-inline: 1.852% 0;
+  border: none;
+  padding: 0;
+  gap: 0;
 }
 
 /* ═══ SECTION ═══ */

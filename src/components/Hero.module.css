@@ -24,6 +24,27 @@
   object-fit: cover;
 }
 
+/* ── bottom fade ── */
+/* bottom 200px of the 982 frame, eased so the photo lets go gradually */
+.fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 20.367%;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(185, 173, 163, 0) 0%,
+    rgba(185, 173, 163, 0.08) 20%,
+    rgba(185, 173, 163, 0.25) 40%,
+    rgba(185, 173, 163, 0.5) 60%,
+    rgba(185, 173, 163, 0.78) 80%,
+    #B9ADA3 100%
+  );
+}
+
 /* ── text layer ── */
 .textLayer {
   position: absolute;
@@ -36,7 +57,9 @@
   position: absolute;
   top: 2.851%;
   font-size: var(--hero-nav);
-  color: var(--color-brown);
+  line-height: normal;
+  letter-spacing: 0.035em;
+  color: rgba(74, 53, 48, 0.85);
   transition: text-shadow var(--duration-fast) var(--ease-out);
 }
 
@@ -47,43 +70,24 @@
 /* ── name ── */
 .name {
   position: absolute;
-  left: 12.8%;
-  top: 18.018%;
+  left: 14.021%;
+  top: 12.424%;
   margin: 0;
   font-size: var(--hero-name);
   font-weight: 400;
   letter-spacing: var(--tracking-name);
-  line-height: var(--leading-tight);
+  font-feature-settings: "liga" 1; /* keep the "fi" ligature Figma shows */
+  line-height: normal;
   color: var(--color-green);
 }
 
-/* ── credentials ── */
-/* Figma's bar: 5 × 113, #59453F at 40%, 18px left of the text and centred
-   on the two lines (lowered 10px from Figma's 5px-above-centre). Placed against this layout's text
-   (which sits ~40px higher than Figma's), not Figma's page coordinates */
-.rule {
+/* ── role ── */
+.role {
   position: absolute;
-  left: 15.476%;
-  top: 69.195%;
-  width: 0.331cqw;
-  height: 11.507%;
-  background: rgba(89, 69, 63, 0.4);
-}
-
-.founder {
-  position: absolute;
-  left: 17%;
-  top: 68.8%;
-  font-size: var(--hero-founder);
+  left: 40.079%;
+  top: 50%;
+  font-size: var(--hero-role);
   font-style: italic;
-  color: var(--color-green);
-}
-
-.credential {
-  position: absolute;
-  left: 17%;
-  top: 74.837%;
-  font-size: var(--hero-credential);
-  font-style: italic;
+  line-height: normal;
   color: var(--color-green);
 }

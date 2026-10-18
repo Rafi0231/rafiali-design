@@ -28,16 +28,27 @@ export default function AutoplayVideo({ src, poster, width, height, label, class
     if (!video) return;
     video.muted = true;
 
+    // Only plays (and so only downloads) while it's on screen
+    let inView = false;
     const query = window.matchMedia(REDUCED_MOTION);
     const apply = () => {
       setReducedMotion(query.matches);
-      if (query.matches) video.pause();
+      if (query.matches || !inView) video.pause();
       else video.play().catch(() => {});
     };
 
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      if (!query.matches) apply();
+    });
+    observer.observe(video);
+
     apply();
     query.addEventListener("change", apply);
-    return () => query.removeEventListener("change", apply);
+    return () => {
+      observer.disconnect();
+      query.removeEventListener("change", apply);
+    };
   }, []);
 
   const toggle = () => {

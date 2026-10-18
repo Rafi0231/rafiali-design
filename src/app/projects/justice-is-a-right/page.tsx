@@ -6,8 +6,8 @@ import styles from "./jiar.module.css";
 
 const IMAGE_QUALITY = 90;
 
-/* render at ~567, ~397 and ~336px of a 1512 frame; nearly full card width on phones */
-const VERDICT_IMAGES = {
+/* Showtime photos render at ~567, ~397 and ~336px of a 1512 frame; nearly full card width on phones */
+const SHOWTIME_IMAGES = {
   presentation: {
     src: "/images/jiar/Presentation.webp",
     alt: "Presenting the project on a curved wall of screens showing the virtual community hub",
@@ -98,7 +98,12 @@ const TURN_RESEARCH = [
 
 export default function JIARPage() {
   return (
-    <FlowCaseStudyLayout title="Justice Is a Right">
+    <FlowCaseStudyLayout
+      title="Justice Is a Right"
+      background="#B9ADA3"
+      titleTracking="0"
+      ruleColor="rgba(107, 82, 68, 0.4)"
+    >
       <Section heading="The Verdict">
         <div className={styles.verdict}>
           <div className={`${content.textBlock} ${styles.verdictText}`}>
@@ -108,7 +113,7 @@ export default function JIARPage() {
               <li><em>Team</em>: 4 (design, development, CS)</li>
               <li><em>Timeline</em>: Spring 2026 &middot; Creative Coding</li>
               <li><em>Tools</em>: Unity, C#, Illustrator, Maya</li>
-              <li><em>Status</em>: Accepted to ACM COMPASS 2026 as first&nbsp;author</li>
+              <li><em>Status</em>: Accepted to ACM COMPASS 2026 and first&nbsp;author</li>
             </ul>
 
             <hr className={content.divider} />
@@ -123,47 +128,19 @@ export default function JIARPage() {
             </p>
           </div>
 
-          <div className={styles.verdictImages}>
-            <figure className={`${styles.verdictFigure} ${styles.presentation}`}>
-              <div className={content.slidePanel}>
-                <Image
-                  {...VERDICT_IMAGES.presentation}
-                  alt={VERDICT_IMAGES.presentation.alt}
-                  quality={IMAGE_QUALITY}
-                  loading="eager"
-                  className={content.slideImg}
-                />
-              </div>
-              <figcaption className={content.slideCaption}>Presentation Image</figcaption>
-            </figure>
-
-            <div className={styles.verdictRow}>
-              <figure className={`${styles.verdictFigure} ${styles.acceptance}`}>
-                <div className={content.slidePanel}>
-                  <Image
-                    {...VERDICT_IMAGES.acceptance}
-                    alt={VERDICT_IMAGES.acceptance.alt}
-                    quality={IMAGE_QUALITY}
-                    className={content.slideImg}
-                  />
-                </div>
-                <figcaption className={content.slideCaption}>Poster acceptance</figcaption>
-              </figure>
-              <figure className={`${styles.verdictFigure} ${styles.teamPicture}`}>
-                <div className={content.slidePanel}>
-                  <Image
-                    {...VERDICT_IMAGES.teamPicture}
-                    alt={VERDICT_IMAGES.teamPicture.alt}
-                    quality={IMAGE_QUALITY}
-                    className={content.slideImg}
-                  />
-                </div>
-                <figcaption className={content.slideCaption}>
-                  Team Picture (4th group member absent)
-                </figcaption>
-              </figure>
+          <figure className={styles.verdictVideo}>
+            <div className={content.slidePanel}>
+              <AutoplayVideo
+                src="/videos/jiar/JIAR-demo.mp4"
+                poster="/videos/jiar/JIAR-demo-poster.webp"
+                width={1600}
+                height={894}
+                label="Demo of the Community Hub on a curved screen wall: two people walk in and use the grab-or-trash food board"
+                className={styles.videoEl}
+              />
             </div>
-          </div>
+            <figcaption className={content.draftCaption}>(Presentation Video)</figcaption>
+          </figure>
         </div>
       </Section>
       <Section heading="The Assignment">
@@ -193,7 +170,7 @@ export default function JIARPage() {
             <p className={content.statusRow}>
               <span className={content.statusLabel}>Critique &middot;</span>{" "}
               &ldquo;You&rsquo;re bringing attention to the problem, but where&rsquo;s
-              the solution?&rdquo;
+              the solution.&rdquo;
             </p>
             <p className={content.statusRow}>
               <span className={content.statusLabel}>What changed &middot;</span> The
@@ -296,19 +273,46 @@ export default function JIARPage() {
             </p>
           </div>
 
-          <figure className={styles.showtimeVideo}>
-            <div className={content.slidePanel}>
-              <AutoplayVideo
-                src="/videos/jiar/JIAR-demo.mp4"
-                poster="/videos/jiar/JIAR-demo-poster.webp"
-                width={1600}
-                height={894}
-                label="Demo of the Community Hub on a curved screen wall: two people walk in and use the grab-or-trash food board"
-                className={styles.videoEl}
-              />
+          <div className={styles.showtimeImages}>
+            <figure className={`${styles.showtimeFigure} ${styles.presentation}`}>
+              <div className={content.slidePanel}>
+                <Image
+                  {...SHOWTIME_IMAGES.presentation}
+                  alt={SHOWTIME_IMAGES.presentation.alt}
+                  quality={IMAGE_QUALITY}
+                  className={content.slideImg}
+                />
+              </div>
+              <figcaption className={content.slideCaption}>Presentation Image</figcaption>
+            </figure>
+
+            <div className={styles.showtimeRow}>
+              <figure className={`${styles.showtimeFigure} ${styles.acceptance}`}>
+                <div className={content.slidePanel}>
+                  <Image
+                    {...SHOWTIME_IMAGES.acceptance}
+                    alt={SHOWTIME_IMAGES.acceptance.alt}
+                    quality={IMAGE_QUALITY}
+                    className={content.slideImg}
+                  />
+                </div>
+                <figcaption className={content.slideCaption}>Poster acceptance</figcaption>
+              </figure>
+              <figure className={`${styles.showtimeFigure} ${styles.teamPicture}`}>
+                <div className={content.slidePanel}>
+                  <Image
+                    {...SHOWTIME_IMAGES.teamPicture}
+                    alt={SHOWTIME_IMAGES.teamPicture.alt}
+                    quality={IMAGE_QUALITY}
+                    className={content.slideImg}
+                  />
+                </div>
+                <figcaption className={content.slideCaption}>
+                  Team Picture (4th group member absent)
+                </figcaption>
+              </figure>
             </div>
-            <figcaption className={content.draftCaption}>(Presentation Video)</figcaption>
-          </figure>
+          </div>
         </div>
       </Section>
     </FlowCaseStudyLayout>

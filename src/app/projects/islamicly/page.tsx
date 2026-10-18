@@ -8,6 +8,10 @@ import styles from "./islamicly.module.css";
 const GALLERY_SIZES = "(max-width: 767px) 46vw, 28vw";
 const IMAGE_QUALITY = 90;
 
+/* clickable Figma prototype of Islamicly */
+const PROTOTYPE_URL =
+  "https://www.figma.com/proto/6n18GZvoJGU8DbyrpbX43M/Islamicly-Drafts?node-id=6495-3152&t=uCC5GGTLOzq7Jw9I-1&scaling=min-zoom&content-scaling=fixed&page-id=6015%3A87&starting-point-node-id=6493%3A2832";
+
 /* two columns, read top to bottom; the right column sits lower (stagger) */
 const RESULT_COLUMNS = [
   [
@@ -119,7 +123,12 @@ const VOICE_DRAFTS = {
 
 export default function IslamiclyPage() {
   return (
-    <FlowCaseStudyLayout title="Islamicly">
+    <FlowCaseStudyLayout
+      title="Islamicly"
+      background="#B9ADA3"
+      titleTracking="0"
+      ruleColor="rgba(107, 82, 68, 0.4)"
+    >
       <Section heading="The Result" columns="460fr 833fr">
         <div className={`${content.textBlock} ${styles.resultText}`}>
           <h3 className={content.overviewHeading}>Overview</h3>
@@ -149,27 +158,36 @@ export default function IslamiclyPage() {
           </p>
         </div>
 
-        <div className={styles.gallery}>
-          {RESULT_COLUMNS.map((images, col) => (
-            <div
-              key={col}
-              className={`${styles.galleryCol} ${col === 1 ? styles.galleryColLow : ""}`}
-            >
-              {images.map(({ src, alt }) => (
-                <Image
-                  key={src}
-                  src={src}
-                  alt={alt}
-                  width={2400}
-                  height={1559}
-                  sizes={GALLERY_SIZES}
-                  quality={IMAGE_QUALITY}
-                  loading="eager"
-                  className={styles.galleryImg}
-                />
-              ))}
-            </div>
-          ))}
+        <div className={styles.resultMedia}>
+          <a
+            href={PROTOTYPE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.gallery}
+            aria-label="Visit the Islamicly prototype (opens in a new tab)"
+          >
+            {RESULT_COLUMNS.map((images, col) => (
+              <div
+                key={col}
+                className={`${styles.galleryCol} ${col === 1 ? styles.galleryColLow : ""}`}
+              >
+                {images.map(({ src, alt }) => (
+                  <Image
+                    key={src}
+                    src={src}
+                    alt={alt}
+                    width={2400}
+                    height={1559}
+                    sizes={GALLERY_SIZES}
+                    quality={IMAGE_QUALITY}
+                    loading="eager"
+                    className={styles.galleryImg}
+                  />
+                ))}
+              </div>
+            ))}
+          </a>
+          <p className={styles.galleryCaption}>Click on any image to visit Islamicly</p>
         </div>
       </Section>
       <Section heading="The Diagnosis" className={styles.diagnosisSection}>
@@ -178,8 +196,9 @@ export default function IslamiclyPage() {
             <p className={styles.sideRow}>
               <span className={content.statusLabel}>Problem</span>
               <span className={styles.labelDot}> &middot; </span>
-              Islamic learning apps use decade-old patterns, and each does one
-              thing.
+              Most learning apps were built around the content and not the person
+              learning it. Most of them still use layouts from ten years ago, and
+              each one only does one thing.
             </p>
             <p className={styles.sideRow}>
               <span className={content.statusLabel}>Opportunity</span>
@@ -189,19 +208,14 @@ export default function IslamiclyPage() {
           </div>
 
           <div className={styles.slides}>
-            <figure className={styles.slideLeft}>
-              <div className={content.slidePanel}>
-                <Image
-                  {...DIAGNOSIS_SLIDES.marketResearch}
-                  alt={DIAGNOSIS_SLIDES.marketResearch.alt}
-                  quality={IMAGE_QUALITY}
-                  className={content.slideImg}
-                />
-              </div>
-              <figcaption className={content.slideCaption}>
-                (Actual slides from Fall 2025 Design Seminar presentation)
-              </figcaption>
-            </figure>
+            <div className={`${content.slidePanel} ${styles.slideLeft}`}>
+              <Image
+                {...DIAGNOSIS_SLIDES.marketResearch}
+                alt={DIAGNOSIS_SLIDES.marketResearch.alt}
+                quality={IMAGE_QUALITY}
+                className={content.slideImg}
+              />
+            </div>
             <div className={`${content.slidePanel} ${styles.slideRight}`}>
               <Image
                 {...DIAGNOSIS_SLIDES.similarProducts}
@@ -228,42 +242,32 @@ export default function IslamiclyPage() {
             <div className={styles.sideText}>
               <p className={styles.sideRow}>
                 <span className={content.statusLabel}>Research &middot;</span>{" "}
-                Surveyed 3 students about Islamic apps, and conducted usability
-                tests with ~10 people, an Islamic scholar, and a school&rsquo;s
-                board of education
+                Surveyed students about learning apps, and conducted usability
+                tests with an Islamic scholar, and a school&rsquo;s board of
+                education
               </p>
               <p className={styles.sideRow}>
-                <span className={content.statusLabel}>Finding &middot;</span> The
-                clearest request: the Seerah (the Prophet&rsquo;s biography).
+                <span className={content.statusLabel}>Finding &middot;</span>{" "}
+                Students don&rsquo;t want more lessons, they want a place they
+                want to return to, and one that can act as a teacher that adapts
+                to their learning.
               </p>
               <p className={styles.sideRow}>
                 <span className={content.statusLabel}>What changed &middot;</span>{" "}
-                Restructured the curriculum to fit the Seerah into Course
-                Lectures.
+                Added an AI layer that tailors to the student and creates an
+                environment that feels comfortable and welcoming.
               </p>
             </div>
           </div>
 
-          <div className={`${styles.audienceRow} ${styles.audienceRowBottom}`}>
-            <div className={`${content.slidePanel} ${styles.audienceSurvey}`}>
-              <Image
-                {...AUDIENCE_SLIDES.survey}
-                alt={AUDIENCE_SLIDES.survey.alt}
-                sizes={AUDIENCE_SIZES}
-                quality={IMAGE_QUALITY}
-                className={content.slideImg}
-              />
-            </div>
-            <div className={styles.citations}>
-              <p className={styles.citationsTitle}>Citations from Research:</p>
-              <ul className={styles.citationsList}>
-                <li>&ldquo;Probably the seera of the Prophet PBUH&rdquo;</li>
-                <li>
-                  &ldquo;Maybe add an option to read more about the life of the
-                  Prophet (the Seerah)&rdquo;
-                </li>
-              </ul>
-            </div>
+          <div className={`${content.slidePanel} ${styles.audienceSurvey}`}>
+            <Image
+              {...AUDIENCE_SLIDES.survey}
+              alt={AUDIENCE_SLIDES.survey.alt}
+              sizes={AUDIENCE_SIZES}
+              quality={IMAGE_QUALITY}
+              className={content.slideImg}
+            />
           </div>
         </div>
       </Section>
@@ -302,7 +306,7 @@ export default function IslamiclyPage() {
               <p className={`${styles.sideRow} ${styles.sideRowTight}`}>
                 <span className={content.statusLabel}>Critique</span>
                 <span className={styles.labelDotSmall}> &middot; </span>
-                &ldquo;There&rsquo;s no personality in that design,&rdquo; my
+                &ldquo;There&rsquo;s no personality in that design.&rdquo; my
                 professor said. I&rsquo;d designed for familiarity over identity.
               </p>
               <p className={`${styles.sideRow} ${styles.sideRowTight}`}>
@@ -341,7 +345,7 @@ export default function IslamiclyPage() {
             </p>
             <p className={`${styles.sideRow} ${styles.sideRowLoose}`}>
               <span className={content.statusLabel}>Kept &middot;</span> Elements
-              such as rounded buttons and the nav bar, for familiarity.
+              such as rounded buttons, and nav bar for familiarity.
             </p>
           </div>
 
@@ -356,8 +360,7 @@ export default function IslamiclyPage() {
                 />
               </div>
               <p className={content.draftCaption}>
-                Post-Feedback Draft 1: new color palette, new layout and includes
-                the Seerah.
+                Post-Feedback Draft 1: new color palette, new layout
               </p>
             </div>
             <div className={`${styles.voiceRow} ${styles.voiceRowTwo}`}>

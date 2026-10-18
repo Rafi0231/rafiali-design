@@ -1,0 +1,349 @@
+/* Each Figma frame is one screen of the same card. Positions are Figma px from the
+   section's top-left: the first starts at the card's top (frame y 196), the next at
+   the top of the following frame. --u converts px to the page's width */
+
+.deliverable,
+.missing,
+.trust,
+.design,
+.wizard {
+  --u: calc(100cqw / 1512);
+  /* the slim grey mat edge shared with every case study (caseStudyContent .slidePanel) */
+  --mat: max(0.26cqw, 3px);
+  position: relative;
+}
+
+/* ═══ DELIVERABLE — card top (y 196) to the end of the first frame (982) ═══ */
+.deliverable {
+  height: calc(786 * var(--u));
+}
+
+/* Later frames' contents sit 7px further right in Figma than the first frame's;
+   they're shifted back so every heading lines up */
+
+/* ═══ WHAT WAS MISSING — second frame ═══ */
+.missing {
+  height: calc(982 * var(--u));
+}
+
+/* ═══ THE TRUST LAYER — third frame ═══ */
+.trust {
+  height: calc(982 * var(--u));
+}
+
+/* ═══ THE DESIGN SYSTEM — fourth frame ═══ */
+.design {
+  height: calc(982 * var(--u));
+}
+
+/* ═══ THE WIZARD — fifth frame; the card ends at its y 955 ═══ */
+.wizard {
+  height: calc(955 * var(--u));
+}
+
+.missing .heading,
+.trust .heading,
+.design .heading,
+.wizard .heading {
+  top: calc(130 * var(--u));
+}
+
+/* 47px at (76, 39); 4 × 39 bar centred on x 70, from y 59 */
+.heading {
+  position: absolute;
+  left: calc(76 * var(--u));
+  top: calc(39 * var(--u));
+  margin: 0;
+  font-size: calc(47 * var(--u));
+  font-weight: 400;
+  line-height: normal;
+  color: var(--color-green);
+}
+
+.heading::before {
+  content: "";
+  position: absolute;
+  left: calc(-8 * var(--u));
+  top: calc(20 * var(--u));
+  width: calc(4 * var(--u));
+  height: calc(39 * var(--u));
+  background: rgba(89, 69, 63, 0.4);
+}
+
+/* ═══ OVERVIEW ═══ */
+/* black at 60%, 22px on 35px lines, -0.3px tracking; 30px bold heading */
+.overview {
+  position: absolute;
+  left: calc(70 * var(--u));
+  top: calc(186 * var(--u));
+  width: calc(508 * var(--u));
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: calc(-0.3 * var(--u));
+}
+
+.overviewHeading {
+  margin: 0;
+  font-size: calc(30 * var(--u));
+  font-weight: 700;
+  line-height: calc(35 * var(--u));
+}
+
+/* the font's own "•" bullets, text indented 33px; lines start 2px below the heading's */
+.overviewList {
+  margin: calc(2 * var(--u)) 0 0;
+  padding-left: calc(33 * var(--u));
+  list-style: none;
+  font-size: calc(22 * var(--u));
+  line-height: calc(35 * var(--u));
+}
+
+.overviewList li {
+  position: relative;
+}
+
+.overviewList li::before {
+  content: "\2022";
+  position: absolute;
+  right: 100%;
+  margin-right: calc(12 * var(--u));
+  font-style: normal;
+}
+
+.overviewList em {
+  font-style: italic;
+}
+
+/* ═══ DONE / NEXT ═══ */
+/* #9E9C94 at 60% hairlines, 508 wide at x 70 */
+.divider {
+  position: absolute;
+  left: calc(70 * var(--u));
+  width: calc(508 * var(--u));
+  height: 1px;
+  border: none;
+  border-radius: 1px;
+  background: rgba(158, 156, 148, 0.6);
+}
+
+.dividerTop {
+  top: calc(426 * var(--u));
+}
+
+.dividerBottom {
+  top: calc(606 * var(--u));
+}
+
+/* #525251, bold 30px label then 22px text, 35px lines */
+.status {
+  position: absolute;
+  left: calc(70 * var(--u));
+  width: calc(508 * var(--u));
+  margin: 0;
+  font-size: calc(22 * var(--u));
+  line-height: calc(35 * var(--u));
+  letter-spacing: calc(-0.3 * var(--u));
+  color: #525251;
+}
+
+.status strong {
+  font-size: calc(30 * var(--u));
+  font-weight: 700;
+}
+
+.statusDone {
+  top: calc(518 * var(--u));
+}
+
+.statusNext {
+  top: calc(622 * var(--u));
+}
+
+.statusIdea {
+  top: calc(320 * var(--u));
+  width: calc(548 * var(--u));
+}
+
+.dividerWorkflow {
+  top: calc(485 * var(--u));
+}
+
+.statusWorkflow {
+  top: calc(498 * var(--u));
+  width: calc(554 * var(--u));
+}
+
+.dividerWhy {
+  top: calc(661 * var(--u));
+}
+
+.statusWhy {
+  top: calc(676 * var(--u));
+  width: calc(523 * var(--u));
+}
+
+.dividerWide {
+  width: calc(535 * var(--u));
+}
+
+/* Figma's box is 515; the browser's slightly narrower text would fit "answer" on
+   the second line, so 500 keeps Figma's line breaks */
+.statusConstraint {
+  top: calc(347 * var(--u));
+  width: calc(500 * var(--u));
+}
+
+.dividerSolution {
+  top: calc(470 * var(--u));
+}
+
+.statusSolution {
+  top: calc(486 * var(--u));
+  width: calc(535 * var(--u));
+}
+
+.dividerProof {
+  top: calc(644 * var(--u));
+}
+
+.statusProof {
+  top: calc(660 * var(--u));
+  width: calc(522 * var(--u));
+}
+
+/* Design System rows sit on the right, at x 862 */
+.statusDesignConstraint,
+.statusDesignSolution,
+.dividerDesign {
+  left: calc(862 * var(--u));
+}
+
+.statusDesignConstraint {
+  top: calc(183 * var(--u));
+  width: calc(528 * var(--u));
+}
+
+.dividerDesign {
+  top: calc(316 * var(--u));
+}
+
+.statusDesignSolution {
+  top: calc(342 * var(--u));
+  width: calc(535 * var(--u));
+}
+
+/* Wizard rows sit on the right, at x 792, with 447-wide hairlines */
+.statusWizardConstraint,
+.statusWizardSolution,
+.statusKept,
+.dividerWizard {
+  left: calc(792 * var(--u));
+}
+
+.dividerWizard {
+  width: calc(447 * var(--u));
+}
+
+.statusWizardConstraint {
+  top: calc(173 * var(--u));
+  width: calc(559 * var(--u));
+}
+
+.dividerWizardSolution {
+  top: calc(228 * var(--u));
+}
+
+/* Figma's box is 571; at 565 "lets" moves to the second line, as in Figma */
+.statusWizardSolution {
+  top: calc(248 * var(--u));
+  width: calc(565 * var(--u));
+}
+
+.dividerKept {
+  top: calc(341 * var(--u));
+}
+
+.statusKept {
+  top: calc(360 * var(--u));
+  width: calc(571 * var(--u));
+}
+
+/* ═══ MATS — the image keeps its Figma box; the slim grey edge wraps around it ═══ */
+/* 6px corners around the image's 2px, as on the other case studies */
+.mat {
+  position: absolute;
+  left: calc(var(--img-x) * var(--u) - var(--mat));
+  top: calc(var(--img-y) * var(--u) - var(--mat));
+  width: calc(var(--img-w) * var(--u) + 2 * var(--mat));
+  height: calc(var(--img-h) * var(--u) + 2 * var(--mat));
+  padding: var(--mat);
+  border-radius: 6px;
+  background: #A8A6A3;
+}
+
+.matImage {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* ═══ SITE IMAGE — links to the live site ═══ */
+.siteLink {
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.siteLink:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+.siteLink:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 4px;
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* 22px italic #525251, centred under the image (295 wide at x 890, y 606) */
+.caption {
+  position: absolute;
+  left: calc(890 * var(--u));
+  top: calc(606 * var(--u));
+  width: calc(295 * var(--u));
+  margin: 0;
+  font-size: calc(22 * var(--u));
+  font-style: italic;
+  line-height: calc(35 * var(--u));
+  letter-spacing: calc(-0.22 * var(--u));
+  color: #525251;
+  white-space: nowrap;
+}
+
+/* ═══ SHOTS — a mat plus a caption; positions come from --vars ═══ */
+.shot {
+  margin: 0;
+}
+
+/* 20px italic, green at 70%, -0.2px tracking */
+.shotCaption {
+  position: absolute;
+  left: calc(var(--cap-x) * var(--u));
+  top: calc(var(--cap-y) * var(--u));
+  width: calc(var(--cap-w) * var(--u));
+  font-size: calc(20 * var(--u));
+  font-style: italic;
+  line-height: normal;
+  letter-spacing: calc(-0.2 * var(--u));
+  color: rgba(31, 53, 29, 0.7);
+  white-space: nowrap;
+}
+
+.shotCaptionWrap {
+  white-space: normal;
+}

@@ -1,53 +1,54 @@
-/* ═══ SECTION FRAME 1512 × 982 ═══ */
+/* ═══ SECTION ═══ */
+/* Positions are Figma px in the 1512px frame; --u converts them to the section's width */
 .section {
   position: relative;
   width: 100%;
-  aspect-ratio: 1512 / 982;
   container-type: inline-size;
   overflow: hidden;
-  background: #BFBFBF;
+  background: #B9ADA3;
+}
+
+.section > * {
+  --u: calc(100cqw / 1512);
+  /* card-to-card gap: twice the heading's baseline to the first card */
+  --card-gap: 254;
 }
 
 /* ═══ HEADING ═══ */
-/* glyphs match Figma's "Projects" (150px, no tracking, top of box at y 0) */
+/* 150px, centred, text box at y 49 with normal leading (Figma's y -31, moved down 80) */
 .heading {
   position: absolute;
-  left: 6.085%;
-  top: 4.633%;
-  font-size: 9.921cqw;
+  left: 0;
+  right: 0;
+  top: calc(49 * var(--u));
+  text-align: center;
+  font-size: calc(150 * var(--u));
   font-weight: 400;
-  line-height: var(--leading-tight);
+  line-height: normal;
   color: var(--color-green);
-  /* above the rule, so the "j" descender sits in front of the line */
-  z-index: 1;
-  /* entrance — initial state */
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity calc(var(--duration-fast) * 2) var(--ease-out),
-    transform calc(var(--duration-fast) * 2) var(--ease-out);
 }
 
-/* ═══ RULE ═══ */
-.rule {
-  position: absolute;
-  left: 6.085%;
-  top: 19.043%;
-  width: 87.963%;
-  height: 1.5px;
-  background: rgba(107, 82, 68, 0.8);
-  border: none;
+/* ═══ CARD LIST ═══ */
+/* first card at y 347 (Figma's 219, moved down 128). Below the last card, 186px plus
+   the 68px from the top of About's frame to its letters keeps the 254px card gap */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--card-gap) * var(--u));
+  padding: calc(347 * var(--u)) 0 calc(186 * var(--u)) calc(34 * var(--u));
 }
 
 /* ═══ CARD WRAPPER — owns entrance animation ═══ */
-/* left is passed as inline style per card */
-/* 417 × 667 at y 260 */
+/* 1441 × 734 */
 .cardWrap {
-  position: absolute;
-  top: 26.477%;
-  width: 27.579%;
-  height: 67.923%;
-  /* entrance — initial state */
+  position: relative;
+  width: calc(1441 * var(--u));
+  height: calc(734 * var(--u));
+}
+
+/* entrance — initial state; .visible is toggled per element as it scrolls in */
+.heading,
+.cardWrap {
   opacity: 0;
   transform: translateY(16px);
   transition:
@@ -55,9 +56,8 @@
     transform calc(var(--duration-fast) * 2) var(--ease-out);
 }
 
-/* ── visible state (class toggled by IntersectionObserver) ── */
-.section.visible .heading,
-.section.visible .cardWrap {
+.heading.visible,
+.cardWrap.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -71,15 +71,13 @@
   }
 }
 
-/* ═══ CARD — a link to the case study; owns hover only, no entrance state ═══ */
+/* ═══ CARD — owns hover only, no entrance state ═══ */
+/* everything inside is placed in px from the card's top-left corner;
+   the --vars that differ between projects come from Projects.tsx */
 .card {
   position: relative;
-  display: block;
   width: 100%;
   height: 100%;
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
   border-radius: 20px;
   background: rgba(229, 229, 229, 0.5);
   overflow: hidden;
@@ -89,164 +87,189 @@
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-lift);
 }
 
-.card:focus-visible {
+.card:has(.cardLink:focus-visible) {
   outline: 2px solid var(--color-green);
   outline-offset: 4px;
 }
 
-/* ═══ CARD TITLE ═══ */
-/* Figma text box at y 269 (9 into the card), 45px with normal leading (69px box);
-   with our 1.15 line-height the glyphs land in the same place at 3.54% */
+/* ═══ TITLE ═══ */
 .cardTitle {
   position: absolute;
-  top: 3.54%;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 2.976cqw;
+  left: calc(57 * var(--u));
+  top: calc(3 * var(--u));
+  font-size: calc(100 * var(--u));
   font-weight: 400;
-  line-height: var(--leading-tight);
-  color: #8B6B5C;
+  line-height: normal;
+  color: var(--color-brown);
 }
 
 /* ═══ PILLS ═══ */
-/* 22px pills at y 348 (88 into the card), 13px apart, 18px side padding */
+/* 22px pills, 18px apart, 12px side padding */
 .pills {
   position: absolute;
-  top: 13.193%;
-  left: 0;
-  right: 0;
+  left: calc(57 * var(--u));
+  top: calc(var(--pills-top) * var(--u));
   display: flex;
-  justify-content: center;
-  gap: 0.86cqw;
+  gap: calc(18 * var(--u));
 }
 
 .pill {
   display: inline-flex;
   align-items: center;
-  height: 1.455cqw;
-  padding: 0 1.09cqw;
+  height: calc(22 * var(--u));
+  padding: 0 calc(12 * var(--u));
   border-radius: 20px;
   background: color-mix(in srgb, var(--color-green) 50%, transparent);
-  font-size: 1.323cqw;
+  font-size: calc(20 * var(--u));
   color: rgba(255, 255, 255, 0.7);
   white-space: nowrap;
   line-height: 1;
 }
 
-/* ═══ IMAGE FRAMES ═══ */
-/* positions are % of the 417 × 667 card */
-/* Islamicly: 303 × 198 at (57, 141) */
-.imageFrame1 {
+/* ═══ DESCRIPTION ═══ */
+.description {
   position: absolute;
-  left: 13.669%;
-  top: 21.139%;
-  width: 72.662%;
-  height: 29.685%;
-  border-radius: 2px;
-  overflow: hidden;
+  left: calc(57 * var(--u));
+  top: calc(var(--desc-top) * var(--u));
+  width: calc(var(--desc-width) * var(--u));
+  font-size: calc(23 * var(--u));
+  line-height: calc(28 * var(--u));
+  color: rgba(74, 53, 48, 0.9);
 }
 
-/* JIAR: 296 × 198 at (57, 135) */
-.imageFrame2 {
-  position: absolute;
-  left: 13.669%;
-  top: 20.24%;
-  width: 70.983%;
-  height: 29.685%;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.img {
-  object-fit: cover;
-}
-
-/* ═══ POSTER IMAGES (Card 3) ═══ */
-/* Figma's three posters scaled up ~10% about the first poster's corner, so the
-   row spans exactly the title's width (x 41 → 375 of the card); same steps */
-.poster1,
-.poster2,
-.poster3 {
-  position: absolute;
-  width: 24.288%;
-  height: 23.628%;
-  border-radius: 1px;
-  overflow: hidden;
-}
-
-.poster1 { left: 9.832%; top: 20.24%; }
-.poster2 { left: 38.024%; top: 24.198%; width: 24.508%; }
-.poster3 { left: 65.683%; top: 28.801%; width: 24.24%; height: 23.553%; }
-
-/* ═══ SUMMARY — Audience / My role / Outcome ═══ */
-/* 392 wide at (15, 378) — Figma has 362; moved 16px down, tops still aligned
-   across the three cards; 15px on 24px lines, bold labels */
+/* ═══ SUMMARY — Role / Outcome between hairlines ═══ */
 .summary {
   position: absolute;
-  top: 56.672%;
-  left: 3.597%;
-  width: 94.005%;
+  left: calc(57 * var(--u));
+  top: calc(var(--summary-top) * var(--u));
+  width: calc(var(--summary-width) * var(--u));
   margin: 0;
-  font-size: 0.992cqw;
-  line-height: 1.6;
-  color: #352727;
-  z-index: 1;
+  border-bottom: 1px solid rgba(88, 71, 56, 0.3);
+}
+
+/* hairlines 60px apart, as in Figma's Islamicly card */
+.summary > div {
+  padding-bottom: calc(5 * var(--u));
+  border-top: 1px solid rgba(88, 71, 56, 0.3);
+}
+
+.summary > div:last-child {
+  padding-bottom: 0;
 }
 
 .summary dt {
-  display: inline;
-  font-weight: 700;
+  font-size: calc(18 * var(--u));
+  line-height: calc(27 * var(--u));
+  letter-spacing: 0.1em;
+  color: rgba(74, 53, 48, 0.6);
 }
 
 .summary dd {
-  display: inline;
   margin: 0;
+  font-size: calc(20 * var(--u));
+  line-height: calc(27 * var(--u));
+  color: rgba(74, 53, 48, 0.9);
 }
 
 /* ═══ GHOST NUMERAL ═══ */
-/* 220px at (-38, 425) in Figma's normal-leading box (245 tall); with
-   line-height 1 the glyphs land in the same place at top 76.1%.
-   The card's overflow clips it, as Figma's mask does */
+/* 250px at (-40, 459); the card's overflow clips it, as Figma's mask does */
 .ghostNumeral {
   position: absolute;
-  left: -9.113%;
-  top: 76.1%;
-  font-size: 14.55cqw;
+  left: calc(-40 * var(--u));
+  top: calc(459 * var(--u));
+  font-size: calc(250 * var(--u));
   font-weight: 400;
-  letter-spacing: -0.12em;
-  line-height: 1;
+  letter-spacing: var(--numeral-tracking, -0.12em);
+  line-height: normal;
   color: rgba(84, 97, 79, 0.4);
-  z-index: 0;
   user-select: none;
   pointer-events: none;
 }
 
-/* ═══ EXPLORE BUTTON ═══ */
-/* 128 × 47 at (273, 594) */
-.exploreBtn {
+/* ═══ MEDIA FRAMES ═══ */
+/* a grey mat with a video or poster inset; sizes and positions are per frame */
+.mat {
   position: absolute;
-  left: 65.468%;
-  top: 89.055%;
-  width: 30.695%;
-  height: 7.046%;
+  left: calc(var(--mat-x) * var(--u));
+  top: calc(var(--mat-y) * var(--u));
+  width: calc(var(--mat-w) * var(--u));
+  height: calc(var(--mat-h) * var(--u));
+  border-radius: 15px;
+  background: #A8A6A3;
+}
+
+.frame {
+  position: absolute;
+  left: calc(var(--inner-x) * var(--u));
+  top: calc(var(--inner-y) * var(--u));
+  width: calc(var(--inner-w) * var(--u));
+  height: calc(var(--inner-h) * var(--u));
+  border-radius: calc(var(--inner-radius) * 1px);
+  overflow: hidden;
+}
+
+.frame > * {
+  height: 100%;
+}
+
+/* the reduced-motion play button sits above the card-wide link's overlay */
+.frame button {
+  z-index: 2;
+}
+
+.media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--media-pos);
+}
+
+/* ═══ VIEW PROJECT ═══ */
+/* the link itself stays unpositioned so its overlay covers the whole card */
+.cardLink {
+  outline: none;
+}
+
+.cardLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* 164 × 47; position is per project */
+.viewBtn {
+  position: absolute;
+  left: calc(var(--btn-x) * var(--u));
+  top: calc(var(--btn-y) * var(--u));
+  width: calc(164 * var(--u));
+  height: calc(47 * var(--u));
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 15px;
   background: color-mix(in srgb, var(--color-green) 70%, transparent);
-  font-family: var(--font-serif);
-  font-size: 1.653cqw;
-  color: #E0D2CC;
-  text-decoration: none;
-  z-index: 1;
+  font-size: calc(25 * var(--u));
+  line-height: 1;
+  color: #F1EADA;
+  white-space: nowrap;
   transition: background var(--duration-fast) var(--ease-out);
 }
 
-.card:hover .exploreBtn {
+.card:hover .viewBtn {
   background: color-mix(in srgb, var(--color-green) 85%, transparent);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }

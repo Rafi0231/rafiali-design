@@ -20,8 +20,7 @@
 
   /* Hero type — % of the 1512px Figma frame, used inside .hero */
   --hero-name:        19.841cqw; /* 300px */
-  --hero-founder:      2.646cqw; /*  40px */
-  --hero-credential:   1.852cqw; /*  28px */
+  --hero-role:         1.984cqw; /*  30px */
   --hero-nav:          2.315cqw; /*  35px */
 
   /* Line heights */

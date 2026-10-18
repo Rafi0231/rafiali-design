@@ -62,13 +62,13 @@
   align-self: end;
 }
 
-/* staggered 2×2: two columns, right one dropped by ~1/6 of an image height.
+/* staggered 2×2: two columns, right one dropped 12px (~1/22 of an image height).
    margin-top % resolves against the gallery's content width, so
    offset = column width × (1559 / 2400) × stagger, column width = (100% − gap) / 2 */
 .gallery {
   /* slim grey edge (~4px) that anchors the images rather than framing them */
   --gap: max(0.26cqw, 3px);
-  --stagger: 1 / 6;
+  --stagger: 1 / 22;
   display: flex;
   align-items: flex-start;
   gap: var(--gap);
@@ -77,12 +77,50 @@
   background: #A8A6A3;
 }
 
-/* nudged ~24px right, same size */
+/* gallery plus its caption, nudged ~24px right, same size. On desktop the caption
+   hangs below without adding height, so the text still ends level with the gallery */
 @media (min-width: 768px) {
-  .gallery {
+  .resultMedia {
+    position: relative;
     margin-left: 1.6cqw;
     margin-right: -1.6cqw;
   }
+
+  .resultMedia .galleryCaption {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+}
+
+/* the whole gallery links to the prototype; it lifts on hover like the Clarity image */
+.gallery {
+  color: inherit;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.gallery:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+.gallery:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 4px;
+}
+
+/* 25px italic, green at 70%, centred just under the gallery */
+.galleryCaption {
+  margin: max(0.13cqw, 2px) 0 0;
+  text-align: center;
+  font-size: max(1.653cqw, 16px);
+  font-style: italic;
+  line-height: normal;
+  letter-spacing: -0.01em;
+  color: rgba(31, 53, 29, 0.7);
 }
 
 .galleryCol {
@@ -95,12 +133,6 @@
 
 .galleryColLow {
   margin-top: calc((100% - var(--gap)) / 2 * 1559 / 2400 * var(--stagger));
-}
-
-@media (max-width: 767.98px) {
-  .gallery {
-    --stagger: 1 / 12;
-  }
 }
 
 .galleryImg {
@@ -203,7 +235,7 @@
 }
 
 /* ── The Audience's Opinion ──
-   Row 1: Questions (pushed right, 40px lower) | text.  Row 2: Survey | citations.
+   Row 1: Questions (pushed right, 40px lower) | text.  Below: Survey.
    Widths / offsets are fractions of the Figma content width (1307). */
 
 .audience {
@@ -218,10 +250,6 @@
   align-items: flex-start;
 }
 
-.audienceRowBottom {
-  align-items: flex-end;
-}
-
 /* margin % resolves against the row's width: 202 / 1307 right, 40 / 1307 down */
 .audienceQuestions {
   width: 45.22%;
@@ -232,34 +260,8 @@
   width: 45.14%;
 }
 
-.citations {
-  width: 49.66%;
-  padding: max(0.8cqw, 12px) max(1.06cqw, 16px);
-  border-radius: 15px;
-  background: rgba(139, 107, 92, 0.5);
-  color: var(--color-green);
-  font-style: italic;
-  letter-spacing: -0.01em;
-}
-
-.citationsTitle {
-  margin: 0;
-  font-size: max(1.455cqw, 17px);
-  font-weight: 700;
-  line-height: 1.5;
-}
-
-/* quotes hang ~75px in from the title */
-.citationsList {
-  list-style: none;
-  margin: 0;
-  padding: 0 0 0 3.75em;
-  font-size: max(1.323cqw, 15px);
-  line-height: 1.6;
-}
-
 @media (max-width: 767.98px) {
-  /* rows dissolve so the items can reorder: text, citations, Questions, Survey */
+  /* the row dissolves so the items can reorder: text, Questions, Survey */
   .audience {
     gap: var(--space-6);
   }
@@ -272,23 +274,14 @@
     order: 1;
   }
 
-  .citations {
-    order: 2;
-    width: auto;
-  }
-
-  .citationsList {
-    padding-left: 1.5em;
-  }
-
   .audienceQuestions {
-    order: 3;
+    order: 2;
     width: auto;
     margin: 0;
   }
 
   .audienceSurvey {
-    order: 4;
+    order: 3;
     width: auto;
   }
 }

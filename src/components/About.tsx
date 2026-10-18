@@ -6,6 +6,12 @@ import BorderGlow from "./BorderGlow";
 import styles from "./About.module.css";
 import pillStyles from "./GlassPill.module.css";
 
+const pills = [
+  { label: "Email", href: "mailto:rafiali.design@gmail.com" },
+  { label: "Resume", href: "/Rafi-Ali-Resume.pdf", external: true },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/rafi-ali-design", external: true },
+];
+
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -30,7 +36,6 @@ export default function About() {
   return (
     <section id="about" className={styles.section} ref={sectionRef}>
       <h2 className={styles.heading}>About</h2>
-      <hr className={styles.rule} />
 
       <div
         className={`${styles.photo} ${styles.revealItem}`}
@@ -52,79 +57,62 @@ export default function About() {
             src="/images/AboutPic.webp"
             alt="Rafi Ali"
             fill
+            sizes="28vw"
             className={styles.img}
           />
         </BorderGlow>
       </div>
 
-      <h3
-        className={`${styles.bgHeading} ${styles.revealItem}`}
+      {/* each heading runs in to the start of its paragraph */}
+      <div
+        className={`${styles.block} ${styles.bgBlock} ${styles.revealItem}`}
         style={{ transitionDelay: "120ms" }}
       >
-        Background
-      </h3>
-
-      <p
-        className={`${styles.bgBody} ${styles.revealItem}`}
-        style={{ transitionDelay: "160ms" }}
-      >
-        I grew up in Skokie and study Computer Science + Design at the University
-        of Illinois Chicago. I also founded Lantern Software, a company modeled not
-        on a startup but on the waqf, the Islamic tradition of endowments built to
-        serve the public. We build tools Muslims need, and a fixed share of revenue
-        goes toward food, water, and education in underserved communities. 
-      </p>
-
-      <h3
-        className={`${styles.dpHeading} ${styles.revealItem}`}
-        style={{ transitionDelay: "200ms" }}
-      >
-        Design Philosophy
-      </h3>
-
-      <p
-      
-        className={`${styles.dpBody} ${styles.revealItem}`}
-        style={{ transitionDelay: "240ms" }}
-      >
-          I&rsquo;m drawn to subtlety: interfaces that feel calm and simple but have
-          real depth underneath. Getting there usually means more research and more
-          cutting than feels comfortable. I don&rsquo;t cut corners, and because I can
-          build what I design, I protect that standard all the way to production.
-      </p>
-
-      <div
-        className={`${styles.pillWrap} ${styles.pillResume} ${styles.revealItem}`}
-        style={{ transitionDelay: "280ms" }}
-      >
-        <div className={pillStyles.buttonWrap}>
-          <a
-            href="/Rafi-Ali-Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={pillStyles.pill}
-          >
-            <span className={pillStyles.pillSpan}>Resume</span>
-          </a>
-          <div className={pillStyles.buttonShadow} />
-        </div>
+        <h3 className={styles.blockHeading}>Background</h3>
+        <p className={styles.blockBody}>
+          I design products and build them, from the first sketch to the deployed
+          code. I grew up in Skokie and study Computer Science and Design at the
+          University of Illinois Chicago. I also run Lantern Software, a studio
+          making tools for Muslim communities. It works like a charitable
+          endowment: a fixed share of revenue funds food, water, and education in
+          underserved communities.
+        </p>
       </div>
 
+      <hr className={`${styles.divider} ${styles.revealItem}`} style={{ transitionDelay: "160ms" }} />
+
       <div
-        className={`${styles.pillWrap} ${styles.pillLinkedIn} ${styles.revealItem}`}
-        style={{ transitionDelay: "320ms" }}
+        className={`${styles.block} ${styles.dpBlock} ${styles.revealItem}`}
+        style={{ transitionDelay: "200ms" }}
       >
-        <div className={pillStyles.buttonWrap}>
-          <a
-            href="https://www.linkedin.com/in/rafi-ali-design"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={pillStyles.pill}
+        <h3 className={styles.blockHeading}>Design Philosophy</h3>
+        <p className={styles.blockBody}>
+          Every design I make is centered around an audience. I find joy in
+          bringing a mix of algorithmic and creative approaches to complex
+          problems. It&rsquo;s a combination that I believe is underused and can
+          build incredible tools if practiced more.
+        </p>
+      </div>
+
+      <div className={styles.pills}>
+        {pills.map((pill, i) => (
+          <div
+            key={pill.label}
+            className={`${styles.pillWrap} ${styles.revealItem}`}
+            style={{ transitionDelay: `${240 + i * 40}ms` }}
           >
-            <span className={pillStyles.pillSpan}>LinkedIn</span>
-          </a>
-          <div className={pillStyles.buttonShadow} />
-        </div>
+            <div className={pillStyles.buttonWrap}>
+              <a
+                href={pill.href}
+                {...(pill.external && { target: "_blank", rel: "noopener noreferrer" })}
+                className={pillStyles.pill}
+              >
+                <span className={pillStyles.pillSpan}>{pill.label}</span>
+              </a>
+              <div className={pillStyles.buttonShadow} />
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
