@@ -36,40 +36,23 @@ const RESULT_COLUMNS = [
   ],
 ] as const;
 
-/* slides render at ~628px and ~595px of a 1512 frame; nearly full card width on phones */
+/* slides render at ~628px and ~613px of a 1512 frame; nearly full card width on phones */
 const DIAGNOSIS_SLIDES = {
   marketResearch: {
-    src: "/images/islamicly/MarketResearch.webp",
+    src: "/images/islamicly/MarketResearchCropped.webp",
     alt: "Design Seminar slide titled Market Research, listing what students wanted from Islamic learning apps and the flaws found in existing ones",
-    width: 2328,
-    height: 1314,
+    width: 2257,
+    height: 1305,
     sizes: "(max-width: 767px) 90vw, 43vw",
-  },
-  similarProducts: {
-    src: "/images/islamicly/SimilarProduct.webp",
-    alt: "Design Seminar slide titled Similar Products, noting that no existing app covers all three topics Islamicly plans to teach",
-    width: 2330,
-    height: 1312,
-    sizes: "(max-width: 767px) 90vw, 41vw",
-  },
-} as const;
-
-/* slides render at ~570px of a 1512 frame; nearly full card width on phones */
-const AUDIENCE_SLIDES = {
-  questions: {
-    src: "/images/islamicly/Questions.webp",
-    alt: "Design Seminar slide titled Turning Research into Questions, with a diagram linking survey questions to learning formats, payment, and specific features",
-    width: 2328,
-    height: 1314,
   },
   survey: {
     src: "/images/islamicly/Survey.webp",
     alt: "Design Seminar slide titled Survey Pt.2, showing four revised survey questions arranged around a central Survey 2 node",
     width: 2330,
     height: 1316,
+    sizes: "(max-width: 767px) 90vw, 41vw",
   },
 } as const;
-const AUDIENCE_SIZES = "(max-width: 767px) 90vw, 40vw";
 
 /* drafts render at ~591, ~440 and ~600px of a 1512 frame */
 const PERSONALITY_DRAFTS = {
@@ -118,6 +101,24 @@ const VOICE_DRAFTS = {
     width: 2400,
     height: 1559,
     sizes: "(max-width: 767px) 90vw, 38vw",
+  },
+} as const;
+
+/* screens render at ~633px and ~671px of a 1512 frame; nearly full card width on phones */
+const AI_SCREENS = {
+  results: {
+    src: "/images/islamicly/QuizResults.webp",
+    alt: "Results screen after a chapter quiz: an 80% B score with Active Recall, Linguistic and Numeric breakdowns, and a note that dates will be emphasized in the next reading",
+    width: 1750,
+    height: 1136,
+    sizes: "(max-width: 767px) 90vw, 42vw",
+  },
+  chapter: {
+    src: "/images/islamicly/Chapter.webp",
+    alt: "Chapter 1.2, Early Adulthood, a two-column reading page about Abu Bakr with the dates set in bold",
+    width: 2366,
+    height: 1534,
+    sizes: "(max-width: 767px) 90vw, 45vw",
   },
 } as const;
 
@@ -190,84 +191,54 @@ export default function IslamiclyPage() {
           <p className={styles.galleryCaption}>Click on any image to visit Islamicly</p>
         </div>
       </Section>
-      <Section heading="The Diagnosis" className={styles.diagnosisSection}>
+      <Section heading="Diagnosis and Direction">
         <div className={styles.diagnosis}>
-          <div className={styles.sideText}>
-            <p className={styles.sideRow}>
-              <span className={content.statusLabel}>Problem</span>
-              <span className={styles.labelDot}> &middot; </span>
-              Most learning apps were built around the content and not the person
-              learning it. Most of them still use layouts from ten years ago, and
-              each one only does one thing.
-            </p>
-            <p className={styles.sideRow}>
-              <span className={content.statusLabel}>Opportunity</span>
-              <span className={styles.labelDot}> &middot; </span>
-              One platform with a full curriculum and modern craft.
-            </p>
-          </div>
-
-          <div className={styles.slides}>
-            <div className={`${content.slidePanel} ${styles.slideLeft}`}>
-              <Image
-                {...DIAGNOSIS_SLIDES.marketResearch}
-                alt={DIAGNOSIS_SLIDES.marketResearch.alt}
-                quality={IMAGE_QUALITY}
-                className={content.slideImg}
-              />
-            </div>
-            <div className={`${content.slidePanel} ${styles.slideRight}`}>
-              <Image
-                {...DIAGNOSIS_SLIDES.similarProducts}
-                alt={DIAGNOSIS_SLIDES.similarProducts.alt}
-                quality={IMAGE_QUALITY}
-                className={content.slideImg}
-              />
-            </div>
-          </div>
-        </div>
-      </Section>
-      <Section heading="The Audience’s Opinion">
-        <div className={styles.audience}>
-          <div className={styles.audienceRow}>
-            <div className={`${content.slidePanel} ${styles.audienceQuestions}`}>
-              <Image
-                {...AUDIENCE_SLIDES.questions}
-                alt={AUDIENCE_SLIDES.questions.alt}
-                sizes={AUDIENCE_SIZES}
-                quality={IMAGE_QUALITY}
-                className={content.slideImg}
-              />
-            </div>
-            <div className={styles.sideText}>
-              <p className={styles.sideRow}>
-                <span className={content.statusLabel}>Research &middot;</span>{" "}
-                Surveyed students about learning apps, and conducted usability
-                tests with an Islamic scholar, and a school&rsquo;s board of
-                education
-              </p>
-              <p className={styles.sideRow}>
-                <span className={content.statusLabel}>Finding &middot;</span>{" "}
-                Students don&rsquo;t want more lessons, they want a place they
-                want to return to, and one that can act as a teacher that adapts
-                to their learning.
-              </p>
-              <p className={styles.sideRow}>
-                <span className={content.statusLabel}>What changed &middot;</span>{" "}
-                Added an AI layer that tailors to the student and creates an
-                environment that feels comfortable and welcoming.
-              </p>
-            </div>
-          </div>
-
-          <div className={`${content.slidePanel} ${styles.audienceSurvey}`}>
+          <div className={`${content.slidePanel} ${styles.diagnosisMarket}`}>
             <Image
-              {...AUDIENCE_SLIDES.survey}
-              alt={AUDIENCE_SLIDES.survey.alt}
-              sizes={AUDIENCE_SIZES}
+              {...DIAGNOSIS_SLIDES.marketResearch}
+              alt={DIAGNOSIS_SLIDES.marketResearch.alt}
               quality={IMAGE_QUALITY}
               className={content.slideImg}
             />
+          </div>
+
+          <div className={styles.diagnosisRight}>
+            <div className={styles.diagnosisText}>
+              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
+                <span className={content.statusLabel}>Problem</span>
+                <span className={styles.labelDot}> &middot; </span>
+                Most learning apps were built around the content, instead of the
+                person learning it. Most still use decade-old layouts, and each one
+                only does one thing.
+              </p>
+              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
+                <span className={content.statusLabel}>Research</span>
+                <span className={styles.labelDot}> &middot; </span>
+                I surveyed students about the apps they use, then tested with a
+                scholar and a school&rsquo;s board of education.
+              </p>
+              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
+                <span className={content.statusLabel}>Finding</span>
+                <span className={styles.labelDot}> &middot; </span>
+                Students didn&rsquo;t just want more lessons. They wanted feedback
+                on how they were doing, and help where they were stuck.
+              </p>
+              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
+                <span className={content.statusLabel}>Opportunity</span>
+                <span className={styles.labelDot}> &middot; </span>
+                One platform with a full curriculum and modern craft, using AI to
+                tailor learning to each student.
+              </p>
+            </div>
+
+            <div className={content.slidePanel}>
+              <Image
+                {...DIAGNOSIS_SLIDES.survey}
+                alt={DIAGNOSIS_SLIDES.survey.alt}
+                quality={IMAGE_QUALITY}
+                className={`${content.slideImg} ${styles.diagnosisSurveyImg}`}
+              />
+            </div>
           </div>
         </div>
       </Section>
@@ -391,6 +362,58 @@ export default function IslamiclyPage() {
                 kept the same topics and layout.
               </p>
             </div>
+          </div>
+        </div>
+      </Section>
+      <Section heading="Tailored to You">
+        <div className={styles.tailored}>
+          <figure className={styles.tailoredLeft}>
+            <div className={content.slidePanel}>
+              <Image
+                {...AI_SCREENS.results}
+                alt={AI_SCREENS.results.alt}
+                quality={IMAGE_QUALITY}
+                className={content.slideImg}
+              />
+            </div>
+            <figcaption className={`${content.draftCaption} ${styles.tailoredCaption}`}>
+              After the quiz, the AI tells you what will change in your next
+              reading. (bottom left)
+            </figcaption>
+          </figure>
+
+          <div className={styles.tailoredRight}>
+            <div className={`${styles.sideText} ${styles.tailoredText}`}>
+              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
+                <span className={content.statusLabel}>How it works</span>
+                <span className={styles.labelDot}> &middot; </span>
+                After each chapter, a short quiz shows the AI what you understood.
+                The next lesson changes the layout to help you. If you miss a
+                date, the next chapter highlights dates.
+              </p>
+              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
+                <span className={content.statusLabel}>Integrity</span>
+                <span className={styles.labelDot}> &middot; </span>
+                The AI never writes the actual content. Every chapter is reviewed
+                by a scholar, and the AI only changes how the information is
+                presented.
+              </p>
+            </div>
+
+            <figure className={styles.tailoredChapter}>
+              <div className={content.slidePanel}>
+                <Image
+                  {...AI_SCREENS.chapter}
+                  alt={AI_SCREENS.chapter.alt}
+                  quality={IMAGE_QUALITY}
+                  className={content.slideImg}
+                />
+              </div>
+              <figcaption className={`${content.draftCaption} ${styles.tailoredCaption}`}>
+                Chapter 1.2: the dates are now bold, because dates were missed in
+                1.1.
+              </figcaption>
+            </figure>
           </div>
         </div>
       </Section>

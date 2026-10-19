@@ -1,9 +1,11 @@
-/* ═══ SECTION FRAME 1512 × 982 ═══ */
-/* Positions are Figma px; --u converts them to the section's width */
+/* ═══ SECTION FRAME 1512 × 1030 ═══ */
+/* Positions are Figma px; --u converts them to the section's width.
+   Everything below the heading sits 48px lower than Figma (982 frame) for more
+   room under the title, and the frame grows by the same 48 */
 .section {
   position: relative;
   width: 100%;
-  aspect-ratio: 1512 / 982;
+  aspect-ratio: 1512 / 1030;
   container-type: inline-size;
   overflow: hidden;
   background: #B9ADA3; /* same as the Projects section */
@@ -14,11 +16,13 @@
 }
 
 /* ═══ HEADING ═══ */
-/* 150px, text box at (76, 0) with normal leading */
+/* 150px, centred like the Projects heading, text box at y 0 with normal leading */
 .heading {
   position: absolute;
-  left: calc(76 * var(--u));
+  left: 0;
+  right: 0;
   top: 0;
+  text-align: center;
   font-size: calc(150 * var(--u));
   font-weight: 400;
   line-height: normal;
@@ -31,11 +35,11 @@
 }
 
 /* ═══ PHOTO ═══ */
-/* 422 × 538 at (76, 275) */
+/* 422 × 538 at (76, 323) */
 .photo {
   position: absolute;
   left: calc(76 * var(--u));
-  top: calc(275 * var(--u));
+  top: calc(323 * var(--u));
   width: calc(422 * var(--u));
   height: calc(538 * var(--u));
   border-radius: 18px;
@@ -62,13 +66,13 @@
 
 .bgBlock {
   left: calc(580 * var(--u));
-  top: calc(324 * var(--u));
+  top: calc(372 * var(--u));
   width: calc(742 * var(--u));
 }
 
 .dpBlock {
   left: calc(580 * var(--u));
-  top: calc(609 * var(--u));
+  top: calc(657 * var(--u));
   width: calc(714 * var(--u));
 }
 
@@ -83,11 +87,11 @@
   display: inline;
 }
 
-/* 712 × 3 at (580, 561), #584738 at 30% with round caps */
+/* 712 × 3 at (580, 609), #584738 at 30% with round caps */
 .divider {
   position: absolute;
   left: calc(580 * var(--u));
-  top: calc(561 * var(--u));
+  top: calc(609 * var(--u));
   width: calc(712 * var(--u));
   height: calc(3 * var(--u));
   border: none;
@@ -96,11 +100,11 @@
 }
 
 /* ═══ LINK PILLS ═══ */
-/* Email, Resume, LinkedIn spread across the photo's width, at y 848 */
+/* Email, Resume, LinkedIn spread across the photo's width, at y 896 */
 .pills {
   position: absolute;
   left: calc(76 * var(--u));
-  top: calc(848 * var(--u));
+  top: calc(896 * var(--u));
   width: calc(422 * var(--u));
   display: flex;
   justify-content: space-between;

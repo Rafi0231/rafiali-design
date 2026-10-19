@@ -117,11 +117,14 @@
   gap: calc(18 * var(--u));
 }
 
+/* Amiri's glyphs ride high in their line box, so the top padding drops
+   the capitals ~2px to sit centred in the pill */
 .pill {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   height: calc(22 * var(--u));
-  padding: 0 calc(12 * var(--u));
+  padding: calc(4 * var(--u)) calc(12 * var(--u)) 0;
   border-radius: 20px;
   background: color-mix(in srgb, var(--color-green) 50%, transparent);
   font-size: calc(20 * var(--u));

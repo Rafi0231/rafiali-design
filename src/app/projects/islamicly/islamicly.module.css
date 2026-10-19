@@ -144,22 +144,93 @@
   border-radius: 2px;
 }
 
-/* ── The Diagnosis — text top right, two slides below, right one dropped ──
-   Figma content width 1307: text 454, slides 647 + 616 with a 44 gap, drop 116. */
+/* ── Diagnosis and Direction — Market Research left, text over Survey right ──
+   Figma content width 1317 (x 107–1424): Market 647, right column 636. */
 
-/* the slides rise ~48px beside the text (which only fills the right third),
-   closing the space between the title and the images */
-.diagnosisSection {
-  --diagnosis-shift: 3.175cqw;
-}
-
+/* text starts level with the heading's bottom, so cancel the heading gap */
 .diagnosis {
   display: flex;
-  flex-direction: column;
-  gap: max(1cqw, var(--space-4));
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: calc(-1 * max(1.5cqw, var(--space-4)));
 }
 
-/* right-hand text block shared by The Diagnosis and The Audience's Opinion: 454 / 1307 */
+/* 647 / 1317; its top sits 181px below the text's */
+.diagnosisMarket {
+  flex: 0 0 49.13%;
+  margin-top: 11.97cqw;
+}
+
+/* 636 / 1317 */
+.diagnosisRight {
+  flex: 0 0 48.29%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.79cqw;
+}
+
+/* text inset 18px inside the Survey panel's edges */
+.diagnosisText {
+  padding-inline: 2.83%;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: max(1.455cqw, 17px);
+  line-height: 1.59;
+  letter-spacing: -0.014em;
+}
+
+/* rows ~17px either side of the dividers (Diagnosis and Tailored to You) */
+.sideText .sideRowSnug,
+.diagnosisText .sideRowSnug {
+  padding-block: max(1.12cqw, 12px);
+}
+
+.sideText .sideRowSnug:first-child,
+.diagnosisText .sideRowSnug:first-child {
+  padding-top: 0;
+}
+
+.sideText .sideRowSnug:last-child,
+.diagnosisText .sideRowSnug:last-child {
+  padding-bottom: 0;
+}
+
+/* Figma crops the slide's bottom edge: 613 × 315 */
+.diagnosisSurveyImg {
+  aspect-ratio: 613 / 315;
+  object-fit: cover;
+  object-position: top;
+}
+
+@media (max-width: 767.98px) {
+  /* text, Market Research, Survey */
+  .diagnosis {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .diagnosisMarket {
+    order: 2;
+    flex: none;
+    margin-top: 0;
+  }
+
+  .diagnosisRight {
+    display: contents;
+  }
+
+  .diagnosisText {
+    order: 1;
+    padding-inline: 0;
+  }
+
+  .diagnosisRight > :last-child {
+    order: 3;
+  }
+}
+
+/* right-hand text block shared by the later sections: 454 / 1307 */
 .sideText {
   margin-left: auto;
   width: 34.74%;
@@ -193,95 +264,9 @@
   line-height: 1;
 }
 
-/* margin-top % resolves against the row's width: 116 / 1307 */
-.slides {
-  margin-top: calc(-1 * var(--diagnosis-shift));
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.slideLeft {
-  flex: 0 0 49.5%;
-  margin: 0;
-}
-
-.slideRight {
-  flex: 0 0 47.13%;
-  margin: 8.875% 0 0;
-}
-
 @media (max-width: 767.98px) {
-  .diagnosisSection {
-    --diagnosis-shift: 0px;
-  }
-
   .sideText {
     margin-left: 0;
-    width: auto;
-  }
-
-  .slides {
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .slideLeft,
-  .slideRight {
-    flex-basis: auto;
-    width: 100%;
-    margin: 0;
-  }
-}
-
-/* ── The Audience's Opinion ──
-   Row 1: Questions (pushed right, 40px lower) | text.  Below: Survey.
-   Widths / offsets are fractions of the Figma content width (1307). */
-
-.audience {
-  display: flex;
-  flex-direction: column;
-  gap: max(1.06cqw, var(--space-4));
-}
-
-.audienceRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-/* margin % resolves against the row's width: 202 / 1307 right, 40 / 1307 down */
-.audienceQuestions {
-  width: 45.22%;
-  margin: 3.06% 0 0 15.46%;
-}
-
-.audienceSurvey {
-  width: 45.14%;
-}
-
-@media (max-width: 767.98px) {
-  /* the row dissolves so the items can reorder: text, Questions, Survey */
-  .audience {
-    gap: var(--space-6);
-  }
-
-  .audienceRow {
-    display: contents;
-  }
-
-  .audience .sideText {
-    order: 1;
-  }
-
-  .audienceQuestions {
-    order: 2;
-    width: auto;
-    margin: 0;
-  }
-
-  .audienceSurvey {
-    order: 3;
     width: auto;
   }
 }
@@ -555,5 +540,82 @@
   .voiceRow > :first-child,
   .voiceRow > p {
     flex: none;
+  }
+}
+
+/* ── Tailored to You — Results left, text over Chapter 1.2 right ──
+   Figma span 1362 (x 98–1460): Results 651, Chapter 693; text 115px into the right column. */
+
+/* text starts level with the heading's bottom, so cancel the heading gap */
+.tailored {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: calc(-1 * max(1.5cqw, var(--space-4)));
+}
+
+/* 651 / 1362; its top sits 67px below the text's */
+.tailoredLeft {
+  flex: 0 0 47.8%;
+  margin: 4.43cqw 0 0;
+}
+
+.tailoredChapter {
+  margin: 0;
+}
+
+/* Figma's caption box runs past the image: 690 / 651 */
+.tailoredLeft > .tailoredCaption {
+  width: 106%;
+}
+
+/* 693 / 1362 */
+.tailoredRight {
+  flex: 0 0 50.88%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.18cqw;
+}
+
+/* 578 of the 693 column, right-aligned */
+.tailoredText {
+  width: 83.41%;
+}
+
+/* 22px italic, just under its image */
+.tailoredCaption {
+  margin-top: 0.2em;
+  font-size: max(1.455cqw, 15px);
+}
+
+@media (max-width: 767.98px) {
+  /* text, Results, Chapter 1.2, each image with its caption below */
+  .tailored {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .tailoredRight {
+    display: contents;
+  }
+
+  .tailoredText {
+    order: 1;
+    width: auto;
+  }
+
+  .tailoredLeft {
+    order: 2;
+    margin-top: 0;
+  }
+
+  .tailoredLeft > .tailoredCaption {
+    width: auto;
+  }
+
+  .tailoredChapter {
+    order: 3;
   }
 }
