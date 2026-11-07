@@ -29,7 +29,7 @@ const FACTS = [
   ],
   [
     "Outcome",
-    "It’s live at clarity-zakat.vercel.app and backed by 135 automated tests. A scholar tried it with his own situation and got the exact amount.",
+    "Live at clarity-zakat.vercel.app, with a scholar confirming the exact amount for his own situation. Now being polished for release to a community of 10,000+ during Ramadan.",
   ],
 ] as const;
 
