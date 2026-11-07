@@ -55,10 +55,10 @@
 /* ── nav ── */
 .navLink {
   position: absolute;
+  left: var(--nav-x);
   top: 2.851%;
   font-size: var(--hero-nav);
   line-height: normal;
-  letter-spacing: 0.035em;
   color: rgba(74, 53, 48, 0.85);
   transition: text-shadow var(--duration-fast) var(--ease-out);
 }
@@ -90,4 +90,55 @@
   font-style: italic;
   line-height: normal;
   color: var(--color-green);
+}
+
+/* ═══ SMALL SCREENS ═══ */
+/* The photo keeps its 1512 × 982 frame so the arm still crosses the "i"; the text
+   layer grows past it and the stats drop into a normal row under the photo */
+@media (max-width: 1023.98px) {
+  .hero {
+    --photo-h: 64.947cqw;
+    aspect-ratio: auto;
+    background: #B9ADA3;
+  }
+
+  .base,
+  .cutout {
+    inset: 0 0 auto;
+    height: var(--photo-h);
+  }
+
+  .fade {
+    top: calc(var(--photo-h) - 13.228cqw);
+    bottom: auto;
+    height: 13.228cqw;
+  }
+
+  .textLayer {
+    position: relative;
+    inset: auto;
+    padding-top: var(--photo-h);
+  }
+
+  .navLink {
+    top: 1.85cqw;
+    padding-block: var(--space-2);
+    font-size: 1rem;
+    color: rgba(74, 53, 48, 0.95);
+  }
+
+  .navLink:nth-of-type(1) { left: 14cqw; }
+  .navLink:nth-of-type(2) { left: 39cqw; }
+  .navLink:nth-of-type(3) { left: 60cqw; }
+
+  .name {
+    top: 8.07cqw;
+  }
+
+  /* left of the figure, so the cutout doesn't cover it */
+  .role {
+    left: 14.5cqw;
+    top: 33.5cqw;
+    font-size: clamp(0.9375rem, 3.8cqw, 1.5rem);
+  }
 }

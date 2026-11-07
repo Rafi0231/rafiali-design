@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Amiri } from "next/font/google";
+import { Amiri, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 
 const amiri = Amiri({
@@ -10,6 +10,13 @@ const amiri = Amiri({
   display: "swap",
 });
 
+const instrumentSans = Instrument_Sans({
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-instrument-sans",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Rafi Ali",
   description: "UX & Design Engineer",
@@ -17,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={amiri.variable}>
+    <html lang="en" className={`${amiri.variable} ${instrumentSans.variable}`}>
       <body>{children}</body>
     </html>
   );

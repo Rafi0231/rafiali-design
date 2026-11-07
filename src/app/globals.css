@@ -8,6 +8,7 @@
 
   /* Typography */
   --font-serif: var(--font-amiri), Georgia, "Times New Roman", serif;
+  --font-sans:  var(--font-instrument-sans), system-ui, sans-serif;
 
   /* Type scale */
   --text-display: 3.5rem;    /* 56px — hero statements */
@@ -32,7 +33,7 @@
   --tracking-normal:   0em;
   --tracking-name:     0.015em;  /* 1.5% */
   --tracking-wide:     0.06em;
-  --tracking-widest:   0.14em;
+  --tracking-widest:  0.1em;
 
   /* Spacing (4px base) */
   --space-1:  0.25rem;  /*  4px */
@@ -72,13 +73,36 @@ html {
 body {
   min-height: 100%;
   overflow-x: hidden;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--text-base);
   line-height: var(--leading-body);
   color: var(--color-green);
   background: #DDD7CF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  hyphens: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  text-wrap: balance;
+}
+
+/* no widows: the browser keeps at least two words on a last line */
+p,
+li,
+dd,
+figcaption,
+blockquote {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: rgba(31, 53, 29, 0.85);
+  color: var(--color-ivory);
 }
 
 a {

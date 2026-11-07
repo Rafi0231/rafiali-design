@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import HeroStats from "./HeroStats";
 import styles from "./Hero.module.css";
@@ -26,13 +27,13 @@ export default function Hero() {
 
       {/* Layer 2 — text sits between the two images */}
       <div className={styles.textLayer}>
-        <a href="#projects" className={styles.navLink} style={{ left: "30.291%" }}>
+        <a href="#projects" className={styles.navLink} style={{ "--nav-x": "30.291%" } as CSSProperties}>
           Projects
         </a>
-        <a href="#about" className={styles.navLink} style={{ left: "46.892%" }}>
+        <a href="#about" className={styles.navLink} style={{ "--nav-x": "46.892%" } as CSSProperties}>
           About
         </a>
-        <a href="#connect" className={styles.navLink} style={{ left: "61.706%" }}>
+        <a href="#connect" className={styles.navLink} style={{ "--nav-x": "61.706%" } as CSSProperties}>
           Connect
         </a>
 

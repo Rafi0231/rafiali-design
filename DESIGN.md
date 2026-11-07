@@ -1,6 +1,6 @@
 ---
 name: Rafi Ali
-description: Editorial serif portfolio for a UX & design engineer — calm yet confident.
+description: Editorial portfolio for a UX & design engineer — calm yet confident.
 colors:
   forest-ink: "#1F351D"
   walnut: "#4A3530"
@@ -10,7 +10,6 @@ colors:
   gallery-grey: "#BFBFBF"
   silver: "#BBB6B6"
   cream-glass: "#D9D9D9"
-  slide-mat: "#A8A6A3"
   body-ink: "rgba(0, 0, 0, 0.6)"
   caption-ink: "rgba(31, 53, 29, 0.7)"
   summary-ink: "#352727"
@@ -45,19 +44,19 @@ typography:
     fontWeight: 700
     lineHeight: 1.15
   body:
-    fontFamily: "Amiri, Georgia, Times New Roman, serif"
+    fontFamily: "Instrument Sans, system-ui, sans-serif"
     fontSize: "max(1.455cqw, 17px)"
     fontWeight: 400
     lineHeight: 1.59
     letterSpacing: "-0.014em"
   caption:
-    fontFamily: "Amiri, Georgia, Times New Roman, serif"
+    fontFamily: "Instrument Sans, system-ui, sans-serif"
     fontSize: "max(1.323cqw, 15px)"
     fontWeight: 400
     lineHeight: 1.65
     letterSpacing: "-0.01em"
   label:
-    fontFamily: "Amiri, Georgia, Times New Roman, serif"
+    fontFamily: "Instrument Sans, system-ui, sans-serif"
     fontSize: "1.364em"
     fontWeight: 700
     lineHeight: 1
@@ -97,10 +96,6 @@ components:
     backgroundColor: "color-mix(in srgb, #D9D9D9 60%, transparent)"
     rounded: "{rounded.card}"
     padding: "max(2.6cqw, 24px) max(4.233cqw, 16px)"
-  slide-panel:
-    backgroundColor: "{colors.slide-mat}"
-    rounded: "{rounded.mat}"
-    padding: "max(0.26cqw, 3px)"
 ---
 
 # Design System: Rafi Ali
@@ -109,14 +104,14 @@ components:
 
 **Creative North Star: "Calm Yet Confident"**
 
-A single serif voice (Amiri) set at very large sizes on warm linen and gallery-grey grounds. The site reads like an editorial folio: enormous roman titles, a thin walnut rule beneath each, then content laid out like plates with italic captions. Confidence comes from scale. The name runs at 300px across the hero and section titles at 150px. Calm comes from restraint: one typeface, one ink color, muted grounds, and no ornament the work doesn't earn.
+Amiri set at very large sizes, with Instrument Sans for reading text, on warm linen and gallery-grey grounds. The site reads like an editorial folio: enormous roman titles, a thin walnut rule beneath each, then content laid out like plates with italic captions. Confidence comes from scale. The name runs at 300px across the hero and section titles at 150px. Calm comes from restraint: two typefaces with clear jobs, one ink color, muted grounds, and no ornament the work doesn't earn.
 
 Every desktop surface is drawn against a 1512 × 982 Figma frame and scaled with container units (`cqw`), so proportions hold exactly at any desktop width. The home page sections are fixed-ratio compositions with absolutely placed elements. Case studies use a flowing column inside a frosted glass card, and their chrome (title, rule, Back pill) is pinned to the same frame coordinates.
 
 Depth is tactile. Cards lift on hover, glass pills press and tilt, and frosted cards hold the case-study content like a vitrine.
 
 **Key Characteristics:**
-- One serif family at every level; hierarchy comes from size, weight (400/700) and italics, never from a second face.
+- Amiri for headings, Instrument Sans for body text, labels and buttons; within each, hierarchy comes from size, weight and italics.
 - Forest Ink green is the voice of all headings and chrome text; case-study body copy is neutral black at 60%.
 - Positions are locked to the 1512 frame; type sizes come from one shared scale of tokens.
 - A walnut hairline rule under every page/section title is the recurring structural mark.
@@ -139,7 +134,6 @@ A warm, low-chroma palette: forest green ink on linen and grey, with walnut brow
 - **Gallery Grey** (gallery-grey): Projects and About section grounds, plus the gap band between them.
 - **Silver** (silver): Case-study page ground.
 - **Cream Glass** (cream-glass): Mixed at 60% for the frosted case-study card.
-- **Slide Mat** (slide-mat): The thin grey mat framing screenshots and galleries.
 - **Body Ink** (body-ink): Case-study body copy, neutral black at 60% (4.9:1 on the case-study card). About body is set in Forest Ink instead.
 - **Caption Ink** (caption-ink): Italic captions.
 - **Summary Ink** (summary-ink): Project-card summaries.
@@ -149,7 +143,7 @@ A warm, low-chroma palette: forest green ink on linen and grey, with walnut brow
 ## Typography
 
 **Display Font:** Amiri (with Georgia, Times New Roman, serif)
-**Body Font:** Amiri (same family)
+**Body Font:** Instrument Sans (body text, labels, buttons)
 
 **Character:** A classical Naskh-companion roman with calligraphic italics. It reads as literary and unhurried, and suits a portfolio rooted in Islamic scholarship and craft.
 
@@ -164,9 +158,11 @@ A warm, low-chroma palette: forest green ink on linen and grey, with walnut brow
 - **Caption** (italic 400, 15–20px, 1.65): Plate captions under images.
 - **Label** (700, ~1.36em of body): Inline run-in labels ("Insight", "Constraint", "Presented") in side-text rows.
 
-**The Scale-Is-Voice Rule.** Hierarchy is carried by dramatic size contrast within one family. Never add a second typeface for emphasis.
+**The Scale-Is-Voice Rule.** Hierarchy is carried by dramatic size contrast. Amiri holds headings and Instrument Sans holds everything else; never add a third typeface.
 
 ## Layout
+
+All four case studies use the editorial system in `Editorial`: warm paper, titles about 8× the body text, one dark room per page, and one spacing scale (`--section`, `--block`, `--gap`). On desktop, each chapter fills at least one screen and its title is the screen's anchor: rotated, letter tops facing the window, fixed in place while the next chapter wipes in over it. Only titles too long for the window height shrink. Below 1100px the same anchor becomes a fixed headline band across the top of the screen. Statements are smaller, italic and softened, so the two never read as the same level. Type follows these rules: text at 1.25 line height, lines of 45–75 characters, flush left, no hyphenation, no widows, opening quotes hung, capitals tracked +10% and never used for more than one line, lowercase never tracked positively, and tracking and line height both tighten as size rises. Every caption uses one style: Instrument Sans italic. The first screen sets the headline left and the work right, never overlapping, with the work sized to fit inside the window height. Images always stay inside the page margins and inside their section; work with small text is never cropped or overlapped.
 
 The desktop grid is the 1512 × 982 Figma frame. The left margin is 6.085% (92px), and the content measure is 87.963% of the frame between margins. The home page uses three project cards, 417px wide at 1512, set at 6.085%, 37.368% and 68.717%. All home positions are percentages of the frame, and type is in `cqw`, so the composition scales as a single picture.
 
@@ -215,18 +211,18 @@ Soft rectangles with generous corners on containers (20px cards, 18px photo) and
 - **Style:** Title type with a 3px, 30%-black accent bar running from cap height to baseline at its left.
 
 ### Slide Panel
-- **Style:** A thin slide-mat (3–4px) around 2px-rounded screenshots, with an italic Caption Ink caption directly below.
+- **Style:** Work sits directly on the page with no backing, with an italic Caption Ink caption directly below.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep Amiri as the only typeface and express hierarchy through size, 700 weight and italics.
+- **Do** keep Amiri for headings and Instrument Sans for body text, labels and buttons, and express hierarchy through size, weight and italics.
 - **Do** place a walnut hairline rule under page and section titles.
 - **Do** size type from the defined scale tokens (`--text-display` … `--text-xs`); no one-off sizes.
 - **Do** caption images in italic Caption Ink, set tight beneath the plate.
 
 ### Don't:
-- **Don't** introduce a sans-serif or second display face.
+- **Don't** introduce a third typeface or a second display face.
 - **Don't** add saturated colors. The palette is forest ink, walnut and warm neutrals.
 - **Don't** change the Back, Resume or LinkedIn glass pills without asking first.
 - **Don't** add resting drop shadows to static content; shadow is a response to touch.

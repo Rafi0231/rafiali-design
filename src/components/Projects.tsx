@@ -11,7 +11,6 @@ type VideoProps = { src: string; poster: string; width: number; height: number; 
 // A grey mat with a video or image inset in it; Figma px inside the card
 type Frame = {
   mat: [x: number, y: number, w: number, h: number];
-  inner: [x: number, y: number, w: number, h: number];
   radius: number;
   // which part of the media to keep when the frame crops it (default top)
   position?: "top" | "center" | "bottom";
@@ -43,13 +42,12 @@ const projects: Project[] = [
     description:
       "Rebuilding how we study online. Most learning apps run on decade-old design, so I designed Islamicly: a warm, library-like platform with an AI layer that tailors each lesson to the student.",
     role: "Solo product designer",
-    outcome: "Presented to a school board of education",
+    outcome: "Class demo · School pilot in progress",
     numeral: "01",
     href: "/projects/islamicly",
     frames: [
       {
         mat: [584, 106, 788, 517],
-        inner: [9, 9, 770, 501],
         radius: 15,
         video: {
           src: "/videos/islamicly/islamicly-loop.mp4",
@@ -79,7 +77,6 @@ const projects: Project[] = [
     frames: [
       {
         mat: [596, 159, 824, 445],
-        inner: [9, 9, 806, 428],
         radius: 10,
         video: {
           src: "/videos/clarity/clarity-loop.mp4",
@@ -109,7 +106,6 @@ const projects: Project[] = [
     frames: [
       {
         mat: [686, 174, 718, 410],
-        inner: [8, 6, 704, 396],
         radius: 10,
         // crops the thin black strip at the top of the footage
         position: "bottom",
@@ -139,8 +135,8 @@ const projects: Project[] = [
     numeral: "04",
     href: "/projects/light-to-the-artists",
     frames: [
-      { mat: [721, 173, 283, 431], inner: [9, 8, 266, 413], radius: 0, image: "/images/Sarah.webp" },
-      { mat: [1078, 244, 283, 432], inner: [7, 8, 268, 417], radius: 0, image: "/images/Jassiel.webp" },
+      { mat: [721, 173, 283, 439], radius: 0, image: "/images/Sarah.webp" },
+      { mat: [1078, 244, 283, 438], radius: 0, image: "/images/Jassiel.webp" },
     ],
     layout: {
       pillsTop: 151,
@@ -170,10 +166,6 @@ const frameVars = (f: Frame) =>
     "--mat-y": f.mat[1],
     "--mat-w": f.mat[2],
     "--mat-h": f.mat[3],
-    "--inner-x": f.inner[0],
-    "--inner-y": f.inner[1],
-    "--inner-w": f.inner[2],
-    "--inner-h": f.inner[3],
     "--inner-radius": f.radius,
     "--media-pos": f.position ?? "top",
   }) as React.CSSProperties;
@@ -242,7 +234,7 @@ export default function Projects() {
                     {"video" in frame ? (
                       <AutoplayVideo {...frame.video} className={styles.media} />
                     ) : (
-                      <Image src={frame.image} alt="" fill sizes="20vw" className={styles.media} />
+                      <Image src={frame.image} alt="" fill sizes="(max-width: 1023px) 45vw, 20vw" className={styles.media} />
                     )}
                   </div>
                 </div>

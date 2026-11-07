@@ -4,10 +4,11 @@
   width: 100%;
   min-height: 100vh;
   container-type: inline-size;
+  /* the Back pill's soft shadow reaches past the right edge */
+  overflow-x: clip;
   background: var(--frame-bg, var(--color-silver));
   /* card starts at y 196 of 982 → 19.959% × 982/1512 of the width */
   padding-top: 12.963%;
-  padding-bottom: max(3cqw, var(--space-6));
 }
 
 /* ═══ CHROME — 1512 × 982 box so CaseStudyLayout's % positions resolve as before ═══ */
@@ -35,83 +36,24 @@
   background: var(--rule-color, rgba(107, 82, 68, 0.5));
 }
 
-/* Back pill keeps a readable size on small screens; desktop untouched */
+/* Back pill keeps a readable size on small screens; desktop untouched.
+   The title gets larger beside it, and the rule and card move down to make room */
 @media (max-width: 767.98px) {
+  .frame {
+    padding-top: 4.75rem;
+  }
+
+  .chrome .titleLow {
+    top: 0.625rem;
+    font-size: min(2.25rem, 8.6cqw);
+  }
+
+  .chrome .ruleSoft {
+    top: 3.75rem;
+  }
+
   .chrome .backPillMobile {
     font-size: max(1.653cqw, 14px);
     height: max(3.565%, 32px);
-  }
-}
-
-/* ═══ CARD — glass container (x 28, 1451 wide), height follows content ═══ */
-.card {
-  margin-inline: 1.852%;
-  border-radius: 20px;
-  background: color-mix(in srgb, var(--color-cream) 60%, transparent);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  padding-inline: max(4.233cqw, var(--space-4));
-  padding-block: max(2.6cqw, var(--space-6));
-  display: flex;
-  flex-direction: column;
-  /* ~1.5in (144px at 1512) between sections */
-  gap: max(9.52cqw, var(--space-16));
-}
-
-/* bare — 1451 wide at x 28 with no border, padding or gap; children place themselves */
-.cardBare {
-  width: calc(1451 / 1512 * 100cqw);
-  margin-inline: 1.852% 0;
-  border: none;
-  padding: 0;
-  gap: 0;
-}
-
-/* ═══ SECTION ═══ */
-.section {
-  display: flex;
-  flex-direction: column;
-  gap: max(1.5cqw, var(--space-4));
-}
-
-/* accent bar: thin grey line before the heading text */
-.sectionHeading {
-  position: relative;
-  align-self: flex-start;
-  padding-left: 0.25em;
-  font-size: max(3.307cqw, 1.75rem);
-  font-weight: 400;
-  color: var(--color-green);
-  line-height: var(--leading-tight);
-  margin: 0;
-}
-
-/* from cap top (0.15em) to just below the baseline (0.87em) of a 1.15em line */
-.sectionHeading::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.15em;
-  bottom: 0.28em;
-  width: 3px;
-  border-radius: 1px;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-/* columns side by side on desktop, stacked below 768px */
-.columns {
-  display: grid;
-  grid-template-columns: var(--cols, none);
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(0, 1fr);
-  gap: max(2cqw, var(--space-6));
-  align-items: start;
-}
-
-@media (max-width: 767.98px) {
-  .columns {
-    grid-template-columns: minmax(0, 1fr);
-    grid-auto-flow: row;
   }
 }

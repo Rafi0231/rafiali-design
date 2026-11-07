@@ -57,7 +57,7 @@ export default function About() {
             src="/images/AboutPic.webp"
             alt="Rafi Ali"
             fill
-            sizes="28vw"
+            sizes="(max-width: 1023px) 92vw, 28vw"
             className={styles.img}
           />
         </BorderGlow>

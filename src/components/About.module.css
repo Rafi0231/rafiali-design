@@ -59,8 +59,8 @@
    Tops are 5px above Figma's text boxes so the baselines land where Figma's do */
 .block {
   position: absolute;
-  font-size: calc(22 * var(--u));
-  line-height: calc(40 * var(--u));
+  font-size: calc(20 * var(--u));
+  line-height: calc(36 * var(--u));
   color: var(--color-green);
 }
 
@@ -112,7 +112,7 @@
 
 .pillWrap {
   height: calc(35 * var(--u));
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: calc(25 * var(--u));
   color: var(--color-green);
   white-space: nowrap;
@@ -140,5 +140,70 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ═══ SMALL SCREENS ═══ */
+@media (max-width: 1023.98px) {
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    aspect-ratio: auto;
+    padding: var(--space-4) var(--space-4) var(--space-12);
+  }
+
+  .heading {
+    position: static;
+    font-size: clamp(3rem, 13cqw, 5.5rem);
+  }
+
+  .photo {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(100%, 26rem);
+    height: auto;
+    aspect-ratio: 422 / 538;
+    align-self: center;
+  }
+
+  .block {
+    position: static;
+    width: auto;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  .blockHeading {
+    display: block;
+    margin: 0 0 var(--space-2);
+    font-size: 1.75rem;
+    line-height: var(--leading-tight);
+  }
+
+  .blockBody {
+    display: block;
+  }
+
+  .divider {
+    position: static;
+    width: 100%;
+    height: 1px;
+  }
+
+  .pills {
+    position: static;
+    width: 100%;
+    gap: var(--space-3);
+    justify-content: center;
+    padding-top: var(--space-2);
+  }
+
+  .pillWrap {
+    flex: 1 1 0;
+    max-width: 10rem;
+    height: 2.75rem;
+    font-size: 1rem;
   }
 }

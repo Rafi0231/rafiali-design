@@ -1,535 +1,194 @@
-/* All positions are % of the scroll-area panel (1451 × 743).
-   Font sizes are cqw against the outer 1512px frame. */
+/* The gallery wall: the posters hang without frames, and each section is hung
+   differently. The dark room is Their Voices, where the artists speak. */
 
-.imgFrame {
-  position: absolute;
-  overflow: hidden;
-}
-
-.img {
+/* ═══ HERO — the wall of posters, cropped from a tall photo ═══ */
+.heroImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
   object-fit: cover;
+  object-position: 50% 6%;
 }
 
-/* font-size passed inline — varies per panel */
-.body {
-  position: absolute;
-  color: rgba(0, 0, 0, 0.6);
-  letter-spacing: -0.01em;
-  line-height: var(--leading-body);
+/* ═══ A SYSTEM — text, poster, and the poster's parts, tops level ═══ */
+.systemText {
+  grid-column: 1 / 5;
 }
 
-.body p + p {
-  margin-top: 1em;
+.systemPoster {
+  grid-column: 5 / 10;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 24px 48px rgba(31, 53, 29, 0.28);
 }
 
-/* standard 1.190cqw captions */
-.caption {
-  position: absolute;
-  font-size: 1.190cqw;
-  font-style: italic;
+.parts {
+  grid-column: 10 / -1;
+  padding: 0 0 0 0.5rem;
+  list-style: none;
+  font-size: 1.0625rem;
+  line-height: 1.25;
+}
+
+.parts li {
+  padding-block: 0.5rem;
+  border-top: 1px solid rgba(31, 53, 29, 0.25);
+}
+
+/* its first line sits level with the text across the page */
+.parts li:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.parts strong {
+  font-weight: 600;
   color: var(--color-green);
-  letter-spacing: -0.01em;
-  line-height: var(--leading-body);
 }
 
-/* 0.860cqw — panel 3 draft captions */
-.captionSm {
-  position: absolute;
-  font-size: 0.860cqw;
+.flexPart {
+  color: #6F5244;
+}
+
+.flexPart strong {
+  color: inherit;
+}
+
+/* ═══ THEIR VOICES ═══ */
+.voicesIntro {
+  grid-column: 1 / 8;
+}
+
+.voicesStatement {
+  grid-column: 1 / 12;
+  margin-top: var(--block);
+}
+
+.voicesBody {
+  grid-column: 1 / 8;
+  align-self: start;
+  margin-top: var(--block);
+}
+
+.quote {
+  max-width: 42rem;
+  margin-top: var(--gap);
+}
+
+.quoteSource {
+  margin-bottom: 0.5rem;
+  font-size: 1.0625rem;
   font-style: italic;
-  color: var(--color-green);
-  letter-spacing: -0.01em;
-  line-height: var(--leading-body);
-}
-
-/* 0.794cqw — panel 5 gallery caption */
-.captionXs {
-  position: absolute;
-  font-size: 0.794cqw;
-  font-style: italic;
-  color: var(--color-green);
-  letter-spacing: -0.01em;
-  line-height: var(--leading-body);
-}
-
-/* ── panel 2 ── */
-
-.quoteBox {
-  position: absolute;
-  background: rgba(139, 107, 92, 0.5);
-  border-radius: 18px;
 }
 
 .quoteText {
-  position: absolute;
-  font-size: 1.058cqw;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.1cqw, 2rem);
   font-style: italic;
-  color: var(--color-green);
-  letter-spacing: -0.01em;
-  line-height: var(--leading-body);
+  line-height: 1.25;
+  color: var(--color-ivory);
 }
 
-/* ── panel 3 ── */
-
-.introLine {
-  position: absolute;
-  font-size: 1.720cqw;
-  color: var(--color-green);
-  letter-spacing: -0.01em;
-  line-height: var(--leading-body);
+/* whole, inside the room, level with the text beside it */
+.voicesPoster {
+  grid-column: 9 / -1;
+  align-self: start;
+  margin-top: var(--block);
 }
 
-/* ── panel 4 annotations ── */
+.posterImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 24px 48px rgba(31, 53, 29, 0.32);
+}
 
-.annotLabel {
-  position: absolute;
-  font-size: 0.860cqw;
+.posterCaption {
+  margin-top: 0.5rem;
+  font-size: 1.0625rem;
   font-style: italic;
-  letter-spacing: -0.01em;
-  line-height: var(--leading-body);
+  line-height: 1.25;
+  color: var(--voice);
 }
 
-.annotLine {
-  position: absolute;
-  width: 1.241%;
-  height: 1px;
-  border-radius: 1px;
+/* ═══ BRICK BY BRICK — five drafts on one line ═══ */
+.brickWide {
+  grid-column: 1 / 9;
 }
 
-/* ── The Result — flow layout, spacing exactly as the Figma frame ──
-   Every distance is Figma px / 1512 (cqw), so it's exact at 1512 and scales evenly.
-   Figma's accent bar sits at x 98; ours sits on the content edge, so x values
-   are measured from the bar. Text, panel and caption styles come from
-   caseStudyContent.module.css. */
-
-/* pulled up so the panel's top sits 63px below the heading's top */
-.result {
-  display: flex;
-  align-items: flex-start;
-  margin-top: calc(4.167cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
+.brickNote {
+  margin-top: var(--gap);
 }
 
-/* 508 wide, starting at the bar; Overview 84px below the panel's top */
-.resultText {
-  flex: 0 0 33.6cqw;
-  margin-top: 5.56cqw;
-}
-
-/* list ends 30px above the divider; Shipped starts 85px below it
-   (Figma has 61; 24px more room requested) */
-.resultText > hr {
-  margin: 1.98cqw 0 5.62cqw;
-}
-
-/* Shipped ends 18px above the second divider; Client response starts 16px below it */
-.resultText > p {
-  padding-block: 0 1.19cqw;
-}
-
-.resultText > p + p {
-  padding-block: 1.06cqw 0;
-}
-
-/* the 497 × 633 photo panel, 224px right of the text column (x 830 in Figma) */
-.resultMedia {
-  flex: 0 0 32.87cqw;
-  margin-left: 14.81cqw;
-}
-
-.resultImg {
-  aspect-ratio: 489 / 625;
-  object-fit: cover;
-}
-
-@media (max-width: 767.98px) {
-  /* text, then the photo */
-  .result {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-6);
-    margin-top: 0;
-  }
-
-  .resultText,
-  .resultMedia {
-    flex: none;
-    margin: 0;
-  }
-
-  .resultText > hr {
-    margin: var(--space-4) 0 var(--space-6);
-  }
-
-  .resultText > p {
-    padding-bottom: var(--space-3);
-  }
-
-  .resultText > p + p {
-    padding-top: var(--space-3);
-  }
-}
-
-/* ── Their Voices ──
-   Figma px / 1512 (cqw), x measured from the accent bar (Figma x 107). */
-
-/* pulled up so the poster's panel sits 65px below the heading's top */
-.voices {
-  display: flex;
-  align-items: flex-start;
-  margin-top: calc(4.299cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
-}
-
-/* text + quote, 894 wide; Research starts 110px below the poster's panel */
-.voicesMain {
-  flex: 0 0 59.13cqw;
-  margin-top: 7.28cqw;
-}
-
-/* 535 wide; rows ~23px below each divider and ~30px above the next */
-.voicesText {
-  width: 35.38cqw;
-}
-
-.voicesText > p {
-  padding-block: max(1.52cqw, 10px) max(1.98cqw, 12px);
-}
-
-.voicesText > p:last-child {
-  padding-bottom: 0;
-}
-
-/* 894 × 177 box, 71px below Constraint's last line */
-.voicesQuote {
-  margin-top: 4.56cqw;
-  padding: 0.93cqw 0.79cqw 0.93cqw 1.19cqw;
-  border-radius: 18px;
-  background: rgba(139, 107, 92, 0.5);
-  color: var(--color-green);
-  font-style: italic;
-  letter-spacing: -0.01em;
-}
-
-.voicesQuoteTitle {
-  margin: 0;
-  font-size: max(1.19cqw, 15px);
-  line-height: 1.39;
-}
-
-/* the quote hangs 68px in from the title */
-.voicesQuoteText {
-  margin: 0.86cqw 0 0 4.5cqw;
-  font-size: max(1.058cqw, 14px);
-  line-height: 1.73;
-}
-
-/* 414 × 632 panel, 43px right of the quote box; it runs 28px past the
-   content edge into the card's padding, as in Figma */
-.voicesFigure {
-  flex: 0 0 27.38cqw;
-  margin: 0 -1.85cqw 0 2.84cqw;
-}
-
-.voicesFigure figcaption {
-  margin-top: 0;
-  text-align: center;
-}
-
-@media (max-width: 767.98px) {
-  /* text, then the quote, then the poster */
-  .voices {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-6);
-    margin-top: 0;
-  }
-
-  .voicesMain,
-  .voicesText,
-  .voicesFigure {
-    flex: none;
-    width: auto;
-    margin: 0;
-  }
-
-  .voicesQuote {
-    margin-top: var(--space-6);
-    padding: var(--space-3) var(--space-4);
-  }
-
-  .voicesQuoteText {
-    margin: var(--space-2) 0 0 var(--space-4);
-  }
-}
-
-/* ── Brick by Brick ──
-   Figma px / 1512 (cqw), x measured from the accent bar (Figma x 107). */
-
-/* Critique starts 130px below the heading's top (Figma has 59px; more room
-   requested, a little less than Their Voices' 175px) */
-.brickText {
-  width: 35.38cqw;
-  margin: calc(8.598cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4))) 0 0 52.38cqw;
-}
-
-/* Critique ends 25px above the divider; What changed starts 23px below it */
-.brickText > p:first-child {
-  padding: 0 0 1.65cqw;
-}
-
-.brickText > p + p {
-  padding: 1.52cqw 0 0;
-}
-
-/* five 267 × 403 panels with equal 11px gaps (1379px), centred in the card
-   so the space to the card's edge is the same on both sides; the row is
-   wider than the content box, so it's centred against that box's width */
-.brickRow {
+.drafts {
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  column-gap: 0.7275cqw;
-  width: 91.2cqw;
-  margin: 4.37cqw 0 0 calc((100% - 91.2cqw) / 2);
-}
-
-.brickFigure {
-  margin: 0;
-}
-
-.brickImg {
-  aspect-ratio: 259 / 395;
-  object-fit: cover;
-}
-
-/* 13px italic, flush under each panel */
-.brickCaption {
-  margin-top: 0;
-  font-size: max(0.86cqw, 12px);
-  font-style: italic;
-  line-height: 1.6;
-  letter-spacing: -0.01em;
-  color: rgba(31, 53, 29, 0.7); /* same as every other caption */
-}
-
-@media (max-width: 767.98px) {
-  /* text, then the drafts two-up */
-  .brickText {
-    width: auto;
-    margin: 0;
-  }
-
-  .brickText > p:first-child {
-    padding-bottom: var(--space-3);
-  }
-
-  .brickText > p + p {
-    padding-top: var(--space-3);
-  }
-
-  .brickRow {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-4) var(--space-3);
-    width: auto;
-    margin: var(--space-6) 0 0;
-  }
-
-  .brickCaption {
-    margin-top: var(--space-1);
-  }
-}
-
-/* ── A System ──
-   Figma px / 1512 (cqw). Text x is measured from the accent bar (Figma x 107).
-   The annotated diagram is one box whose origin is Figma (681, 179): the
-   poster panel and its seven callouts are placed inside it exactly as in
-   Figma, and the whole box scales with the page. */
-
-/* pulled up so the diagram's top (the panel) sits 49px below the heading's top */
-.system {
-  display: flex;
-  align-items: flex-start;
-  margin-top: calc(3.241cqw - max(3.307cqw, 1.75rem) * 1.15 - max(1.5cqw, var(--space-4)));
-}
-
-/* 447 wide; Fixed starts 324px below the panel's top */
-.systemText {
-  flex: 0 0 29.563cqw;
-  margin-top: 21.429cqw;
-}
-
-/* each row ends 31px above its divider; the next starts 29px below it */
-.systemText > p {
-  padding-block: 1.918cqw 2.05cqw;
-}
-
-.systemText > p:first-child {
-  padding-top: 0;
-}
-
-.systemText > p:last-child {
-  padding-bottom: 0;
-}
-
-/* 788 × 691 box, 127px right of the text column */
-.systemDiagram {
-  position: relative;
-  flex: 0 0 52.116cqw;
-  height: 45.701cqw;
-  margin: 0 0 0 8.399cqw;
-}
-
-/* 421 × 645 panel, 178px into the box */
-.systemPanel {
-  position: absolute;
-  left: 11.772cqw;
-  top: 0;
-  width: 27.844cqw;
-  margin: 0;
-}
-
-.systemImg {
-  aspect-ratio: 413 / 637;
-  object-fit: cover;
-}
-
-.callouts {
-  margin: 0;
+  gap: clamp(0.75rem, 1.4cqw, 1.5rem);
+  margin-top: var(--block);
   padding: 0;
   list-style: none;
 }
 
-/* 13px italic, 20px lines; the label word is bold italic */
-.callout {
-  position: absolute;
-  font-size: max(0.86cqw, 12px);
-  font-style: italic;
-  line-height: 1.538;
-  letter-spacing: -0.01em;
-  color: var(--color-green);
+.draftImg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.callout strong {
-  font-weight: 700;
+.draftText {
+  margin-top: 0.625rem;
 }
 
-/* 18px tick level with the first line */
-.callout::before {
-  content: "";
-  position: absolute;
-  top: 0.562cqw;
-  width: 1.19cqw;
-  height: 1.5px;
-  background: currentColor;
-}
-
-.calloutFlex {
-  color: #8B6B5C;
-}
-
-/* left column: ticks run from the label's right edge (Figma x 826) */
-.calloutLeft::before {
-  left: 100%;
-}
-
-.calloutFilm {
-  left: 0.198cqw;
-  top: 19.312cqw;
-  width: 9.392cqw;
-}
-
-.calloutWork {
-  left: 0.198cqw;
-  top: 28.108cqw;
-  width: 9.392cqw;
-}
-
-.calloutGradient {
-  left: 0;
-  top: 36.839cqw;
-  width: 9.59cqw;
-}
-
-/* right column: ticks sit 35px left of the label (Figma x 1294) */
-.calloutRight {
-  left: 42.857cqw;
-  width: 9.259cqw;
-}
-
-.calloutRight::before {
-  left: -2.315cqw;
-}
-
-.calloutPortrait {
-  top: 6.944cqw;
-}
-
-.calloutName {
-  top: 19.907cqw;
-}
-
-.calloutBio {
-  top: 32.407cqw;
-}
-
-/* under the panel, with a vertical tick 10px below it (1.5px, same weight as the others) */
-/* one line, as in Figma */
-.calloutLogo {
-  left: 13.889cqw;
-  top: 44.775cqw;
-  width: 18.254cqw;
-  line-height: 1.1;
-  white-space: nowrap;
-}
-
-.calloutLogo::before {
-  left: 0.86cqw;
-  top: -1.455cqw;
-  width: 1.5px;
-  height: 1.19cqw;
-}
-
-@media (max-width: 767.98px) {
-  /* text, then the poster, then the callouts as a plain list */
-  .system {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-6);
-    margin-top: 0;
+/* ═══ ONE COLUMN — the same order, hung straight ═══ */
+@media (max-width: 1099.98px) {
+  .heroImg {
+    aspect-ratio: 16 / 11;
+    object-position: 50% 8%;
   }
 
   .systemText,
-  .systemDiagram {
-    flex: none;
-    margin: 0;
-    height: auto;
+  .voicesIntro,
+  .voicesBody {
+    max-width: 40rem;
+    margin-top: var(--gap);
   }
 
-  .systemText > p {
-    padding-block: var(--space-3);
+  .voicesStatement,
+  .voicesBody {
+    margin-top: var(--block);
   }
 
-  .systemText > p:first-child {
-    padding-top: 0;
+  .systemPoster {
+    display: block;
+    width: min(100%, 28rem);
+    margin-top: var(--block);
   }
 
-  .systemPanel {
-    position: static;
-    width: auto;
+  .parts {
+    max-width: 34rem;
+    margin-top: var(--gap);
+    padding-left: 0;
   }
 
-  .callouts {
+  .voicesPoster {
+    width: min(100%, 28rem);
+  }
+
+  .drafts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+
+  .draft {
     display: grid;
-    gap: var(--space-2);
-    margin-top: var(--space-4);
+    grid-template-columns: minmax(0, 8rem) minmax(0, 1fr);
+    gap: 1rem;
   }
 
-  .callout {
-    position: static;
-    width: auto;
-    line-height: 1.5;
-    white-space: normal;
-  }
-
-  .callout::before {
-    display: none;
+  .draftText {
+    margin-top: 0;
   }
 }

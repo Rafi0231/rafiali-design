@@ -117,18 +117,16 @@
   gap: calc(18 * var(--u));
 }
 
-/* Amiri's glyphs ride high in their line box, so the top padding drops
-   the capitals ~2px to sit centred in the pill */
 .pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   height: calc(22 * var(--u));
-  padding: calc(4 * var(--u)) calc(12 * var(--u)) 0;
+  padding: 0 calc(12 * var(--u));
   border-radius: 20px;
   background: color-mix(in srgb, var(--color-green) 50%, transparent);
-  font-size: calc(20 * var(--u));
-  color: rgba(255, 255, 255, 0.7);
+  font-size: calc(15 * var(--u));
+  color: rgba(255, 255, 255, 0.8);
   white-space: nowrap;
   line-height: 1;
 }
@@ -139,7 +137,7 @@
   left: calc(57 * var(--u));
   top: calc(var(--desc-top) * var(--u));
   width: calc(var(--desc-width) * var(--u));
-  font-size: calc(23 * var(--u));
+  font-size: calc(20 * var(--u));
   line-height: calc(28 * var(--u));
   color: rgba(74, 53, 48, 0.9);
 }
@@ -165,15 +163,14 @@
 }
 
 .summary dt {
-  font-size: calc(18 * var(--u));
+  font-size: calc(15 * var(--u));
   line-height: calc(27 * var(--u));
-  letter-spacing: 0.1em;
   color: rgba(74, 53, 48, 0.6);
 }
 
 .summary dd {
   margin: 0;
-  font-size: calc(20 * var(--u));
+  font-size: calc(17 * var(--u));
   line-height: calc(27 * var(--u));
   color: rgba(74, 53, 48, 0.9);
 }
@@ -184,6 +181,7 @@
   position: absolute;
   left: calc(-40 * var(--u));
   top: calc(459 * var(--u));
+  font-family: var(--font-serif);
   font-size: calc(250 * var(--u));
   font-weight: 400;
   letter-spacing: var(--numeral-tracking, -0.12em);
@@ -194,23 +192,18 @@
 }
 
 /* ═══ MEDIA FRAMES ═══ */
-/* a grey mat with a video or poster inset; sizes and positions are per frame */
+/* sizes and positions are per frame; the media fills its box */
 .mat {
   position: absolute;
   left: calc(var(--mat-x) * var(--u));
   top: calc(var(--mat-y) * var(--u));
   width: calc(var(--mat-w) * var(--u));
   height: calc(var(--mat-h) * var(--u));
-  border-radius: 15px;
-  background: #A8A6A3;
 }
 
 .frame {
   position: absolute;
-  left: calc(var(--inner-x) * var(--u));
-  top: calc(var(--inner-y) * var(--u));
-  width: calc(var(--inner-w) * var(--u));
-  height: calc(var(--inner-h) * var(--u));
+  inset: 0;
   border-radius: calc(var(--inner-radius) * 1px);
   overflow: hidden;
 }
@@ -245,19 +238,20 @@
   z-index: 1;
 }
 
-/* 164 × 47; position is per project */
+/* 212 × 60, grown around each project's original 164 × 47 box */
 .viewBtn {
   position: absolute;
-  left: calc(var(--btn-x) * var(--u));
-  top: calc(var(--btn-y) * var(--u));
-  width: calc(164 * var(--u));
-  height: calc(47 * var(--u));
+  left: calc((var(--btn-x) - 24) * var(--u));
+  top: calc((var(--btn-y) - 6) * var(--u));
+  width: calc(212 * var(--u));
+  height: calc(60 * var(--u));
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 15px;
   background: color-mix(in srgb, var(--color-green) 70%, transparent);
-  font-size: calc(25 * var(--u));
+  font-size: calc(24 * var(--u));
+  font-weight: 500;
   line-height: 1;
   color: #F1EADA;
   white-space: nowrap;
@@ -275,4 +269,113 @@
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* ═══ SMALL SCREENS ═══ */
+/* The cards stop being a scaled picture and become a normal stacked layout */
+@media (max-width: 1023.98px) {
+  .heading {
+    position: static;
+    padding-top: var(--space-10);
+    font-size: clamp(3rem, 13cqw, 5.5rem);
+  }
+
+  .list {
+    gap: var(--space-8);
+    padding: var(--space-6) var(--space-4) var(--space-10);
+  }
+
+  .cardWrap {
+    width: 100%;
+    height: auto;
+  }
+
+  .card {
+    --gap: var(--space-3);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4) var(--gap);
+    height: auto;
+    padding: var(--space-6) var(--space-4);
+    container-type: inline-size;
+  }
+
+  .card > * {
+    grid-column: 1 / -1;
+  }
+
+  .cardTitle {
+    position: static;
+    font-size: clamp(2.25rem, 10.5cqw, 3.5rem);
+    line-height: var(--leading-tight);
+  }
+
+  .pills {
+    position: static;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .pill {
+    height: auto;
+    padding: var(--space-1) var(--space-3);
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+
+  .description {
+    position: static;
+    width: auto;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+
+  .summary {
+    position: static;
+    width: auto;
+  }
+
+  .summary > div {
+    padding-block: var(--space-2);
+  }
+
+  .summary > div:last-child {
+    padding-bottom: var(--space-2);
+  }
+
+  .summary dt {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .summary dd {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .ghostNumeral {
+    display: none;
+  }
+
+  .mat {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--mat-w) / var(--mat-h);
+  }
+
+  /* two frames (the posters) sit side by side */
+  .card > .mat:has(+ .mat),
+  .card > .mat + .mat {
+    grid-column: auto;
+  }
+
+  .viewBtn {
+    position: static;
+    width: 100%;
+    height: 3.5rem;
+    font-size: 1.125rem;
+  }
 }

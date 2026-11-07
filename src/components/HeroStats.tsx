@@ -11,10 +11,10 @@ type Stat = {
 };
 
 const STATS: Stat[] = [
-  { value: 130, suffix: "+", label: "tests behind a\nlive AI product" },
-  { value: 4, label: "products\nshipped 0→1" },
+  { value: 25, suffix: "+", label: "students used my app\nlive in class" },
+  { value: 1, label: "school pilot\nnow in progress" },
   { value: 1, sup: "st", label: "Author, ACM\nCOMPASS ’26" },
-  { value: 3, label: "works exhibited at the\nChicago Art Department" },
+  { value: 3, label: "posters exhibited at the\nChicago Art Department" },
 ];
 
 // Left edge of each divider in the 1512px Figma frame; a closing divider sits at 969

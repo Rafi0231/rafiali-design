@@ -3,31 +3,7 @@ import Link from "next/link";
 import chrome from "./CaseStudyLayout.module.css";
 import pillStyles from "./GlassPill.module.css";
 import styles from "./FlowCaseStudyLayout.module.css";
-
-/* ── Section — heading with accent bar, children laid out as columns ── */
-
-type SectionProps = {
-  heading: string;
-  /* grid-template-columns on desktop, e.g. "1fr 1.9fr"; defaults to equal columns */
-  columns?: string;
-  className?: string;
-  children?: ReactNode;
-};
-
-export function Section({ heading, columns, className, children }: SectionProps) {
-  const style = columns ? ({ "--cols": columns } as CSSProperties) : undefined;
-
-  return (
-    <section className={`${styles.section} ${className ?? ""}`}>
-      <h2 className={styles.sectionHeading}>{heading}</h2>
-      {children && (
-        <div className={styles.columns} style={style}>
-          {children}
-        </div>
-      )}
-    </section>
-  );
-}
+import editorial from "./Editorial.module.css";
 
 /* ── FlowCaseStudyLayout — flowing, scrollable version of CaseStudyLayout.
    Title, rule and Back pill reuse CaseStudyLayout's classes inside a
@@ -40,8 +16,6 @@ type LayoutProps = {
   background?: string;
   titleTracking?: string;
   ruleColor?: string;
-  /* card without padding or gap, for pages that place content at Figma positions */
-  bare?: boolean;
   children: ReactNode;
 };
 
@@ -51,7 +25,6 @@ export default function FlowCaseStudyLayout({
   background,
   titleTracking,
   ruleColor,
-  bare = false,
   children,
 }: LayoutProps) {
   const style = {
@@ -74,7 +47,7 @@ export default function FlowCaseStudyLayout({
           </div>
         </div>
       </div>
-      <div className={`${styles.card} ${bare ? styles.cardBare : ""}`}>{children}</div>
+      <article className={editorial.article}>{children}</article>
     </div>
   );
 }

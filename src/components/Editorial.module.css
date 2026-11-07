@@ -1,0 +1,448 @@
+/* Shared by the editorial case studies. .band carries the page's whole scale:
+   --section between sections, --block between blocks, --gap within a block. */
+/* Type is in rem so it holds between screens and follows the reader's font settings */
+.article {
+  font-size: clamp(1.1875rem, 1.1rem + 0.2vw, 1.3125rem);
+  line-height: 1.25;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.band {
+  --edge: max(6.085cqw, 1.5rem);
+  --title: clamp(3.25rem, 10cqw, 9.5rem);
+  --statement: clamp(1.875rem, 4.2cqw, 4rem);
+  --section: clamp(6rem, 12cqw, 11rem);
+  --block: clamp(3rem, 5.5cqw, 5rem);
+  --gap: 1.5rem;
+  --ink-soft: rgba(31, 53, 29, 0.85);
+  --band-bg: var(--frame-bg, var(--color-silver));
+  --band-line: rgba(31, 53, 29, 0.3);
+  padding-inline: var(--edge);
+  line-height: 1.25;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1rem, 2cqw, 2rem);
+}
+
+.spaced {
+  margin-top: var(--section);
+}
+
+.last {
+  padding-bottom: var(--section);
+}
+
+/* ═══ TYPE ═══ */
+/* Three large voices, kept apart. Titles name the chapter: roman, full ink, about 150px,
+   under a short rule. Statements are something said: italic, softened, about 64px or 44px.
+   Line height and tracking tighten as size rises. Text 19–21px: 1.25, none. Statements:
+   1.02, -1%. Titles: 0.9, -3%. Capitals only: +10%.
+   Lines stop at about 72 characters: 38rem for text, 37rem for facts, 34rem for captions. */
+.title {
+  font-size: var(--title);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  color: var(--color-green);
+}
+
+.note {
+  max-width: 38rem;
+}
+
+.note + .note {
+  margin-top: 0.75em;
+}
+
+.note strong {
+  font-weight: 600;
+  color: var(--color-green);
+}
+
+.statement {
+  font-family: var(--font-serif);
+  font-size: var(--statement);
+  font-style: italic;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  color: rgba(31, 53, 29, 0.82);
+}
+
+.statementSmall {
+  font-size: clamp(1.625rem, 2.9cqw, 2.75rem);
+  line-height: 1.06;
+}
+
+.statementLabel {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0;
+  color: var(--color-green);
+}
+
+.caption {
+  max-width: 34rem;
+  margin-top: 0.5rem;
+  font-size: 1.0625rem;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--ink-soft);
+}
+
+/* opening quotation marks sit outside the text edge, so the line starts on the letter */
+.hang {
+  margin-left: -0.42em;
+}
+
+.draftLabel {
+  font-weight: 600;
+}
+
+/* ═══ OPENER ═══ */
+/* The first screen: headline left, the work right, and both clear of each other and
+   inside the window. --first-screen is the window height left under the page title,
+   so the work shrinks on short laptops instead of running off the bottom. */
+.opener {
+  --first-screen: calc(100svh - 13vw - 4rem);
+  grid-template-rows: auto 1fr;
+  padding-top: clamp(1rem, 2.4cqw, 2.5rem);
+}
+
+.headline {
+  grid-column: 1 / 6;
+  grid-row: 1;
+  font-size: clamp(3rem, 5.4cqw, 5.25rem);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.025em;
+  color: var(--color-green);
+}
+
+.meta {
+  grid-column: 1 / 6;
+  grid-row: 2;
+  margin-top: var(--gap);
+  font-size: 1.0625rem;
+  line-height: 1.25;
+  color: var(--ink-soft);
+}
+
+.dot {
+  margin-inline: 0.4em;
+}
+
+.hero {
+  grid-column: 6 / -1;
+  grid-row: 1 / span 2;
+  justify-self: end;
+  width: min(92%, calc(var(--first-screen) * 1.6));
+}
+
+/* a 2 × 2 keeps each line near 70 characters */
+.facts {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem clamp(1.5rem, 3cqw, 3rem);
+  margin-top: var(--block);
+}
+
+.fact {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-green);
+}
+
+.factLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-green);
+}
+
+.factText {
+  max-width: 37rem;
+  margin: 0.375rem 0 0;
+  font-size: 1.125rem;
+  line-height: 1.25;
+}
+
+/* ═══ WORK ═══ */
+.workImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  outline: 1px solid rgba(31, 53, 29, 0.14);
+  outline-offset: -1px;
+}
+
+.figure {
+  min-width: 0;
+}
+
+/* a framed link out to the live work; it lifts on hover */
+.lift {
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+.lift:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 4px;
+}
+
+/* ═══ COMPOSITION ═══ */
+.wide {
+  grid-column: 1 / -1;
+  margin-top: var(--block);
+}
+
+.row + .wide {
+  margin-top: var(--gap);
+}
+
+.placed {
+  grid-column: 1 / 11;
+  margin-top: var(--block);
+}
+
+.twoUp {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap) clamp(2rem, 4cqw, 4rem);
+  margin-top: var(--block);
+}
+
+.twoUp > div {
+  max-width: 38rem;
+}
+
+.placed + .twoUp {
+  margin-top: var(--gap);
+}
+
+/* text left, its image right, tops level */
+.pair {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  margin-top: var(--block);
+}
+
+.pairText {
+  grid-column: 1 / 5;
+}
+
+.pairWork {
+  grid-column: 5 / -1;
+}
+
+/* images side by side at equal height, each whole */
+.row {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: var(--block);
+}
+
+.row > .figure {
+  flex: var(--ratio) 1 0;
+}
+
+/* ═══ SHORT CHAPTERS ═══ */
+.splitText {
+  grid-column: 1 / 7;
+}
+
+/* ═══ THE ROOM — the page's one dark section ═══ */
+.room {
+  --voice: rgba(255, 255, 240, 0.86);
+  --room-pad: clamp(3.5rem, 7cqw, 7rem);
+  --ink-soft: var(--voice);
+  --band-bg: #142412;
+  --band-line: rgba(255, 255, 240, 0.3);
+  padding-block: var(--room-pad);
+  background: #142412;
+  color: var(--voice);
+}
+
+.room .note strong,
+.room .title,
+.room .statementLabel {
+  color: var(--color-ivory);
+}
+
+.room .statement {
+  color: rgba(255, 255, 240, 0.86);
+}
+
+.grid > :first-child {
+  margin-top: 0;
+}
+
+/* ═══ SPINE — on desktop the chapter title anchors the left edge ═══ */
+/* The title is fixed to the window. clip-path on its chapter shows it only while that
+   chapter is on screen, so titles never move: the next chapter wipes in over the last.
+   Letter tops face the window's edge. Titles keep their full --title size and only the
+   longest shrink, by --chars, so a whole title always fits the window height. */
+@media (min-width: 1100px) {
+  .chapter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100svh;
+    margin-top: 0;
+    padding-block: var(--section);
+    /* one inch of room for the spine */
+    padding-left: calc(var(--edge) + 6rem);
+    clip-path: inset(0);
+  }
+
+  .spine {
+    height: 0;
+  }
+
+  .spineText {
+    position: fixed;
+    top: 50%;
+    left: 0.5rem;
+    z-index: 2;
+    font-size: min(var(--title) + 10px, (100svh - 1.5rem) / (var(--chars) * 0.44));
+    line-height: 1;
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    /* keeps apostrophes rotated with the letters */
+    text-orientation: sideways;
+    translate: 0 -50%;
+    rotate: 180deg;
+  }
+
+  .last {
+    padding-bottom: var(--section);
+  }
+}
+
+/* ═══ ONE COLUMN ═══ */
+@media (max-width: 1099.98px) {
+  .grid {
+    display: block;
+  }
+
+  .hero {
+    width: 100%;
+    margin-top: var(--gap);
+  }
+
+  .meta {
+    margin-top: 0.875rem;
+  }
+
+  .twoUp {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 40rem;
+  }
+
+  .pair {
+    display: block;
+    margin-top: var(--gap);
+  }
+
+  .pairText {
+    max-width: 40rem;
+  }
+
+  .pairWork {
+    margin-top: var(--gap);
+  }
+
+  .splitText {
+    max-width: 40rem;
+  }
+
+  .opener {
+    padding-bottom: var(--block);
+  }
+
+  /* The same anchor as desktop, turned 90°: the title is fixed across the top of the
+     screen like a headline, and the chapter's clip swaps it as the next edge arrives.
+     Chapters touch so a headline is always showing; padding makes the gap between them. */
+  .chapter {
+    --band-type: clamp(2.875rem, 6vw, 3.5rem);
+    --band: calc(var(--band-type) * var(--band-lines, 1.1) + 1rem + 1px + env(safe-area-inset-top));
+    margin-top: 0;
+    padding-top: calc(var(--band) + var(--block));
+    padding-bottom: var(--section);
+    clip-path: inset(0);
+  }
+
+  .spine {
+    height: 0;
+  }
+
+  .spineText {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 2;
+    display: block;
+    padding: calc(0.5rem + env(safe-area-inset-top)) var(--edge) 0.5rem;
+    border-bottom: 1px solid var(--band-line);
+    background: var(--band-bg);
+    /* the longest titles shrink just enough to stay on one line */
+    font-size: min(var(--band-type), (100vw - 2 * var(--edge)) / (var(--chars) * 0.43));
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  /* titles too long for one line at a readable size take two */
+  .chapterLong {
+    --band-lines: 2;
+  }
+
+  .chapterLong .spineText {
+    font-size: min(var(--band-type), (100vw - 2 * var(--edge)) / (var(--chars) * 0.27));
+    line-height: 1;
+    text-wrap: balance;
+    white-space: normal;
+  }
+}
+
+/* three across gets too small to read: stacked, each at full column width,
+   with the tall summary held to a size that fits one screen */
+@media (max-width: 899.98px) {
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--gap);
+  }
+
+  .row > .figure {
+    flex: none;
+    max-width: min(100%, calc(70svh * var(--ratio)));
+  }
+}
+
+@media (max-width: 767.98px) {
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

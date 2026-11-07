@@ -1,16 +1,38 @@
 import Image from "next/image";
-import FlowCaseStudyLayout, { Section } from "@/components/FlowCaseStudyLayout";
-import content from "@/components/caseStudyContent.module.css";
+import {
+  Chapter,
+  DraftCaption,
+  Hang,
+  Note,
+  Opener,
+  Statement,
+  SIZES,
+  Work,
+  editorial as e,
+} from "@/components/Editorial";
+import FlowCaseStudyLayout from "@/components/FlowCaseStudyLayout";
 import styles from "./islamicly.module.css";
 
-/* rendered tile width: ~410px of a 1512 frame (27.1vw) on desktop, ~43vw on phones.
-   Kept slightly above so a 2× screen always gets at least 2× the pixels. */
-const GALLERY_SIZES = "(max-width: 767px) 46vw, 28vw";
-const IMAGE_QUALITY = 90;
+const SITE_URL = "https://islamicly.vercel.app";
 
-/* clickable Figma prototype of Islamicly */
-const PROTOTYPE_URL =
-  "https://www.figma.com/proto/6n18GZvoJGU8DbyrpbX43M/Islamicly-Drafts?node-id=6495-3152&t=uCC5GGTLOzq7Jw9I-1&scaling=min-zoom&content-scaling=fixed&page-id=6015%3A87&starting-point-node-id=6493%3A2832";
+const FACTS = [
+  [
+    "Problem",
+    "Most learning apps are built around the content, not the person learning it. Students couldn’t tell how they were doing or where they were getting stuck.",
+  ],
+  [
+    "My role",
+    "I was the only designer. I ran the research, designed 68 pages across three units, decided how the AI should behave, and built the working demo.",
+  ],
+  [
+    "Key decisions",
+    "I went with warm, library-like tones instead of the usual edtech look. The AI can change how a lesson is shown, but it never touches the content itself. Every chapter is reviewed by a scholar before it goes live.",
+  ],
+  [
+    "Outcome",
+    "After the class demo, the impact Islamicly can have on students was clear. The school gave me the green light to build the complete version, with new content added weekly.",
+  ],
+] as const;
 
 /* two columns, read top to bottom; the right column sits lower (stagger) */
 const RESULT_COLUMNS = [
@@ -36,89 +58,75 @@ const RESULT_COLUMNS = [
   ],
 ] as const;
 
-/* slides render at ~628px and ~613px of a 1512 frame; nearly full card width on phones */
 const DIAGNOSIS_SLIDES = {
   marketResearch: {
     src: "/images/islamicly/MarketResearchCropped.webp",
     alt: "Design Seminar slide titled Market Research, listing what students wanted from Islamic learning apps and the flaws found in existing ones",
     width: 2257,
     height: 1305,
-    sizes: "(max-width: 767px) 90vw, 43vw",
   },
   survey: {
     src: "/images/islamicly/Survey.webp",
     alt: "Design Seminar slide titled Survey Pt.2, showing four revised survey questions arranged around a central Survey 2 node",
     width: 2330,
     height: 1316,
-    sizes: "(max-width: 767px) 90vw, 41vw",
   },
 } as const;
 
-/* drafts render at ~591, ~440 and ~600px of a 1512 frame */
 const PERSONALITY_DRAFTS = {
   faith: {
     src: "/images/islamicly/Faith.webp",
     alt: "Draft 1 home screen titled Strengthen Your Faith, with Sahaba Stories, Quran, and Lectures cards on a soft blue gradient",
     width: 1546,
     height: 814,
-    sizes: "(max-width: 767px) 90vw, 42vw",
   },
   learning: {
     src: "/images/islamicly/Learning.webp",
     alt: "Draft 2 screen titled Your Learning Path, with Arabic calligraphy of the Basmala above the heading",
     width: 1564,
     height: 1106,
-    sizes: "(max-width: 767px) 90vw, 32vw",
   },
   sahaba: {
     src: "/images/islamicly/Sahaba.webp",
     alt: "Draft 3 Sahaba Stories page with a manuscript-style Arabic banner and cards for companions of the Prophet",
     width: 1946,
     height: 1060,
-    sizes: "(max-width: 767px) 90vw, 42vw",
   },
 } as const;
 
-/* Unit 1 and Unit 2 render at ~321px, Course Topics at ~561px of a 1512 frame */
 const VOICE_DRAFTS = {
   unit1: {
     src: "/images/islamicly/Unit1.webp",
     alt: "Post-feedback draft 1: a Select a Unit to begin screen in warm brown, with Fiqh, The Seerah, and Hadith unit cards",
     width: 956,
     height: 624,
-    sizes: "(max-width: 767px) 90vw, 22vw",
   },
   unit2: {
     src: "/images/islamicly/Unit2.webp",
     alt: "Post-feedback draft 2: an Explore a topic screen on a textured parchment background framed by minarets",
     width: 1092,
     height: 710,
-    sizes: "(max-width: 767px) 90vw, 22vw",
   },
   courseTopics: {
     src: "/images/islamicly/CourseTopics.webp",
     alt: "Post-feedback draft 3: the Explore a topic screen set inside an arched doorway between tall library bookshelves",
     width: 2400,
     height: 1559,
-    sizes: "(max-width: 767px) 90vw, 38vw",
   },
 } as const;
 
-/* screens render at ~633px and ~671px of a 1512 frame; nearly full card width on phones */
 const AI_SCREENS = {
   results: {
     src: "/images/islamicly/QuizResults.webp",
     alt: "Results screen after a chapter quiz: an 80% B score with Active Recall, Linguistic and Numeric breakdowns, and a note that dates will be emphasized in the next reading",
     width: 1750,
     height: 1136,
-    sizes: "(max-width: 767px) 90vw, 42vw",
   },
   chapter: {
     src: "/images/islamicly/Chapter.webp",
     alt: "Chapter 1.2, Early Adulthood, a two-column reading page about Abu Bakr with the dates set in bold",
     width: 2366,
     height: 1534,
-    sizes: "(max-width: 767px) 90vw, 45vw",
   },
 } as const;
 
@@ -126,46 +134,23 @@ export default function IslamiclyPage() {
   return (
     <FlowCaseStudyLayout
       title="Islamicly"
-      background="#B9ADA3"
-      titleTracking="0"
+      background="#E7E1D6"
+      titleTracking="-0.025em"
       ruleColor="rgba(107, 82, 68, 0.4)"
     >
-      <Section heading="The Result" columns="460fr 833fr">
-        <div className={`${content.textBlock} ${styles.resultText}`}>
-          <h3 className={content.overviewHeading}>Overview</h3>
-          <ul className={content.overviewList}>
-            <li><em>Role</em>: Product Designer</li>
-            <li><em>Timeline</em>: September 2025 &ndash; Present</li>
-            <li><em>Tools</em>: Figma (currently building backend system)</li>
-            <li>
-              <em>Status</em>: Presented to the Board of Education at Muslim
-              Education Center in Morton Grove, IL
-            </li>
-          </ul>
-
-          <hr className={content.divider} />
-
-          <p className={content.statusRow}>
-            <span className={content.statusLabel}>Done &middot;</span> A full
-            curriculum, designed end to end.
-          </p>
-          <p className={content.statusRow}>
-            <span className={content.statusLabel}>Next &middot;</span> Progress
-            tracking for students and parents.
-          </p>
-          <p className={content.statusRow}>
-            <span className={content.statusLabel}>Then &middot;</span> An AI layer
-            that personalizes lessons, built in code.
-          </p>
-        </div>
-
-        <div className={styles.resultMedia}>
+      <Opener
+        headline="A study app that changes when you struggle"
+        timeline="September 2025 – Present"
+        tools="Figma (currently building the pilot)"
+        facts={FACTS}
+      >
+        <figure className={styles.heroFigure}>
           <a
-            href={PROTOTYPE_URL}
+            href={SITE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.gallery}
-            aria-label="Visit the Islamicly prototype (opens in a new tab)"
+            className={`${styles.gallery} ${e.lift}`}
+            aria-label="Visit Islamicly (opens in a new tab)"
           >
             {RESULT_COLUMNS.map((images, col) => (
               <div
@@ -179,8 +164,8 @@ export default function IslamiclyPage() {
                     alt={alt}
                     width={2400}
                     height={1559}
-                    sizes={GALLERY_SIZES}
-                    quality={IMAGE_QUALITY}
+                    sizes="(max-width: 1099px) 46vw, 480px"
+                    quality={90}
                     loading="eager"
                     className={styles.galleryImg}
                   />
@@ -188,235 +173,167 @@ export default function IslamiclyPage() {
               </div>
             ))}
           </a>
-          <p className={styles.galleryCaption}>Click on any image to visit Islamicly</p>
-        </div>
-      </Section>
-      <Section heading="Diagnosis and Direction">
-        <div className={styles.diagnosis}>
-          <div className={`${content.slidePanel} ${styles.diagnosisMarket}`}>
-            <Image
-              {...DIAGNOSIS_SLIDES.marketResearch}
-              alt={DIAGNOSIS_SLIDES.marketResearch.alt}
-              quality={IMAGE_QUALITY}
-              className={content.slideImg}
-            />
+          <figcaption className={e.caption}>Click on any image to visit Islamicly</figcaption>
+        </figure>
+      </Opener>
+
+      <Chapter title="The Result">
+        <Statement label="Class demo" size="small" className={e.placed}>
+          A full class used an early version of Islamicly and loved it,
+          consistently rating it 8/10 or higher for recommending it to a friend.
+        </Statement>
+        <div className={e.twoUp}>
+          <div>
+            <Note label="What they said">Very engaging and easy to understand.</Note>
+            <Note label="After the quiz">The class noticed the next lesson change for them.</Note>
+            <Note label="Done">A demo version with the functioning AI.</Note>
           </div>
-
-          <div className={styles.diagnosisRight}>
-            <div className={styles.diagnosisText}>
-              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
-                <span className={content.statusLabel}>Problem</span>
-                <span className={styles.labelDot}> &middot; </span>
-                Most learning apps were built around the content, instead of the
-                person learning it. Most still use decade-old layouts, and each one
-                only does one thing.
-              </p>
-              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
-                <span className={content.statusLabel}>Research</span>
-                <span className={styles.labelDot}> &middot; </span>
-                I surveyed students about the apps they use, then tested with a
-                scholar and a school&rsquo;s board of education.
-              </p>
-              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
-                <span className={content.statusLabel}>Finding</span>
-                <span className={styles.labelDot}> &middot; </span>
-                Students didn&rsquo;t just want more lessons. They wanted feedback
-                on how they were doing, and help where they were stuck.
-              </p>
-              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
-                <span className={content.statusLabel}>Opportunity</span>
-                <span className={styles.labelDot}> &middot; </span>
-                One platform with a full curriculum and modern craft, using AI to
-                tailor learning to each student.
-              </p>
-            </div>
-
-            <div className={content.slidePanel}>
-              <Image
-                {...DIAGNOSIS_SLIDES.survey}
-                alt={DIAGNOSIS_SLIDES.survey.alt}
-                quality={IMAGE_QUALITY}
-                className={`${content.slideImg} ${styles.diagnosisSurveyImg}`}
-              />
-            </div>
+          <div>
+            <Note label="What students would change">
+              Faded buttons and cluttered navigation. One wrote, &ldquo;I didn&rsquo;t
+              know you could click on the button.&rdquo; Both are going into the
+              pilot.
+            </Note>
+            <Note label="Next">
+              The school is on board, and I&rsquo;m building the pilot now, starting
+              with progress tracking for students and parents.
+            </Note>
+            <Note label="Then">The complete AI layer that personalizes lessons, built in code.</Note>
           </div>
         </div>
-      </Section>
-      <Section heading="Where’s the personality?">
-        <div className={styles.personality}>
-          <div className={styles.personalityLeft}>
-            <p className={content.draftCaption}>
-              Draft 1: tested and received feedback of not having personality.
-            </p>
-            <div className={`${content.slidePanel} ${styles.faith}`}>
-              <Image
-                {...PERSONALITY_DRAFTS.faith}
-                alt={PERSONALITY_DRAFTS.faith.alt}
-                quality={IMAGE_QUALITY}
-                className={content.slideImg}
-              />
-            </div>
-            <div className={styles.learningRow}>
-              <p className={content.draftCaption}>
-                Draft 2: the fix, added Arabic and general &ldquo;Islamic&rdquo;
-                aesthetic to show personality.
-              </p>
-              <div className={`${content.slidePanel} ${styles.learning}`}>
-                <Image
-                  {...PERSONALITY_DRAFTS.learning}
-                  alt={PERSONALITY_DRAFTS.learning.alt}
-                  quality={IMAGE_QUALITY}
-                  className={content.slideImg}
-                />
-              </div>
-            </div>
-          </div>
+      </Chapter>
 
-          <div className={styles.personalityRight}>
-            <div className={`${styles.sideText} ${styles.personalityText}`}>
-              <p className={`${styles.sideRow} ${styles.sideRowTight}`}>
-                <span className={content.statusLabel}>Critique</span>
-                <span className={styles.labelDotSmall}> &middot; </span>
-                &ldquo;There&rsquo;s no personality in that design.&rdquo; my
-                professor said. I&rsquo;d designed for familiarity over identity.
-              </p>
-              <p className={`${styles.sideRow} ${styles.sideRowTight}`}>
-                <span className={content.statusLabel}>What changed</span>
-                <span className={styles.labelDotSmall}> &middot; </span>
-                Three drafts searching for a voice of its own.
-              </p>
-            </div>
-            <div className={`${content.slidePanel} ${styles.sahaba}`}>
-              <Image
-                {...PERSONALITY_DRAFTS.sahaba}
-                alt={PERSONALITY_DRAFTS.sahaba.alt}
-                quality={IMAGE_QUALITY}
-                className={content.slideImg}
-              />
-            </div>
-            <p className={`${content.draftCaption} ${styles.draftCaptionBelow}`}>
-              Draft 3: a voice that got closer to Islamicly with the manuscript and
-              visual layout.
-            </p>
+      <Chapter title="Diagnosis and Direction">
+        <div className={e.pair}>
+          <div className={e.pairText}>
+            <Note label="Problem">
+              Most learning apps were built around the content, instead of the
+              person learning it. Most still use decade-old layouts, and each one
+              only does one thing.
+            </Note>
+          </div>
+          <div className={e.pairWork}>
+            <Work {...DIAGNOSIS_SLIDES.marketResearch} sizes={SIZES.pair} />
           </div>
         </div>
-      </Section>
-      <Section heading="Finding the Voice">
-        <div className={styles.voice}>
-          <div className={`${styles.sideText} ${styles.voiceText}`}>
-            <p className={`${styles.sideRow} ${styles.sideRowLoose}`}>
-              <span className={content.statusLabel}>Constraint &middot;</span> Feel
-              distinct, not generic, without losing the familiarity students
-              expect.
-            </p>
-            <p className={`${styles.sideRow} ${styles.sideRowLoose}`}>
-              <span className={content.statusLabel}>My solution &middot;</span> Dim,
-              warm tones that feel like a library, a place people seek out and
-              full of knowledge.
-            </p>
-            <p className={`${styles.sideRow} ${styles.sideRowLoose}`}>
-              <span className={content.statusLabel}>Kept &middot;</span> Elements
-              such as rounded buttons, and nav bar for familiarity.
-            </p>
+        <div className={e.pair}>
+          <div className={e.pairText}>
+            <Note label="Research">
+              I surveyed students about the apps they use, then tested with a
+              scholar and a school&rsquo;s board of education.
+            </Note>
           </div>
-
-          <div className={styles.voiceImages}>
-            <div className={`${styles.voiceRow} ${styles.voiceRowOne}`}>
-              <div className={content.slidePanel}>
-                <Image
-                  {...VOICE_DRAFTS.unit1}
-                  alt={VOICE_DRAFTS.unit1.alt}
-                  quality={IMAGE_QUALITY}
-                  className={content.slideImg}
-                />
-              </div>
-              <p className={content.draftCaption}>
-                Post-Feedback Draft 1: new color palette, new layout
-              </p>
-            </div>
-            <div className={`${styles.voiceRow} ${styles.voiceRowTwo}`}>
-              <div className={content.slidePanel}>
-                <Image
-                  {...VOICE_DRAFTS.unit2}
-                  alt={VOICE_DRAFTS.unit2.alt}
-                  quality={IMAGE_QUALITY}
-                  className={content.slideImg}
-                />
-              </div>
-              <p className={content.draftCaption}>
-                Post-Feedback Draft 2: kept the color palette, added new texture, a
-                new layout, and more topics.
-              </p>
-            </div>
-            <div className={`${styles.voiceRow} ${styles.voiceRowThree}`}>
-              <div className={content.slidePanel}>
-                <Image
-                  {...VOICE_DRAFTS.courseTopics}
-                  alt={VOICE_DRAFTS.courseTopics.alt}
-                  quality={IMAGE_QUALITY}
-                  className={content.slideImg}
-                />
-              </div>
-              <p className={content.draftCaption}>
-                Post-Feedback Draft 3: added a new image in the back to add depth,
-                kept the same topics and layout.
-              </p>
-            </div>
+          <div className={e.pairWork}>
+            <Work {...DIAGNOSIS_SLIDES.survey} sizes={SIZES.pair} />
           </div>
         </div>
-      </Section>
-      <Section heading="Tailored to You">
-        <div className={styles.tailored}>
-          <figure className={styles.tailoredLeft}>
-            <div className={content.slidePanel}>
-              <Image
-                {...AI_SCREENS.results}
-                alt={AI_SCREENS.results.alt}
-                quality={IMAGE_QUALITY}
-                className={content.slideImg}
-              />
-            </div>
-            <figcaption className={`${content.draftCaption} ${styles.tailoredCaption}`}>
-              After the quiz, the AI tells you what will change in your next
-              reading. (bottom left)
-            </figcaption>
-          </figure>
-
-          <div className={styles.tailoredRight}>
-            <div className={`${styles.sideText} ${styles.tailoredText}`}>
-              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
-                <span className={content.statusLabel}>How it works</span>
-                <span className={styles.labelDot}> &middot; </span>
-                After each chapter, a short quiz shows the AI what you understood.
-                The next lesson changes the layout to help you. If you miss a
-                date, the next chapter highlights dates.
-              </p>
-              <p className={`${styles.sideRow} ${styles.sideRowSnug}`}>
-                <span className={content.statusLabel}>Integrity</span>
-                <span className={styles.labelDot}> &middot; </span>
-                The AI never writes the actual content. Every chapter is reviewed
-                by a scholar, and the AI only changes how the information is
-                presented.
-              </p>
-            </div>
-
-            <figure className={styles.tailoredChapter}>
-              <div className={content.slidePanel}>
-                <Image
-                  {...AI_SCREENS.chapter}
-                  alt={AI_SCREENS.chapter.alt}
-                  quality={IMAGE_QUALITY}
-                  className={content.slideImg}
-                />
-              </div>
-              <figcaption className={`${content.draftCaption} ${styles.tailoredCaption}`}>
-                Chapter 1.2: the dates are now bold, because dates were missed in
-                1.1.
-              </figcaption>
-            </figure>
+        <Statement label="Finding" size="small" className={e.placed}>
+          Students didn&rsquo;t just want more lessons. They wanted feedback on
+          how they were doing, and help where they were stuck.
+        </Statement>
+        <div className={e.twoUp}>
+          <div>
+            <Note label="Opportunity">
+              One platform with a full curriculum and modern craft, using AI to
+              tailor learning to each student.
+            </Note>
           </div>
         </div>
-      </Section>
+      </Chapter>
+
+      <Chapter title="Where’s the personality?">
+        <Statement label="Critique" size="small" className={e.placed}>
+          <Hang>&ldquo;</Hang>There&rsquo;s no personality in that design.&rdquo;
+          my professor said. I&rsquo;d designed for familiarity over identity.
+        </Statement>
+        <div className={e.twoUp}>
+          <div>
+            <Note label="What changed">Three drafts searching for a voice of its own.</Note>
+          </div>
+        </div>
+        <div className={e.row}>
+          <Work
+            {...PERSONALITY_DRAFTS.faith}
+            sizes={SIZES.third}
+            caption={<DraftCaption text="Draft 1: tested and received feedback of not having personality." />}
+          />
+          <Work
+            {...PERSONALITY_DRAFTS.learning}
+            sizes={SIZES.third}
+            caption={<DraftCaption text="Draft 2: the fix, added Arabic and general “Islamic” aesthetic to show&nbsp;personality." />}
+          />
+          <Work
+            {...PERSONALITY_DRAFTS.sahaba}
+            sizes={SIZES.third}
+            caption={<DraftCaption text="Draft 3: a voice that got closer to Islamicly with the manuscript and visual layout." />}
+          />
+        </div>
+      </Chapter>
+
+      <Chapter title="Finding the Voice" room>
+        <Statement label="Constraint" size="small" className={e.placed}>
+          Feel distinct, not generic, without losing the familiarity students
+          expect.
+        </Statement>
+        <div className={e.twoUp}>
+          <div>
+            <Note label="My solution">
+              Dim, warm tones that feel like a library, a place people seek out and
+              full of&nbsp;knowledge.
+            </Note>
+          </div>
+          <div>
+            <Note label="Kept">Elements such as rounded buttons, and nav bar for familiarity.</Note>
+          </div>
+        </div>
+        <div className={e.row}>
+          <Work
+            {...VOICE_DRAFTS.unit1}
+            sizes={SIZES.third}
+            caption={<DraftCaption text="Post-Feedback Draft 1: new color palette, new layout" />}
+          />
+          <Work
+            {...VOICE_DRAFTS.unit2}
+            sizes={SIZES.third}
+            caption={<DraftCaption text="Post-Feedback Draft 2: kept the color palette, added new texture, a new layout, and more topics." />}
+          />
+          <Work
+            {...VOICE_DRAFTS.courseTopics}
+            sizes={SIZES.third}
+            caption={<DraftCaption text="Post-Feedback Draft 3: added a new image in the back to add depth, kept the same topics and layout." />}
+          />
+        </div>
+      </Chapter>
+
+      <Chapter title="Tailored to You" last>
+        <div className={e.twoUp}>
+          <div>
+            <Note label="How it works">
+              After each chapter, a short quiz shows the AI what you understood. The
+              next lesson changes the layout to help you. If you miss a date, the
+              next chapter highlights dates.
+            </Note>
+          </div>
+          <div>
+            <Note label="Integrity">
+              The AI never writes the actual content. Every chapter is reviewed by a
+              scholar, and the AI only changes how the information is&nbsp;presented.
+            </Note>
+          </div>
+        </div>
+        <div className={e.row}>
+          <Work
+            {...AI_SCREENS.results}
+            sizes={SIZES.half}
+            caption="After the quiz, the AI tells you what will change in your next reading. (bottom left)"
+          />
+          <Work
+            {...AI_SCREENS.chapter}
+            sizes={SIZES.half}
+            caption="Chapter 1.2: the dates are now bold, because dates were missed in 1.1."
+          />
+        </div>
+      </Chapter>
     </FlowCaseStudyLayout>
   );
 }
