@@ -30,7 +30,7 @@ const FACTS = [
   ],
   [
     "Outcome",
-    "After the class demo, the impact Islamicly can have on students was clear. The school gave me the green light to build the complete version, with new content added weekly.",
+    "After the class demo, the impact Islamicly can have on students was clear. The school gave me the green light to start building the pilot, with new content added weekly.",
   ],
 ] as const;
 
@@ -194,10 +194,7 @@ export default function IslamiclyPage() {
               know you could click on the button.&rdquo; Both are going into the
               pilot.
             </Note>
-            <Note label="Next">
-              The school is on board, and I&rsquo;m building the pilot now, starting
-              with progress tracking for students and parents.
-            </Note>
+            <Note label="Next">Starting the pilot with progress tracking for students and parents.</Note>
             <Note label="Then">The complete AI layer that personalizes lessons, built in code.</Note>
           </div>
         </div>
