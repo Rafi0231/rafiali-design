@@ -1,0 +1,103 @@
+/* The site's one link style: small uppercase label over a thin line.
+   On hover the line slides out to the right while an identical one slides in from
+   the left; when the hover ends, the same motion plays back in reverse. */
+
+/* the label type (View case study, Email, Back) */
+.textLink {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-green);
+  white-space: nowrap;
+}
+
+.textLink:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: var(--space-1);
+}
+
+/* wraps the words; carries the two lines. At the label size the line sits 7.7px
+   under the baseline; larger text sets --line-gap to keep that same distance */
+.line {
+  --swap-ms: 280ms;
+  --swap-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  position: relative;
+  display: inline-block;
+  padding-bottom: var(--line-gap, 0.3em);
+}
+
+.line::before,
+.line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transition: transform var(--swap-ms) var(--swap-ease);
+}
+
+/* the resting line: leaves to the right, comes back after the other has gone */
+.line::before {
+  transform-origin: right;
+  transition-delay: calc(var(--swap-ms) * 0.6);
+}
+
+/* the replacement: waits off to the left */
+.line::after {
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* .swapTrigger lets a larger area (a whole project) start the swap */
+@media (hover: hover) {
+  .textLink:hover .line::before,
+  .swapTrigger:hover .line::before {
+    transform: scaleX(0);
+    transition-delay: 0ms;
+  }
+
+  .textLink:hover .line::after,
+  .swapTrigger:hover .line::after {
+    transform: scaleX(1);
+    transition-delay: calc(var(--swap-ms) * 0.6);
+  }
+}
+
+/* .quiet (the hero nav): no line at rest. On hover one line draws in from the
+   left; when the hover ends it carries on out to the right */
+.quiet .line::before {
+  content: none;
+}
+
+.quiet .line::after {
+  transform: scaleX(0);
+  transform-origin: right;
+  transition-delay: 0ms;
+}
+
+.quiet:focus-visible .line::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (hover: hover) {
+  .textLink.quiet:hover .line::after,
+  .swapTrigger.quiet:hover .line::after,
+  .swapTrigger:hover .quiet .line::after {
+    transform: scaleX(1);
+    transform-origin: left;
+    transition-delay: 0ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line::before,
+  .line::after {
+    transition: none;
+  }
+}

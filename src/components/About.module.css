@@ -1,125 +1,121 @@
-/* ═══ SECTION FRAME 1512 × 1030 ═══ */
-/* Positions are Figma px; --u converts them to the section's width.
-   Everything below the heading sits 48px lower than Figma (982 frame) for more
-   room under the title, and the frame grows by the same 48 */
+/* Set exactly like the Projects section: same heading, 12-column grid, thin green
+   rules, uppercase labels, body text, and plain text links (see Projects.module.css) */
 .section {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1512 / 1030;
+  /* viewport units, so each step is the same length wherever it's used (cqw would
+     resolve against whichever container the using element sits in) */
+  --edge: max(6.085vw, 1.5rem);
+  --section-gap: clamp(6rem, 12vw, 11rem);
+  --block: clamp(3rem, 5.5vw, 5rem);
+  --ink: rgba(0, 0, 0, 0.72);
   container-type: inline-size;
-  overflow: hidden;
-  background: #B9ADA3; /* same as the Projects section */
-}
-
-.section > * {
-  --u: calc(100cqw / 1512);
+  /* Projects' bottom padding already sets the gap above this heading */
+  padding: 0 var(--edge) var(--section-gap);
+  background: var(--color-page);
 }
 
 /* ═══ HEADING ═══ */
-/* 150px, centred like the Projects heading, text box at y 0 with normal leading */
 .heading {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  text-align: center;
-  font-size: calc(150 * var(--u));
+  font-size: clamp(3.25rem, 10cqw, 9.5rem);
   font-weight: 400;
-  line-height: normal;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  text-align: center;
   color: var(--color-green);
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity calc(var(--duration-fast) * 2) var(--ease-out),
-    transform calc(var(--duration-fast) * 2) var(--ease-out);
 }
 
-/* ═══ PHOTO ═══ */
-/* 422 × 538 at (76, 323) */
+/* ═══ BODY ═══ */
+/* photo on the left four columns, an empty column, then the text: the same split
+   as the project rows above; the photo's top lines up
+   with the first rule */
+.body {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1rem, 2cqw, 2rem);
+  margin-top: var(--block);
+}
+
+/* the project media's corners, no border */
+/* 422 × 538 at least; when the text runs taller (narrower screens) the photo
+   stretches with it and crops at the sides, so both still end on one line */
 .photo {
-  position: absolute;
-  left: calc(76 * var(--u));
-  top: calc(323 * var(--u));
-  width: calc(422 * var(--u));
-  height: calc(538 * var(--u));
-  border-radius: 18px;
-}
-
-.photoGlow {
-  width: 100%;
-  height: 100%;
+  position: relative;
+  grid-column: 1 / 5;
+  /* both stretch, so the column sets the width and the taller side sets the
+     height; the ratio alone would widen the photo into the text */
+  align-self: stretch;
+  justify-self: stretch;
+  aspect-ratio: 422 / 538;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .img {
   object-fit: cover;
 }
 
-/* ═══ BACKGROUND / DESIGN PHILOSOPHY ═══ */
-/* 22px on 40px lines; the 40px bold heading runs in to the first line.
-   Tops are 5px above Figma's text boxes so the baselines land where Figma's do */
-.block {
-  position: absolute;
-  font-size: calc(20 * var(--u));
-  line-height: calc(36 * var(--u));
-  color: var(--color-green);
-}
-
-.bgBlock {
-  left: calc(580 * var(--u));
-  top: calc(372 * var(--u));
-  width: calc(742 * var(--u));
-}
-
-.dpBlock {
-  left: calc(580 * var(--u));
-  top: calc(657 * var(--u));
-  width: calc(714 * var(--u));
-}
-
-.blockHeading {
-  display: inline;
-  margin-right: calc(32 * var(--u));
-  font-size: calc(40 * var(--u));
-  font-weight: 700;
-}
-
-.blockBody {
-  display: inline;
-}
-
-/* 712 × 3 at (580, 609), #584738 at 30% with round caps */
-.divider {
-  position: absolute;
-  left: calc(580 * var(--u));
-  top: calc(609 * var(--u));
-  width: calc(712 * var(--u));
-  height: calc(3 * var(--u));
-  border: none;
-  border-radius: 999px;
-  background: rgba(88, 71, 56, 0.3);
-}
-
-/* ═══ LINK PILLS ═══ */
-/* Email, Resume, LinkedIn spread across the photo's width, at y 896 */
-.pills {
-  position: absolute;
-  left: calc(76 * var(--u));
-  top: calc(896 * var(--u));
-  width: calc(422 * var(--u));
+/* starts on column 6, the left edge of the project videos above, and runs the
+   photo's full height so the links can sit on its bottom edge */
+.text {
+  grid-column: 6 / -1;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* more air than the project facts: these are paragraphs, not one-line facts */
+  gap: var(--space-12);
 }
 
-.pillWrap {
-  height: calc(35 * var(--u));
+/* each paragraph under a thin rule and an uppercase label, like Role and Outcome */
+.block {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-green);
+}
+
+.label {
   font-family: var(--font-sans);
-  font-size: calc(25 * var(--u));
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
   color: var(--color-green);
+}
+
+/* the project descriptions' size and line height; runs the full width of its rule */
+.paragraph {
+  margin-top: var(--space-2);
+  font-size: clamp(1.1875rem, 1.1rem + 0.2vw, 1.3125rem);
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+/* ═══ LINKS ═══ */
+/* the shared label link (TextLink.module.css), larger, stacked flush left, and pushed
+   down so the last line lands on the photo's bottom edge */
+.links {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  list-style: none;
+}
+
+.links a {
+  font-size: 1.375rem;
+  /* keeps the line 8px under the baseline at this size, like the other links */
+  --line-gap: 0.12em;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
   white-space: nowrap;
 }
 
-/* ═══ ENTRANCE ANIMATION ═══ */
-/* .revealItem — applied to all content blocks except .heading */
+/* ═══ ENTRANCE ═══ */
+.heading,
 .revealItem {
   opacity: 0;
   transform: translateY(16px);
@@ -131,7 +127,7 @@
 .section.visible .heading,
 .section.visible .revealItem {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -144,66 +140,14 @@
 }
 
 /* ═══ SMALL SCREENS ═══ */
+/* one column, photo first, as the projects stack */
 @media (max-width: 1023.98px) {
-  .section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-    aspect-ratio: auto;
-    padding: var(--space-4) var(--space-4) var(--space-12);
+  .photo,
+  .text {
+    grid-column: 1 / -1;
   }
 
-  .heading {
-    position: static;
-    font-size: clamp(3rem, 13cqw, 5.5rem);
-  }
-
-  .photo {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: min(100%, 26rem);
-    height: auto;
-    aspect-ratio: 422 / 538;
-    align-self: center;
-  }
-
-  .block {
-    position: static;
-    width: auto;
-    font-size: 1.0625rem;
-    line-height: 1.6;
-  }
-
-  .blockHeading {
-    display: block;
-    margin: 0 0 var(--space-2);
-    font-size: 1.75rem;
-    line-height: var(--leading-tight);
-  }
-
-  .blockBody {
-    display: block;
-  }
-
-  .divider {
-    position: static;
-    width: 100%;
-    height: 1px;
-  }
-
-  .pills {
-    position: static;
-    width: 100%;
-    gap: var(--space-3);
-    justify-content: center;
-    padding-top: var(--space-2);
-  }
-
-  .pillWrap {
-    flex: 1 1 0;
-    max-width: 10rem;
-    height: 2.75rem;
-    font-size: 1rem;
+  .text {
+    margin-top: var(--space-8);
   }
 }

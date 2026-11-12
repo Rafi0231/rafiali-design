@@ -4,7 +4,7 @@ import { createContext, useContext, useRef } from "react";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import styles from "./CaseStudyLayout.module.css";
-import pillStyles from "./GlassPill.module.css";
+import link from "./TextLink.module.css";
 
 /* ── context ── */
 
@@ -107,12 +107,11 @@ export default function CaseStudyLayout({
         <h1 className={styles.title}>{title}</h1>
         <hr className={styles.rule} />
         <div className={styles.backPill}>
-          <div className={pillStyles.buttonWrap}>
-            <Link href={backHref} className={pillStyles.pill}>
-              <span className={pillStyles.pillSpan}>Back</span>
-            </Link>
-            <div className={pillStyles.buttonShadow} />
-          </div>
+          <Link href={backHref} className={link.textLink}>
+            <span className={link.line}>
+              <span aria-hidden="true">← </span>Back
+            </span>
+          </Link>
         </div>
         <div
           className={`${styles.scrollArea} ${freeScroll ? styles.scrollAreaFree : ""}`}

@@ -5,6 +5,7 @@
   --color-cream:  #D9D9D9;
   --color-ivory:  #FFFFF0;
   --color-silver: #BBB6B6;
+  --color-page:   #E7E1D6; /* the case studies' cream */
 
   /* Typography */
   --font-serif: var(--font-amiri), Georgia, "Times New Roman", serif;
@@ -77,7 +78,7 @@ body {
   font-size: var(--text-base);
   line-height: var(--leading-body);
   color: var(--color-green);
-  background: #DDD7CF;
+  background: var(--color-page);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   hyphens: none;

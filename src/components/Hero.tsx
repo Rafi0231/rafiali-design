@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import HeroStats from "./HeroStats";
 import styles from "./Hero.module.css";
+import link from "./TextLink.module.css";
 
 export default function Hero() {
   return (
@@ -27,14 +28,14 @@ export default function Hero() {
 
       {/* Layer 2 — text sits between the two images */}
       <div className={styles.textLayer}>
-        <a href="#projects" className={styles.navLink} style={{ "--nav-x": "30.291%" } as CSSProperties}>
-          Projects
+        <a href="#projects" className={`${styles.navLink} ${link.swapTrigger} ${link.quiet}`} style={{ "--nav-x": "30.291%" } as CSSProperties}>
+          <span className={link.line}>Projects</span>
         </a>
-        <a href="#about" className={styles.navLink} style={{ "--nav-x": "46.892%" } as CSSProperties}>
-          About
+        <a href="#about" className={`${styles.navLink} ${link.swapTrigger} ${link.quiet}`} style={{ "--nav-x": "46.892%" } as CSSProperties}>
+          <span className={link.line}>About</span>
         </a>
-        <a href="#connect" className={styles.navLink} style={{ "--nav-x": "61.706%" } as CSSProperties}>
-          Connect
+        <a href="#connect" className={`${styles.navLink} ${link.swapTrigger} ${link.quiet}`} style={{ "--nav-x": "61.706%" } as CSSProperties}>
+          <span className={link.line}>Connect</span>
         </a>
 
         <h1 className={styles.name}>Rafi Ali</h1>

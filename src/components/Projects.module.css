@@ -1,265 +1,157 @@
-/* ═══ SECTION ═══ */
-/* Positions are Figma px in the 1512px frame; --u converts them to the section's width */
+/* Set in the case studies' editorial voice: same cream, same ink, same label and fact
+   styles (see Editorial.module.css). Normal flow on a 12-column grid; spacing comes
+   from the --space scale and three section-level steps. */
 .section {
-  position: relative;
-  width: 100%;
+  /* viewport units, so each step is the same length wherever it's used (cqw would
+     resolve against whichever container the using element sits in) */
+  --edge: max(6.085vw, 1.5rem);
+  --section-gap: clamp(6rem, 12vw, 11rem);
+  --block: clamp(3rem, 5.5vw, 5rem);
+  --ink: rgba(0, 0, 0, 0.72);
+  --ink-soft: rgba(31, 53, 29, 0.85);
   container-type: inline-size;
-  overflow: hidden;
-  background: #B9ADA3;
-}
-
-.section > * {
-  --u: calc(100cqw / 1512);
-  /* card-to-card gap: twice the heading's baseline to the first card */
-  --card-gap: 254;
+  padding: var(--section-gap) var(--edge);
+  background: var(--color-page);
 }
 
 /* ═══ HEADING ═══ */
-/* 150px, centred, text box at y 49 with normal leading (Figma's y -31, moved down 80) */
 .heading {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(49 * var(--u));
-  text-align: center;
-  font-size: calc(150 * var(--u));
+  font-size: clamp(3.25rem, 10cqw, 9.5rem);
   font-weight: 400;
-  line-height: normal;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  text-align: center;
   color: var(--color-green);
 }
 
-/* ═══ CARD LIST ═══ */
-/* first card at y 347 (Figma's 219, moved down 128). Below the last card, 186px plus
-   the 68px from the top of About's frame to its letters keeps the 254px card gap */
+/* ═══ LIST ═══ */
 .list {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--card-gap) * var(--u));
-  padding: calc(347 * var(--u)) 0 calc(186 * var(--u)) calc(34 * var(--u));
+  gap: var(--section-gap);
+  margin-top: var(--block);
 }
 
-/* ═══ CARD WRAPPER — owns entrance animation ═══ */
-/* 1441 × 734 */
-.cardWrap {
+/* ═══ PROJECT ═══ */
+/* text on the left four columns, the work on the right seven, one empty column between */
+.project {
   position: relative;
-  width: calc(1441 * var(--u));
-  height: calc(734 * var(--u));
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: auto auto auto auto 1fr;
+  column-gap: clamp(1rem, 2cqw, 2rem);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-green);
 }
 
-/* entrance — initial state; .visible is toggled per element as it scrolls in */
-.heading,
-.cardWrap {
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity calc(var(--duration-fast) * 2) var(--ease-out),
-    transform calc(var(--duration-fast) * 2) var(--ease-out);
+.project > * {
+  grid-column: 1 / 5;
 }
 
-.heading.visible,
-.cardWrap.visible {
-  opacity: 1;
-  transform: translateY(0);
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-green);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .heading,
-  .cardWrap {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-/* ═══ CARD — owns hover only, no entrance state ═══ */
-/* everything inside is placed in px from the card's top-left corner;
-   the --vars that differ between projects come from Projects.tsx */
-.card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  background: rgba(229, 229, 229, 0.5);
-  overflow: hidden;
-  transition:
-    transform var(--duration-fast) var(--ease-out),
-    box-shadow var(--duration-fast) var(--ease-out);
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lift);
-}
-
-.card:has(.cardLink:focus-visible) {
-  outline: 2px solid var(--color-green);
-  outline-offset: 4px;
-}
-
-/* ═══ TITLE ═══ */
-.cardTitle {
-  position: absolute;
-  left: calc(57 * var(--u));
-  top: calc(3 * var(--u));
-  font-size: calc(100 * var(--u));
+.claim {
+  margin-top: var(--space-10);
+  font-size: clamp(2.5rem, 4.4cqw, 4.5rem);
   font-weight: 400;
-  line-height: normal;
-  color: var(--color-brown);
+  line-height: 0.94;
+  letter-spacing: -0.025em;
+  color: var(--color-green);
 }
 
-/* ═══ PILLS ═══ */
-/* 22px pills, 18px apart, 12px side padding */
-.pills {
-  position: absolute;
-  left: calc(57 * var(--u));
-  top: calc(var(--pills-top) * var(--u));
-  display: flex;
-  gap: calc(18 * var(--u));
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(22 * var(--u));
-  padding: 0 calc(12 * var(--u));
-  border-radius: 20px;
-  background: color-mix(in srgb, var(--color-green) 50%, transparent);
-  font-size: calc(15 * var(--u));
-  color: rgba(255, 255, 255, 0.8);
-  white-space: nowrap;
-  line-height: 1;
-}
-
-/* ═══ DESCRIPTION ═══ */
 .description {
-  position: absolute;
-  left: calc(57 * var(--u));
-  top: calc(var(--desc-top) * var(--u));
-  width: calc(var(--desc-width) * var(--u));
-  font-size: calc(20 * var(--u));
-  line-height: calc(28 * var(--u));
-  color: rgba(74, 53, 48, 0.9);
+  max-width: 38rem;
+  margin-top: var(--space-10);
+  font-size: clamp(1.1875rem, 1.1rem + 0.2vw, 1.3125rem);
+  line-height: 1.25;
+  color: var(--ink);
 }
 
-/* ═══ SUMMARY — Role / Outcome between hairlines ═══ */
-.summary {
-  position: absolute;
-  left: calc(57 * var(--u));
-  top: calc(var(--summary-top) * var(--u));
-  width: calc(var(--summary-width) * var(--u));
-  margin: 0;
-  border-bottom: 1px solid rgba(88, 71, 56, 0.3);
+/* Role and Outcome, each under its own rule, as in the case-study openers */
+.facts {
+  display: grid;
+  gap: var(--space-10);
+  margin-top: var(--space-12);
 }
 
-/* hairlines 60px apart, as in Figma's Islamicly card */
-.summary > div {
-  padding-bottom: calc(5 * var(--u));
-  border-top: 1px solid rgba(88, 71, 56, 0.3);
+.fact {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-green);
 }
 
-.summary > div:last-child {
-  padding-bottom: 0;
+.factLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-green);
 }
 
-.summary dt {
-  font-size: calc(15 * var(--u));
-  line-height: calc(27 * var(--u));
-  color: rgba(74, 53, 48, 0.6);
+.factText {
+  margin-top: var(--space-2);
+  font-size: 1.125rem;
+  line-height: 1.25;
+  color: var(--ink);
 }
 
-.summary dd {
-  margin: 0;
-  font-size: calc(17 * var(--u));
-  line-height: calc(27 * var(--u));
-  color: rgba(74, 53, 48, 0.9);
+/* ═══ MEDIA ═══ */
+/* the work itself, no mat: a hairline keeps light edges off the cream.
+   Its top lines up with the label, as the About photo lines up with its first rule */
+.media {
+  grid-column: 6 / -1;
+  grid-row: 1 / -1;
+  align-self: start;
+  display: grid;
+  gap: clamp(1rem, 2cqw, 2rem);
 }
 
-/* ═══ GHOST NUMERAL ═══ */
-/* 250px at (-40, 459); the card's overflow clips it, as Figma's mask does */
-.ghostNumeral {
-  position: absolute;
-  left: calc(-40 * var(--u));
-  top: calc(459 * var(--u));
-  font-family: var(--font-serif);
-  font-size: calc(250 * var(--u));
-  font-weight: 400;
-  letter-spacing: var(--numeral-tracking, -0.12em);
-  line-height: normal;
-  color: rgba(84, 97, 79, 0.4);
-  user-select: none;
-  pointer-events: none;
+.media[data-count="2"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-/* ═══ MEDIA FRAMES ═══ */
-/* sizes and positions are per frame; the media fills its box */
-.mat {
-  position: absolute;
-  left: calc(var(--mat-x) * var(--u));
-  top: calc(var(--mat-y) * var(--u));
-  width: calc(var(--mat-w) * var(--u));
-  height: calc(var(--mat-h) * var(--u));
+.mediaItem {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  outline: 1px solid rgba(31, 53, 29, 0.14);
+  outline-offset: -1px;
+  object-fit: cover;
+  object-position: var(--media-pos, top);
 }
 
-.frame {
-  position: absolute;
-  inset: 0;
-  border-radius: calc(var(--inner-radius) * 1px);
-  overflow: hidden;
-}
-
-.frame > * {
-  height: 100%;
-}
-
-/* the reduced-motion play button sits above the card-wide link's overlay */
-.frame button {
+/* the reduced-motion play button sits above the project-wide link */
+.media button {
   z-index: 2;
 }
 
-.media {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: var(--media-pos);
-}
-
-/* ═══ VIEW PROJECT ═══ */
-/* the link itself stays unpositioned so its overlay covers the whole card */
-.cardLink {
+/* ═══ LINK ═══ */
+/* the shared label link (TextLink.module.css); its overlay makes the whole project clickable */
+.link {
+  justify-self: start;
+  align-self: start;
+  margin-top: var(--space-12);
   outline: none;
 }
 
-.cardLink::after {
+.link::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
 }
 
-/* 212 × 60, grown around each project's original 164 × 47 box */
-.viewBtn {
-  position: absolute;
-  left: calc((var(--btn-x) - 24) * var(--u));
-  top: calc((var(--btn-y) - 6) * var(--u));
-  width: calc(212 * var(--u));
-  height: calc(60 * var(--u));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 15px;
-  background: color-mix(in srgb, var(--color-green) 70%, transparent);
-  font-size: calc(24 * var(--u));
-  font-weight: 500;
-  line-height: 1;
-  color: #F1EADA;
-  white-space: nowrap;
-  transition: background var(--duration-fast) var(--ease-out);
-}
-
-.card:hover .viewBtn {
-  background: color-mix(in srgb, var(--color-green) 85%, transparent);
+.project:has(.link:focus-visible) {
+  outline: 2px solid var(--color-green);
+  outline-offset: var(--space-3);
 }
 
 .srOnly {
@@ -271,111 +163,52 @@
   white-space: nowrap;
 }
 
+/* ═══ ENTRANCE ═══ */
+.heading,
+.project {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity calc(var(--duration-fast) * 2) var(--ease-out),
+    transform calc(var(--duration-fast) * 2) var(--ease-out);
+}
+
+.heading.visible,
+.project.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heading,
+  .project {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ═══ SMALL SCREENS ═══ */
-/* The cards stop being a scaled picture and become a normal stacked layout */
+/* one column: label, claim, the work, then the text */
 @media (max-width: 1023.98px) {
-  .heading {
-    position: static;
-    padding-top: var(--space-10);
-    font-size: clamp(3rem, 13cqw, 5.5rem);
+  .project {
+    grid-template-rows: none;
   }
 
-  .list {
-    gap: var(--space-8);
-    padding: var(--space-6) var(--space-4) var(--space-10);
-  }
-
-  .cardWrap {
-    width: 100%;
-    height: auto;
-  }
-
-  .card {
-    --gap: var(--space-3);
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-4) var(--gap);
-    height: auto;
-    padding: var(--space-6) var(--space-4);
-    container-type: inline-size;
-  }
-
-  .card > * {
+  .project > *,
+  .media {
     grid-column: 1 / -1;
+    grid-row: auto;
   }
 
-  .cardTitle {
-    position: static;
-    font-size: clamp(2.25rem, 10.5cqw, 3.5rem);
-    line-height: var(--leading-tight);
+  .media {
+    order: 1;
+    margin-top: var(--space-10);
   }
 
-  .pills {
-    position: static;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
-  .pill {
-    height: auto;
-    padding: var(--space-1) var(--space-3);
-    font-size: 0.875rem;
-    line-height: 1.3;
-  }
-
-  .description {
-    position: static;
-    width: auto;
-    font-size: 1.0625rem;
-    line-height: 1.55;
-  }
-
-  .summary {
-    position: static;
-    width: auto;
-  }
-
-  .summary > div {
-    padding-block: var(--space-2);
-  }
-
-  .summary > div:last-child {
-    padding-bottom: var(--space-2);
-  }
-
-  .summary dt {
-    font-size: 0.8125rem;
-    line-height: 1.4;
-  }
-
-  .summary dd {
-    font-size: 1rem;
-    line-height: 1.45;
-  }
-
-  .ghostNumeral {
-    display: none;
-  }
-
-  .mat {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: 100%;
-    height: auto;
-    aspect-ratio: var(--mat-w) / var(--mat-h);
-  }
-
-  /* two frames (the posters) sit side by side */
-  .card > .mat:has(+ .mat),
-  .card > .mat + .mat {
-    grid-column: auto;
-  }
-
-  .viewBtn {
-    position: static;
-    width: 100%;
-    height: 3.5rem;
-    font-size: 1.125rem;
+  .description,
+  .facts,
+  .link {
+    order: 2;
   }
 }

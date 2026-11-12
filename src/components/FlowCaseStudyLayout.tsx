@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import chrome from "./CaseStudyLayout.module.css";
-import pillStyles from "./GlassPill.module.css";
+import link from "./TextLink.module.css";
 import styles from "./FlowCaseStudyLayout.module.css";
 import editorial from "./Editorial.module.css";
 
@@ -39,12 +39,11 @@ export default function FlowCaseStudyLayout({
         <h1 className={`${chrome.title} ${styles.titleLow}`}>{title}</h1>
         <hr className={`${chrome.rule} ${styles.ruleSoft}`} />
         <div className={`${chrome.backPill} ${styles.backPillMobile}`}>
-          <div className={pillStyles.buttonWrap}>
-            <Link href={backHref} className={pillStyles.pill}>
-              <span className={pillStyles.pillSpan}>Back</span>
-            </Link>
-            <div className={pillStyles.buttonShadow} />
-          </div>
+          <Link href={backHref} className={link.textLink}>
+            <span className={link.line}>
+              <span aria-hidden="true">← </span>Back
+            </span>
+          </Link>
         </div>
       </div>
       <article className={editorial.article}>{children}</article>

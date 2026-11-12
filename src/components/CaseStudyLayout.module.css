@@ -34,7 +34,10 @@
   border-radius: 1px;
 }
 
+/* the Back link, centred in its slot */
 .backPill {
+  display: flex;
+  align-items: center;
   position: absolute;
   top: 2%;
   right: 3.02%;
